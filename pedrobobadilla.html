@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microcurso: Conducción Segura - Transporte Refrigerado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .truck-icon {
+            animation: truck-move 3s ease-in-out infinite;
+        }
+        @keyframes truck-move {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-full">
+    <div class="min-h-full">
+        <!-- Header -->
+        <header class="gradient-bg text-white py-6">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold">🚛 Conducción Segura TRL</h1>
+                        <p class="text-green-100 mt-1">Transporte Refrigerado Líquido</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold">Pedro Antonio Bobadilla</p>
+                        <p class="text-green-200 text-sm">Conductor Profesional</p>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mt-6 bg-green-800 rounded-full h-3">
+                    <div id="progressBar" class="progress-bar bg-green-300 h-3 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="progressText" class="text-center text-green-100 mt-2 text-sm">Momento 1 de 6: Bienvenida</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-4xl mx-auto px-6 py-8">
+            <!-- Welcome Screen -->
+            <div id="welcome" class="fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8 text-center">
+                    <div class="truck-icon text-6xl mb-4">🚛</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Conducción Segura y Cumplimiento Normativo
+                    </h2>
+                    <h3 class="text-xl text-green-600 mb-6">
+                        Transporte de Carga Refrigerada
+                    </h3>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-6 text-left">
+                        <h4 class="font-bold text-green-800 mb-2">📋 Marco Normativo:</h4>
+                        <ul class="text-green-700 space-y-1">
+                            <li>• Ley 769 de 2002 - Código Nacional de Tránsito</li>
+                            <li>• Ley 1503 de 2011 - Promoción de la Seguridad Vial</li>
+                            <li>• Resolución 40595 de 2022 - Transporte de Carga</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-6 rounded-lg">
+                            <h4 class="font-bold text-green-800 mb-2">🎯 Objetivos</h4>
+                            <ul class="text-green-700 text-sm space-y-1">
+                                <li>• Reforzar prelación de señales</li>
+                                <li>• Aplicar distancias de seguridad</li>
+                                <li>• Dominar maniobras permitidas</li>
+                                <li>• Comportamiento con emergencias</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-lg">
+                            <h4 class="font-bold text-blue-800 mb-2">⏱️ Duración</h4>
+                            <p class="text-blue-700 text-sm mb-2">Aproximadamente 25 minutos</p>
+                            <h4 class="font-bold text-blue-800 mb-2">📍 Modalidad</h4>
+                            <p class="text-blue-700 text-sm">Interactivo y autogestionado</p>
+                        </div>
+                    </div>
+
+                    <button onclick="startCourse()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors">
+                        🚀 Iniciar Microcurso
+                    </button>
+                </div>
+            </div>
+
+            <!-- Moment 1: Reflexión -->
+            <div id="moment1" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <span class="text-2xl">🤔</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Momento 1: Reflexión</h2>
+                            <p class="text-green-600">Analicemos tu experiencia actual</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                            <h3 class="font-bold text-yellow-800 mb-4">💭 Situación Real: Ruta Bogotá - Medellín</h3>
+                            <p class="text-yellow-700 mb-4">
+                                Pedro, imagina que transportas productos lácteos refrigerados desde Bogotá hacia Medellín. 
+                                En el sector de Guaduas, encuentras neblina densa y tráfico pesado. Un vehículo de emergencia 
+                                se aproxima por detrás con sirenas activadas.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-green-50 p-6 rounded-lg">
+                                <h4 class="font-bold text-green-800 mb-3">✅ Reflexiona:</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-start space-x-3">
+                                        <input type="checkbox" class="mt-1 text-green-600" onchange="updateReflection()">
+                                        <span class="text-green-700 text-sm">¿Mantienes la distancia adecuada con el vehículo de adelante?</span>
+                                    </label>
+                                    <label class="flex items-start space-x-3">
+                                        <input type="checkbox" class="mt-1 text-green-600" onchange="updateReflection()">
+                                        <span class="text-green-700 text-sm">¿Conoces el protocolo para dar paso a vehículos de emergencia?</span>
+                                    </label>
+                                    <label class="flex items-start space-x-3">
+                                        <input type="checkbox" class="mt-1 text-green-600" onchange="updateReflection()">
+                                        <span class="text-green-700 text-sm">¿Ajustas tu velocidad según las condiciones climáticas?</span>
+                                    </label>
+                                    <label class="flex items-start space-x-3">
+                                        <input type="checkbox" class="mt-1 text-green-600" onchange="updateReflection()">
+                                        <span class="text-green-700 text-sm">¿Verificas constantemente la temperatura de la carga?</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <h4 class="font-bold text-blue-800 mb-3">📊 Tu Experiencia:</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-blue-700 text-sm font-medium mb-2">Años de experiencia en transporte refrigerado:</label>
+                                        <select class="w-full p-2 border border-blue-300 rounded-md">
+                                            <option>Menos de 1 año</option>
+                                            <option>1-3 años</option>
+                                            <option>3-5 años</option>
+                                            <option>Más de 5 años</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-blue-700 text-sm font-medium mb-2">Ruta más frecuente:</label>
+                                        <select class="w-full p-2 border border-blue-300 rounded-md">
+                                            <option>Bogotá - Costa Atlántica</option>
+                                            <option>Bogotá - Medellín</option>
+                                            <option>Bogotá - Cali</option>
+                                            <option>Rutas regionales</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="reflectionComplete" class="hidden bg-green-100 border border-green-400 p-4 rounded-lg text-center">
+                            <p class="text-green-800 font-medium">¡Excelente reflexión! Ahora profundicemos en los conceptos clave.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-8">
+                        <button id="nextBtn1" onclick="showMoment(2)" disabled class="bg-gray-400 text-white font-bold py-3 px-6 rounded-lg cursor-not-allowed">
+                            Continuar a Conceptualización →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moment 2: Conceptualización -->
+            <div id="moment2" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <span class="text-2xl">📚</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Momento 2: Conceptualización</h2>
+                            <p class="text-green-600">Fundamentos normativos y técnicos</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Prelación de Señales -->
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-green-800 mb-4">🚦 1. Prelación de Señales (Art. 109 Ley 769/2002)</h3>
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">👮</div>
+                                    <h4 class="font-bold text-gray-800">1° Agente de Tránsito</h4>
+                                    <p class="text-sm text-gray-600">Máxima autoridad vial</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">🚦</div>
+                                    <h4 class="font-bold text-gray-800">2° Semáforos</h4>
+                                    <p class="text-sm text-gray-600">Regulación automática</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">⚠️</div>
+                                    <h4 class="font-bold text-gray-800">3° Señales Verticales</h4>
+                                    <p class="text-sm text-gray-600">Información y regulación</p>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4">
+                                <p class="text-yellow-800"><strong>Caso TRL:</strong> En intersecciones complejas como el cruce de la Autopista Norte con Calle 170 en Bogotá, siempre prevalece la señal del agente sobre el semáforo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Distancia de Seguridad -->
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-blue-800 mb-4">📏 2. Distancia de Seguridad (Art. 98 Ley 769/2002)</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-blue-800 mb-3">Fórmula para Vehículos de Carga:</h4>
+                                    <div class="bg-blue-50 p-4 rounded-lg mb-3">
+                                        <p class="text-center text-lg font-mono">
+                                            <strong>Distancia = (Velocidad ÷ 10) × 3</strong>
+                                        </p>
+                                        <p class="text-center text-sm text-blue-600 mt-2">Para condiciones normales</p>
+                                    </div>
+                                    <div class="space-y-2 text-sm">
+                                        <p>• A 60 km/h = 18 metros mínimo</p>
+                                        <p>• A 80 km/h = 24 metros mínimo</p>
+                                        <p>• Con lluvia: <strong>duplicar distancia</strong></p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-blue-800 mb-3">Factores Especiales TRL:</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center"><span class="text-red-500 mr-2">❄️</span> Carga refrigerada: mayor peso de frenado</li>
+                                        <li class="flex items-center"><span class="text-yellow-500 mr-2">🌧️</span> Lluvia en cordilleras: triplicar distancia</li>
+                                        <li class="flex items-center"><span class="text-blue-500 mr-2">🌫️</span> Neblina: reducir velocidad 50%</li>
+                                        <li class="flex items-center"><span class="text-green-500 mr-2">⏰</span> Horario nocturno: aumentar 25%</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Maniobras Permitidas -->
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-purple-800 mb-4">🔄 3. Maniobras Permitidas (Resolución 40595/2022)</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-700 mb-3">✅ Permitidas para Carga Refrigerada:</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Adelantamiento en recta con visibilidad > 200m</li>
+                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Cambio de carril con señalización previa</li>
+                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Giro en U donde esté permitido</li>
+                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Reversa en zonas autorizadas</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-red-700 mb-3">❌ Prohibidas:</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-center"><span class="text-red-500 mr-2">✗</span> Adelantamiento en curvas o pendientes</li>
+                                        <li class="flex items-center"><span class="text-red-500 mr-2">✗</span> Cambio brusco sin señalización</li>
+                                        <li class="flex items-center"><span class="text-red-500 mr-2">✗</span> Giro en U en autopistas</li>
+                                        <li class="flex items-center"><span class="text-red-500 mr-2">✗</span> Reversa en vías principales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vehículos de Emergencia -->
+                        <div class="bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-red-800 mb-4">🚨 4. Comportamiento con Vehículos de Emergencia (Art. 69 Ley 769/2002)</h3>
+                            <div class="bg-white p-4 rounded-lg">
+                                <h4 class="font-bold text-red-800 mb-3">Protocolo Obligatorio:</h4>
+                                <div class="grid md:grid-cols-4 gap-4">
+                                    <div class="text-center">
+                                        <div class="bg-red-100 p-3 rounded-full mb-2 mx-auto w-12 h-12 flex items-center justify-center">
+                                            <span class="text-xl">👂</span>
+                                        </div>
+                                        <p class="text-sm font-medium">1. Detectar</p>
+                                        <p class="text-xs text-gray-600">Sirenas o luces</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-red-100 p-3 rounded-full mb-2 mx-auto w-12 h-12 flex items-center justify-center">
+                                            <span class="text-xl">➡️</span>
+                                        </div>
+                                        <p class="text-sm font-medium">2. Orillarse</p>
+                                        <p class="text-xs text-gray-600">Carril derecho</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-red-100 p-3 rounded-full mb-2 mx-auto w-12 h-12 flex items-center justify-center">
+                                            <span class="text-xl">⏸️</span>
+                                        </div>
+                                        <p class="text-sm font-medium">3. Detenerse</p>
+                                        <p class="text-xs text-gray-600">Si es necesario</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="bg-red-100 p-3 rounded-full mb-2 mx-auto w-12 h-12 flex items-center justify-center">
+                                            <span class="text-xl">⏳</span>
+                                        </div>
+                                        <p class="text-sm font-medium">4. Esperar</p>
+                                        <p class="text-xs text-gray-600">Paso completo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="showMoment(1)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg">
+                            ← Volver a Reflexión
+                        </button>
+                        <button onclick="showMoment(3)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg">
+                            Continuar a Apropiación →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moment 3: Apropiación -->
+            <div id="moment3" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Momento 3: Apropiación</h2>
+                            <p class="text-green-600">Casos prácticos y simulaciones</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Caso 1 -->
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-green-800 mb-4">🛣️ Caso 1: Autopista Bogotá-Tunja, Km 45</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">Situación:</h4>
+                                    <p class="text-gray-700 text-sm mb-4">
+                                        Transportas yogures a 4°C. Lluvia intensa, visibilidad 50m. 
+                                        Velocidad actual: 60 km/h. Un automóvil te sigue muy cerca.
+                                    </p>
+                                    <div class="bg-yellow-100 p-3 rounded-lg">
+                                        <p class="text-yellow-800 text-sm"><strong>Pregunta:</strong> ¿Cuál es tu distancia de seguridad correcta?</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">Tu Respuesta:</h4>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center space-x-2">
+                                            <input type="radio" name="caso1" value="18" class="text-green-600">
+                                            <span class="text-sm">18 metros (normal)</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2">
+                                            <input type="radio" name="caso1" value="36" class="text-green-600">
+                                            <span class="text-sm">36 metros (lluvia x2)</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2">
+                                            <input type="radio" name="caso1" value="54" class="text-green-600">
+                                            <span class="text-sm">54 metros (lluvia x3)</span>
+                                        </label>
+                                    </div>
+                                    <div id="respuesta1" class="hidden mt-4 p-3 bg-green-100 rounded-lg">
+                                        <p class="text-green-800 text-sm"><strong>¡Correcto!</strong> Con lluvia intensa debes triplicar la distancia: 54 metros mínimo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caso 2 -->
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-blue-800 mb-4">🚨 Caso 2: Vía Bogotá-Girardot, Sector Melgar</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">Situación:</h4>
+                                    <p class="text-gray-700 text-sm mb-4">
+                                        Cargas helados a -18°C. Escuchas sirenas de ambulancia aproximándose por detrás. 
+                                        Estás en carril central de 3 carriles, tráfico denso.
+                                    </p>
+                                    <div class="bg-yellow-100 p-3 rounded-lg">
+                                        <p class="text-yellow-800 text-sm"><strong>Pregunta:</strong> ¿Cuál es la secuencia correcta de acciones?</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">Ordena las acciones (1-4):</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center space-x-2">
+                                            <input type="number" min="1" max="4" class="w-12 p-1 border rounded text-center" id="accion1">
+                                            <span class="text-sm">Activar direccionales derechas</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <input type="number" min="1" max="4" class="w-12 p-1 border rounded text-center" id="accion2">
+                                            <span class="text-sm">Cambiar al carril derecho</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <input type="number" min="1" max="4" class="w-12 p-1 border rounded text-center" id="accion3">
+                                            <span class="text-sm">Reducir velocidad gradualmente</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <input type="number" min="1" max="4" class="w-12 p-1 border rounded text-center" id="accion4">
+                                            <span class="text-sm">Esperar paso completo de emergencia</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="verificarSecuencia()" class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+                                        Verificar Secuencia
+                                    </button>
+                                    <div id="respuesta2" class="hidden mt-4 p-3 bg-green-100 rounded-lg">
+                                        <p class="text-green-800 text-sm"><strong>¡Excelente!</strong> Secuencia correcta: 1-Direccionales, 2-Cambio carril, 3-Reducir velocidad, 4-Esperar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Simulador Interactivo -->
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-purple-800 mb-4">🎮 Simulador: Intersección Compleja</h3>
+                            <div class="bg-white p-6 rounded-lg">
+                                <div class="grid grid-cols-3 gap-2 mb-4" id="intersection">
+                                    <div class="h-16 bg-gray-200 flex items-center justify-center text-xs">Vía Norte</div>
+                                    <div class="h-16 bg-yellow-300 flex items-center justify-center relative">
+                                        <span class="text-2xl" id="semaforo">🔴</span>
+                                        <span class="absolute bottom-1 text-xs">Semáforo</span>
+                                    </div>
+                                    <div class="h-16 bg-gray-200 flex items-center justify-center text-xs">Vía Norte</div>
+                                    <div class="h-16 bg-gray-300 flex items-center justify-center text-xs">Vía Oeste</div>
+                                    <div class="h-16 bg-gray-400 flex items-center justify-center relative">
+                                        <span class="text-2xl" id="agente">👮</span>
+                                        <span class="absolute bottom-1 text-xs">Agente</span>
+                                    </div>
+                                    <div class="h-16 bg-gray-300 flex items-center justify-center text-xs">Vía Este</div>
+                                    <div class="h-16 bg-gray-200 flex items-center justify-center text-xs">Vía Sur</div>
+                                    <div class="h-16 bg-green-200 flex items-center justify-center relative">
+                                        <span class="text-2xl">🚛</span>
+                                        <span class="absolute bottom-1 text-xs">TRL</span>
+                                    </div>
+                                    <div class="h-16 bg-gray-200 flex items-center justify-center text-xs">Vía Sur</div>
+                                </div>
+                                <div class="text-center mb-4">
+                                    <p class="text-sm text-gray-700 mb-2">El agente te indica ALTO, pero el semáforo está en VERDE. ¿Qué haces?</p>
+                                    <div class="space-x-4">
+                                        <button onclick="simularDecision('semaforo')" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">
+                                            Seguir Semáforo
+                                        </button>
+                                        <button onclick="simularDecision('agente')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm">
+                                            Obedecer Agente
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="simulacionResultado" class="hidden text-center p-3 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="showMoment(2)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg">
+                            ← Volver a Conceptualización
+                        </button>
+                        <button id="nextBtn3" onclick="showMoment(4)" disabled class="bg-gray-400 text-white font-bold py-3 px-6 rounded-lg cursor-not-allowed">
+                            Continuar a Transferencia →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moment 4: Transferencia -->
+            <div id="moment4" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Momento 4: Transferencia</h2>
+                            <p class="text-green-600">Aplicación en tu trabajo diario</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Plan de Acción Personal -->
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-green-800 mb-4">📋 Plan de Acción Personal - TRL</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-800 mb-3">🎯 Compromisos Inmediatos:</h4>
+                                    <div class="space-y-3">
+                                        <label class="flex items-start space-x-3">
+                                            <input type="checkbox" class="mt-1 text-green-600" onchange="updateCommitments()">
+                                            <span class="text-sm">Verificar distancia de seguridad cada 15 minutos durante el viaje</span>
+                                        </label>
+                                        <label class="flex items-start space-x-3">
+                                            <input type="checkbox" class="mt-1 text-green-600" onchange="updateCommitments()">
+                                            <span class="text-sm">Practicar protocolo de emergencia en próximos 3 viajes</span>
+                                        </label>
+                                        <label class="flex items-start space-x-3">
+                                            <input type="checkbox" class="mt-1 text-green-600" onchange="updateCommitments()">
+                                            <span class="text-sm">Ajustar velocidad según condiciones climáticas sin excepción</span>
+                                        </label>
+                                        <label class="flex items-start space-x-3">
+                                            <input type="checkbox" class="mt-1 text-green-600" onchange="updateCommitments()">
+                                            <span class="text-sm">Respetar prelación de señales en todas las intersecciones</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-blue-800 mb-3">📊 Autoevaluación Semanal:</h4>
+                                    <div class="space-y-3 text-sm">
+                                        <div class="flex justify-between items-center">
+                                            <span>Cumplimiento distancia seguridad:</span>
+                                            <div class="flex space-x-1">
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-gray-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-gray-200 rounded"></span>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span>Respuesta a emergencias:</span>
+                                            <div class="flex space-x-1">
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-gray-200 rounded"></span>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span>Maniobras seguras:</span>
+                                            <div class="flex space-x-1">
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                                <span class="w-4 h-4 bg-green-200 rounded"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Herramientas Prácticas -->
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-blue-800 mb-4">🛠️ Herramientas para el Día a Día</h3>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">📱</div>
+                                    <h4 class="font-bold text-gray-800 mb-2">App Recordatorio</h4>
+                                    <p class="text-sm text-gray-600">Configura alarmas cada 15 min para verificar distancia</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">📋</div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Lista de Verificación</h4>
+                                    <p class="text-sm text-gray-600">Checklist pre-viaje con puntos de seguridad</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">📞</div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Contacto Emergencia</h4>
+                                    <p class="text-sm text-gray-600">Línea directa TRL: 123-456-7890</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Casos Específicos TRL -->
+                        <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-yellow-800 mb-4">🎯 Aplicación Específica en Rutas TRL</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-2">🛣️ Ruta Bogotá - Barranquilla:</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Sector Guaduas: Neblina frecuente - reducir velocidad 40%</li>
+                                        <li>• Peaje La Dorada: Congestión - mantener distancia x2</li>
+                                        <li>• Tramo Bosconia: Vientos fuertes - agarre firme del volante</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-2">🏔️ Ruta Bogotá - Medellín:</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Subida Letras: Usar carril derecho, velocidad constante</li>
+                                        <li>• Túnel Fernando Gómez: Luces encendidas, distancia x1.5</li>
+                                        <li>• Bajada Copacabana: Freno motor, no sobrecalentar frenos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="showMoment(3)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg">
+                            ← Volver a Apropiación
+                        </button>
+                        <button onclick="showMoment(5)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg">
+                            Ir a Autoevaluación →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Autoevaluación -->
+            <div id="moment5" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <span class="text-2xl">✅</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Autoevaluación Final</h2>
+                            <p class="text-green-600">Verifica tu aprendizaje</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6" id="evaluacion">
+                        <!-- Pregunta 1 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">1. En una intersección, ¿cuál es el orden correcto de prelación de señales?</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="a" class="text-green-600">
+                                    <span class="text-sm">Semáforo, Agente, Señales verticales</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="b" class="text-green-600">
+                                    <span class="text-sm">Agente, Semáforo, Señales verticales</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q1" value="c" class="text-green-600">
+                                    <span class="text-sm">Señales verticales, Semáforo, Agente</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 2 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">2. Para un vehículo de carga refrigerada a 70 km/h en condiciones normales, la distancia de seguridad mínima es:</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q2" value="a" class="text-green-600">
+                                    <span class="text-sm">15 metros</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q2" value="b" class="text-green-600">
+                                    <span class="text-sm">21 metros</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q2" value="c" class="text-green-600">
+                                    <span class="text-sm">28 metros</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 3 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">3. Al escuchar sirenas de ambulancia, el primer paso es:</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q3" value="a" class="text-green-600">
+                                    <span class="text-sm">Detenerse inmediatamente</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q3" value="b" class="text-green-600">
+                                    <span class="text-sm">Activar direccionales y buscar espacio para orillarse</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q3" value="c" class="text-green-600">
+                                    <span class="text-sm">Acelerar para salir del camino</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 4 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">4. En condiciones de lluvia intensa, la distancia de seguridad debe:</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q4" value="a" class="text-green-600">
+                                    <span class="text-sm">Mantenerse igual</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q4" value="b" class="text-green-600">
+                                    <span class="text-sm">Duplicarse</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q4" value="c" class="text-green-600">
+                                    <span class="text-sm">Triplicarse</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 5 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">5. ¿Cuál maniobra está PROHIBIDA para vehículos de carga en autopistas?</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q5" value="a" class="text-green-600">
+                                    <span class="text-sm">Adelantamiento en recta</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q5" value="b" class="text-green-600">
+                                    <span class="text-sm">Giro en U</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q5" value="c" class="text-green-600">
+                                    <span class="text-sm">Cambio de carril</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pregunta 6 -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-gray-800 mb-3">6. Para el transporte refrigerado, ¿qué factor adicional afecta la distancia de frenado?</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q6" value="a" class="text-green-600">
+                                    <span class="text-sm">La temperatura de la carga</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q6" value="b" class="text-green-600">
+                                    <span class="text-sm">El mayor peso del vehículo cargado</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="radio" name="q6" value="c" class="text-green-600">
+                                    <span class="text-sm">El tipo de refrigerante usado</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="evaluarRespuestas()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg">
+                            📊 Evaluar Respuestas
+                        </button>
+                    </div>
+
+                    <div id="resultadoEvaluacion" class="hidden mt-6"></div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="showMoment(4)" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg">
+                            ← Volver a Transferencia
+                        </button>
+                        <button id="finalBtn" onclick="showMoment(6)" disabled class="bg-gray-400 text-white font-bold py-3 px-6 rounded-lg cursor-not-allowed">
+                            Finalizar Curso →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compromiso Final -->
+            <div id="moment6" class="hidden fade-in">
+                <div class="bg-white rounded-xl card-shadow p-8">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4">🏆</div>
+                        <h2 class="text-3xl font-bold text-green-800 mb-2">¡Felicitaciones Pedro Antonio!</h2>
+                        <p class="text-green-600 text-lg">Has completado exitosamente el microcurso</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 p-8 rounded-lg mb-8">
+                        <h3 class="text-2xl font-bold text-green-800 mb-6 text-center">📝 Compromiso de Conducción Segura</h3>
+                        
+                        <div class="bg-white p-6 rounded-lg mb-6">
+                            <p class="text-gray-700 mb-4">
+                                Yo, <strong>Pedro Antonio Bobadilla</strong>, conductor profesional de 
+                                <strong>Transporte Refrigerado Líquido (TRL)</strong>, me comprometo a:
+                            </p>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start space-x-3">
+                                    <span class="text-green-600 mt-1">✓</span>
+                                    <span class="text-sm">Respetar siempre la prelación de señales, dando prioridad al agente de tránsito sobre cualquier otra señalización.</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="text-green-600 mt-1">✓</span>
+                                    <span class="text-sm">Mantener la distancia de seguridad apropiada, ajustándola según las condiciones climáticas y de la vía.</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="text-green-600 mt-1">✓</span>
+                                    <span class="text-sm">Realizar únicamente maniobras permitidas y seguras, considerando las características de mi vehículo de carga refrigerada.</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="text-green-600 mt-1">✓</span>
+                                    <span class="text-sm">Dar paso inmediato y seguro a vehículos de emergencia, siguiendo el protocolo establecido.</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="text-green-600 mt-1">✓</span>
+                                    <span class="text-sm">Aplicar estos conocimientos en cada viaje, priorizando la seguridad vial y el cumplimiento normativo.</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2">Firma Digital:</label>
+                                        <input type="text" placeholder="Escribe tu nombre completo" class="w-full p-3 border border-gray-300 rounded-lg" id="firmaDigital">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2">Fecha:</label>
+                                        <input type="date" class="w-full p-3 border border-gray-300 rounded-lg" id="fechaCompromiso">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button onclick="generarCompromiso()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg">
+                                📄 Generar Compromiso
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
+                        <h4 class="font-bold text-blue-800 mb-2">📞 Contacto TRL - Seguridad Vial</h4>
+                        <p class="text-blue-700 text-sm">
+                            Para consultas adicionales sobre seguridad vial o reportar incidentes:<br>
+                            <strong>Email:</strong> seguridad@trl.com.co | <strong>Teléfono:</strong> (601) 123-4567<br>
+                            <strong>WhatsApp:</strong> +57 300 123 4567 | <strong>Emergencias:</strong> 123
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="inline-flex items-center space-x-2 text-green-600">
+                            <span class="text-2xl">🚛</span>
+                            <span class="font-bold">¡Conduce seguro, Pedro Antonio!</span>
+                            <span class="text-2xl">🛣️</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Tu seguridad y la de otros conductores es nuestra prioridad</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentMoment = 0;
+        let evaluationScore = 0;
+        
+        // Set today's date
+        document.getElementById('fechaCompromiso').value = new Date().toISOString().split('T')[0];
+
+        function startCourse() {
+            showMoment(1);
+        }
+
+        function showMoment(moment) {
+            // Hide all moments
+            for (let i = 0; i <= 6; i++) {
+                const element = document.getElementById(i === 0 ? 'welcome' : `moment${i}`);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+            }
+            
+            // Show current moment
+            const currentElement = document.getElementById(moment === 0 ? 'welcome' : `moment${moment}`);
+            if (currentElement) {
+                currentElement.classList.remove('hidden');
+                currentElement.classList.add('fade-in');
+            }
+            
+            currentMoment = moment;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const progress = (currentMoment / 6) * 100;
+            
+            progressBar.style.width = progress + '%';
+            
+            const moments = [
+                'Bienvenida',
+                'Reflexión',
+                'Conceptualización', 
+                'Apropiación',
+                'Transferencia',
+                'Autoevaluación',
+                'Compromiso Final'
+            ];
+            
+            progressText.textContent = `Momento ${currentMoment} de 6: ${moments[currentMoment]}`;
+        }
+
+        function updateReflection() {
+            const checkboxes = document.querySelectorAll('#moment1 input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            if (checked >= 3) {
+                document.getElementById('reflectionComplete').classList.remove('hidden');
+                const nextBtn = document.getElementById('nextBtn1');
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                nextBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+            }
+        }
+
+        function verificarSecuencia() {
+            const accion1 = document.getElementById('accion1').value;
+            const accion2 = document.getElementById('accion2').value;
+            const accion3 = document.getElementById('accion3').value;
+            const accion4 = document.getElementById('accion4').value;
+            
+            if (accion1 == '1' && accion2 == '2' && accion3 == '3' && accion4 == '4') {
+                document.getElementById('respuesta2').classList.remove('hidden');
+                checkApropiacionComplete();
+            }
+        }
+
+        function simularDecision(decision) {
+            const resultado = document.getElementById('simulacionResultado');
+            resultado.classList.remove('hidden');
+            
+            if (decision === 'agente') {
+                resultado.className = 'text-center p-3 rounded-lg bg-green-100 border border-green-400';
+                resultado.innerHTML = '<p class="text-green-800 font-medium">¡Correcto! El agente de tránsito tiene prelación sobre el semáforo. Has tomado la decisión correcta según el Art. 109 de la Ley 769/2002.</p>';
+            } else {
+                resultado.className = 'text-center p-3 rounded-lg bg-red-100 border border-red-400';
+                resultado.innerHTML = '<p class="text-red-800 font-medium">Incorrecto. Aunque el semáforo esté en verde, debes obedecer al agente de tránsito que tiene prelación sobre cualquier otra señal.</p>';
+            }
+            
+            checkApropiacionComplete();
+        }
+
+        function checkApropiacionComplete() {
+            // Check if case 1 is answered
+            const caso1 = document.querySelector('input[name="caso1"]:checked');
+            // Check if sequence is correct
+            const respuesta2 = !document.getElementById('respuesta2').classList.contains('hidden');
+            // Check if simulation is done
+            const simulacion = !document.getElementById('simulacionResultado').classList.contains('hidden');
+            
+            if (caso1 && respuesta2 && simulacion) {
+                const nextBtn = document.getElementById('nextBtn3');
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                nextBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+            }
+        }
+
+        function updateCommitments() {
+            // This function can be used to track commitment selections
+        }
+
+        function evaluarRespuestas() {
+            const respuestasCorrectas = {
+                'q1': 'b', // Agente, Semáforo, Señales verticales
+                'q2': 'b', // 21 metros (70/10 * 3 = 21)
+                'q3': 'b', // Activar direccionales y buscar espacio
+                'q4': 'c', // Triplicarse
+                'q5': 'b', // Giro en U
+                'q6': 'b'  // Mayor peso del vehículo
+            };
+            
+            let correctas = 0;
+            let total = 6;
+            
+            for (let i = 1; i <= 6; i++) {
+                const respuesta = document.querySelector(`input[name="q${i}"]:checked`);
+                if (respuesta && respuesta.value === respuestasCorrectas[`q${i}`]) {
+                    correctas++;
+                }
+            }
+            
+            evaluationScore = correctas;
+            const porcentaje = Math.round((correctas / total) * 100);
+            
+            const resultado = document.getElementById('resultadoEvaluacion');
+            resultado.classList.remove('hidden');
+            
+            let mensaje, colorClass;
+            if (porcentaje >= 80) {
+                mensaje = '¡Excelente! Has demostrado un dominio sólido de los conceptos.';
+                colorClass = 'bg-green-100 border-green-400 text-green-800';
+            } else if (porcentaje >= 60) {
+                mensaje = 'Buen trabajo. Considera repasar algunos conceptos clave.';
+                colorClass = 'bg-yellow-100 border-yellow-400 text-yellow-800';
+            } else {
+                mensaje = 'Te recomendamos revisar el material y repetir la evaluación.';
+                colorClass = 'bg-red-100 border-red-400 text-red-800';
+            }
+            
+            resultado.innerHTML = `
+                <div class="p-6 rounded-lg border-l-4 ${colorClass}">
+                    <h4 class="font-bold text-lg mb-2">Resultado: ${correctas}/${total} (${porcentaje}%)</h4>
+                    <p class="mb-4">${mensaje}</p>
+                    <div class="grid grid-cols-6 gap-2">
+                        ${Array.from({length: 6}, (_, i) => {
+                            const respuesta = document.querySelector(`input[name="q${i+1}"]:checked`);
+                            const esCorrecta = respuesta && respuesta.value === respuestasCorrectas[`q${i+1}`];
+                            return `<div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold ${esCorrecta ? 'bg-green-500' : 'bg-red-500'}">${i+1}</div>`;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            
+            if (porcentaje >= 60) {
+                const finalBtn = document.getElementById('finalBtn');
+                finalBtn.disabled = false;
+                finalBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                finalBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+            }
+        }
+
+        function generarCompromiso() {
+            const firma = document.getElementById('firmaDigital').value;
+            const fecha = document.getElementById('fechaCompromiso').value;
+            
+            if (!firma || !fecha) {
+                alert('Por favor completa tu firma digital y la fecha.');
+                return;
+            }
+            
+            // Create a simple "certificate" display
+            const compromisoDiv = document.createElement('div');
+            compromisoDiv.className = 'mt-6 p-6 bg-green-50 border-2 border-green-300 rounded-lg';
+            compromisoDiv.innerHTML = `
+                <div class="text-center">
+                    <h4 class="text-xl font-bold text-green-800 mb-4">✅ Compromiso Registrado</h4>
+                    <p class="text-green-700 mb-2">Firmado por: <strong>${firma}</strong></p>
+                    <p class="text-green-700 mb-4">Fecha: <strong>${new Date(fecha).toLocaleDateString('es-CO')}</strong></p>
+                    <p class="text-sm text-green-600">Este compromiso ha sido registrado en el sistema TRL.</p>
+                    <div class="mt-4 text-2xl">🏆 📜 ✅</div>
+                </div>
+            `;
+            
+            // Replace the form with the confirmation
+            const form = compromisoDiv.previousElementSibling;
+            if (form) {
+                form.parentNode.replaceChild(compromisoDiv, form);
+            } else {
+                document.querySelector('#moment6 .bg-gradient-to-r').appendChild(compromisoDiv);
+            }
+        }
+
+        // Initialize case 1 radio button listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const caso1Radios = document.querySelectorAll('input[name="caso1"]');
+            caso1Radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === '54') {
+                        document.getElementById('respuesta1').classList.remove('hidden');
+                    }
+                    checkApropiacionComplete();
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9956098e33a1b6f2',t:'MTc2MTYwODQxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
