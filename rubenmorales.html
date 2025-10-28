@@ -1,0 +1,2775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚚 Microcurso de Reentrenamiento C2 - Rubén Hernando Morales Bejarano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+        }
+        .section-hidden {
+            display: none;
+        }
+        .section-visible {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .progress-bar {
+            transition: width 0.8s ease;
+        }
+        .truck-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .correct-answer {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            animation: correctPulse 0.6s ease;
+        }
+        .wrong-answer {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            animation: wrongShake 0.6s ease;
+        }
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .scenario-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 6px solid #dc2626;
+        }
+        .law-highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+        }
+        .interactive-button {
+            transition: all 0.3s ease;
+        }
+        .interactive-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+        .technical-content {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+        }
+        .case-study {
+            background: linear-gradient(135deg, #fef7cd 0%, #fef3c7 100%);
+            border-left: 6px solid #f59e0b;
+        }
+        .timer-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .inspection-step {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            cursor: move;
+        }
+        .drop-zone {
+            min-height: 80px;
+            border: 2px dashed #d1d5db;
+            transition: all 0.3s ease;
+        }
+        .drop-zone.drag-over {
+            border-color: #22c55e;
+            background-color: #f0fdf4;
+        }
+        .reflection-deep {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border: 2px solid #ea580c;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-full">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <div class="text-5xl" id="truckIcon">🚚</div>
+                    <div>
+                        <h1 class="text-3xl font-bold">🚚 MICROCURSO DE REENTRENAMIENTO C2</h1>
+                        <p class="text-red-100 text-lg font-medium">Conducción Segura y Control Técnico-Operativo</p>
+                        <p class="text-red-200 text-sm">Dirigido a: <strong>Rubén Hernando Morales Bejarano</strong></p>
+                        <p class="text-red-200 text-xs">Reentrenamiento Correctivo - Nivel Básico-Intermedio</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="timer-display text-white" id="timerDisplay">60:00</div>
+                        <p class="text-sm">Duración Total</p>
+                        <div class="text-xs mt-1 text-red-200">
+                            Sección actual: <span id="currentTime">0:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="bg-white bg-opacity-20 rounded-full h-4 mb-4">
+                <div class="progress-bar bg-white h-4 rounded-full" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-red-100">
+                <span>Reflexión (10min)</span>
+                <span>Conceptualización (15min)</span>
+                <span>Apropiación (25min)</span>
+                <span>Transferencia (10min)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        
+        <!-- Section 1: Reflexión -->
+        <section id="section1" class="section-visible mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">🤔</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">1. Reflexión Crítica: "El Despertar de la Conciencia Operativa"</h2>
+                    <p class="text-xl text-red-600 font-medium">"Cuando la experiencia se convierte en negligencia: Un análisis profundo de patrones de riesgo"</p>
+                    <div class="bg-red-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-red-700">⏱️ Duración: 15 minutos | Objetivo: Deconstruir patrones de comportamiento riesgoso y reconstruir criterio técnico profesional</p>
+                        <p class="text-xs text-red-600 mt-1">⚠️ Nivel de Intervención: CRÍTICO - Múltiples deficiencias identificadas</p>
+                    </div>
+                </div>
+                
+                <!-- Reconstrucción Forense del Incidente -->
+                <div class="scenario-card rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-red-800 mb-6 flex items-center text-xl">
+                        <span class="text-3xl mr-3">🔍</span>
+                        Reconstrucción Forense: "Anatomía de un Casi-Accidente Fatal"
+                    </h3>
+                    
+                    <!-- Línea de Tiempo Crítica -->
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
+                        <h4 class="font-bold text-red-800 mb-4 text-center">⏰ CRONOLOGÍA DEL RIESGO: 45 Minutos que Pudieron Cambiar Vidas</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-3 bg-white rounded border-l-4 border-gray-400">
+                                <span class="bg-gray-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-sm">05:45</span>
+                                <div class="flex-1">
+                                    <p class="font-bold text-gray-800">Llegada al Patio</p>
+                                    <p class="text-sm text-gray-600">Rubén llega 15 minutos antes. Tiempo suficiente para inspección completa, pero...</p>
+                                    <p class="text-xs text-red-600 italic">❌ Decisión: "Ya conozco este camión, no necesito revisarlo"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-3 bg-white rounded border-l-4 border-yellow-500">
+                                <span class="bg-yellow-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-sm">05:50</span>
+                                <div class="flex-1">
+                                    <p class="font-bold text-yellow-800">Inspección "Visual Rápida"</p>
+                                    <p class="text-sm text-gray-600">2 minutos caminando alrededor del vehículo. No se agacha, no toca, no mide.</p>
+                                    <p class="text-xs text-red-600 italic">❌ Omisión: Llanta trasera derecha con 18 PSI menos (35 PSI vs 53 PSI requeridos)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-3 bg-white rounded border-l-4 border-orange-500">
+                                <span class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-sm">06:00</span>
+                                <div class="flex-1">
+                                    <p class="font-bold text-orange-800">Arranque y Salida</p>
+                                    <p class="text-sm text-gray-600">Motor encendido, primera marcha, salida del patio. "Todo normal".</p>
+                                    <p class="text-xs text-red-600 italic">❌ Señal ignorada: Ligera vibración en el volante al acelerar</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-3 bg-white rounded border-l-4 border-red-500">
+                                <span class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-sm">06:30</span>
+                                <div class="flex-1">
+                                    <p class="font-bold text-red-800">EL MOMENTO CRÍTICO</p>
+                                    <p class="text-sm text-gray-600">Km 25, curva cerrada a 45 km/h. La llanta con baja presión pierde adherencia.</p>
+                                    <p class="text-xs text-red-600 italic">⚠️ Consecuencia: Vehículo se desplaza 1.2 metros hacia el carril contrario</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-red-500">
+                            <h4 class="font-bold text-red-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">🎯</span>
+                                Perfil de Riesgo del Conductor
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 p-3 rounded">
+                                    <p class="font-bold text-red-800 text-sm">Experiencia Mal Canalizada</p>
+                                    <p class="text-xs text-red-700">8 años de experiencia generaron exceso de confianza y "ceguera operacional"</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded">
+                                    <p class="font-bold text-orange-800 text-sm">Patrón de Omisiones</p>
+                                    <p class="text-xs text-orange-700">Historial de inspecciones superficiales documentado en últimos 6 meses</p>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded">
+                                    <p class="font-bold text-yellow-800 text-sm">Presión Operativa</p>
+                                    <p class="text-xs text-yellow-700">Priorización de tiempos de entrega sobre procedimientos de seguridad</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded">
+                                    <p class="font-bold text-blue-800 text-sm">Desconocimiento Normativo</p>
+                                    <p class="text-xs text-blue-700">Falta de actualización en normativa técnica y responsabilidades legales</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-orange-500">
+                            <h4 class="font-bold text-orange-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">⚗️</span>
+                                Análisis Técnico Forense
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="bg-red-100 p-3 rounded border-l-2 border-red-400">
+                                    <p class="font-bold text-red-800 text-sm">Falla Primaria: Presión de Llantas</p>
+                                    <p class="text-xs text-red-700">Llanta trasera: 35 PSI (66% de presión requerida)</p>
+                                    <p class="text-xs text-gray-600">Impacto: Reducción del 40% en área de contacto</p>
+                                </div>
+                                <div class="bg-orange-100 p-3 rounded border-l-2 border-orange-400">
+                                    <p class="font-bold text-orange-800 text-sm">Efecto Cascada: Inestabilidad</p>
+                                    <p class="text-xs text-orange-700">Distribución desigual de fuerzas laterales</p>
+                                    <p class="text-xs text-gray-600">Resultado: Sobreviraje en curva cerrada</p>
+                                </div>
+                                <div class="bg-yellow-100 p-3 rounded border-l-2 border-yellow-400">
+                                    <p class="font-bold text-yellow-800 text-sm">Factor Agravante: Carga</p>
+                                    <p class="text-xs text-yellow-700">12 toneladas aumentan inercia y tiempo de reacción</p>
+                                    <p class="text-xs text-gray-600">Energía cinética: 3.2 veces mayor que vehículo liviano</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded border-l-2 border-blue-400">
+                                    <p class="font-bold text-blue-800 text-sm">Milagro Estadístico</p>
+                                    <p class="text-xs text-blue-700">Probabilidad de accidente fatal: 73%</p>
+                                    <p class="text-xs text-gray-600">Solo la experiencia en maniobras evasivas evitó la tragedia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 border-l-4 border-red-400 rounded-lg p-6">
+                        <h4 class="font-bold text-red-800 mb-3 flex items-center">
+                            <span class="text-2xl mr-2">🔍</span>
+                            Análisis Técnico del Incidente
+                        </h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">🛞</div>
+                                <p class="font-medium text-red-700">Presión Inadecuada</p>
+                                <p class="text-sm text-red-600">Llanta trasera con 15 PSI menos</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">🔧</div>
+                                <p class="font-medium text-red-700">Desgaste Irregular</p>
+                                <p class="text-sm text-red-600">Banda de rodadura comprometida</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">⚖️</div>
+                                <p class="font-medium text-red-700">Distribución de Carga</p>
+                                <p class="text-sm text-red-600">Desbalance no detectado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Análisis Psicológico del Comportamiento -->
+                <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-purple-800 mb-6 text-xl text-center">🧠 ANÁLISIS PSICOLÓGICO: "Los Mecanismos Mentales del Riesgo"</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-red-500">
+                            <h5 class="font-bold text-red-800 mb-3">🔴 Sesgo de Disponibilidad</h5>
+                            <p class="text-sm text-gray-700 mb-3">"Como nunca me ha pasado nada grave, no va a pasar"</p>
+                            <div class="bg-red-50 p-3 rounded text-xs">
+                                <p class="font-bold text-red-700">Manifestación en Rubén:</p>
+                                <p>8 años sin accidentes graves = falsa sensación de inmunidad</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-orange-500">
+                            <h5 class="font-bold text-orange-800 mb-3">🟠 Automatización Peligrosa</h5>
+                            <p class="text-sm text-gray-700 mb-3">"Lo hago tan seguido que ya no necesito pensar"</p>
+                            <div class="bg-orange-50 p-3 rounded text-xs">
+                                <p class="font-bold text-orange-700">Manifestación en Rubén:</p>
+                                <p>Rutina de 2 minutos vs. inspección de 15 minutos requerida</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-yellow-500">
+                            <h5 class="font-bold text-yellow-800 mb-3">🟡 Presión Temporal</h5>
+                            <p class="text-sm text-gray-700 mb-3">"No tengo tiempo para tanto protocolo"</p>
+                            <div class="bg-yellow-50 p-3 rounded text-xs">
+                                <p class="font-bold text-yellow-700">Manifestación en Rubén:</p>
+                                <p>Priorizar 10 minutos de "ahorro" sobre seguridad vital</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preguntas de Reflexión Profunda -->
+                <div class="reflection-deep rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-orange-800 mb-6 text-xl">🎯 Autoanálisis Crítico: "Reconociendo Mis Propios Patrones de Riesgo"</h4>
+                    <p class="text-orange-700 mb-6 text-center italic">"La primera víctima de la negligencia es siempre la autocrítica. Recuperémosla."</p>
+                    
+                    <!-- Pregunta 1 -->
+                    <div class="bg-white rounded-lg p-6 mb-6 border-l-4 border-red-500">
+                        <h5 class="font-bold text-gray-800 mb-4">1. AUTOANÁLISIS CONDUCTUAL: ¿En cuál de estos patrones te reconoces más?</h5>
+                        <p class="text-sm text-gray-600 mb-4 italic">Reflexiona honestamente sobre tu comportamiento de los últimos 6 meses...</p>
+                        <div class="space-y-4">
+                            <button onclick="selectReflection(1, 1)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">"El Veterano Confiado" - Automatización Total</p>
+                                        <p class="text-sm text-gray-600">"Llevo 8 años haciendo esto, ya sé qué buscar. Una mirada rápida me dice todo."</p>
+                                        <p class="text-xs text-red-600 italic">⚠️ Patrón de Rubén: Inspección visual de 2 minutos, sin verificación técnica</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(1, 2)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">"El Profesional Sistemático" - Criterio Técnico</p>
+                                        <p class="text-sm text-gray-600">"Cada día puede traer fallas nuevas. Sigo el protocolo completo porque mi vida y la de otros depende de ello."</p>
+                                        <p class="text-xs text-green-600 italic">✅ Patrón ideal: Inspección metódica de 15 minutos con verificación de parámetros</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(1, 3)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">"El Presionado Operativo" - Falsa Eficiencia</p>
+                                        <p class="text-sm text-gray-600">"Los protocolos están bien en teoría, pero en la realidad hay que entregar a tiempo. La empresa no entiende de tanto protocolo."</p>
+                                        <p class="text-xs text-orange-600 italic">⚠️ Patrón riesgoso: Priorizar tiempo sobre seguridad</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(1, 4)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">"El Inconsciente del Riesgo" - Negación Activa</p>
+                                        <p class="text-sm text-gray-600">"A mí nunca me ha pasado nada. Esas inspecciones son para conductores novatos o miedosos."</p>
+                                        <p class="text-xs text-red-600 italic">❌ Patrón más peligroso: Negación total del riesgo</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="feedback1" class="hidden mt-4"></div>
+                    </div>
+                    
+                    <!-- Pregunta 2 -->
+                    <div class="bg-white rounded-lg p-6 mb-6 opacity-50 border-l-4 border-orange-500" id="question2">
+                        <h5 class="font-bold text-gray-800 mb-4">2. ANÁLISIS DE FALLAS OCULTAS: ¿Cuáles de estas fallas críticas has pasado por alto en inspecciones rápidas?</h5>
+                        <p class="text-sm text-gray-600 mb-4 italic">Piensa en situaciones reales donde "todo se veía bien" pero después aparecieron problemas...</p>
+                        <div class="space-y-4">
+                            <button onclick="selectReflection(2, 1)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Fallas "Invisibles" de Presión y Desgaste</p>
+                                        <p class="text-sm text-gray-600">Presión de llantas 15-20% baja (no visible), desgaste irregular de frenos, holguras en dirección</p>
+                                        <p class="text-xs text-red-600 italic">🎯 Como en el caso de Rubén: 35 PSI vs 53 PSI requeridos</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(2, 2)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Fugas Progresivas de Fluidos Críticos</p>
+                                        <p class="text-sm text-gray-600">Refrigerante, aceite de frenos, dirección hidráulica - gotas que se convierten en fallas mayores</p>
+                                        <p class="text-xs text-orange-600 italic">⚠️ Desarrollo: 2-3 días de goteo → falla total en operación</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(2, 3)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Deterioro de Elementos de Seguridad Pasiva</p>
+                                        <p class="text-sm text-gray-600">Cinturones con fibras cortadas, espejos con micro-fracturas, luces con filamentos débiles</p>
+                                        <p class="text-xs text-yellow-600 italic">⚠️ Fallan justo cuando más se necesitan</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(2, 4)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Todas las Anteriores - Efecto Cascada</p>
+                                        <p class="text-sm text-gray-600">Una inspección superficial puede omitir múltiples fallas que se combinan para crear situaciones de alto riesgo</p>
+                                        <p class="text-xs text-red-600 italic">💀 Resultado: Probabilidad de accidente aumenta exponencialmente</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="feedback2" class="hidden mt-4"></div>
+                    </div>
+                    
+                    <!-- Pregunta 3 -->
+                    <div class="bg-white rounded-lg p-6 mb-6 opacity-50 border-l-4 border-red-500" id="question3">
+                        <h5 class="font-bold text-gray-800 mb-4">3. RESPONSABILIDAD LEGAL INTEGRAL: Si tu negligencia causa un accidente fatal, ¿qué consecuencias enfrentas?</h5>
+                        <p class="text-sm text-gray-600 mb-4 italic">Escenario: Tu inspección deficiente resulta en falla mecánica que causa muerte de una familia...</p>
+                        <div class="space-y-4">
+                            <button onclick="selectReflection(3, 1)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Responsabilidad Penal: Homicidio Culposo</p>
+                                        <p class="text-sm text-gray-600">Código Penal Art. 109: 32-108 meses de prisión + inhabilitación para conducir</p>
+                                        <p class="text-xs text-red-600 italic">⚖️ Agravante: Vehículo de carga = pena máxima</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(3, 2)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Responsabilidad Civil: Indemnización Millonaria</p>
+                                        <p class="text-sm text-gray-600">Daños materiales + lucro cesante + daño moral = $800 millones - $2.000 millones por familia</p>
+                                        <p class="text-xs text-orange-600 italic">💰 Tu patrimonio y el de tu familia comprometido de por vida</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(3, 3)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Responsabilidad Administrativa y Laboral</p>
+                                        <p class="text-sm text-gray-600">Cancelación definitiva de licencia + despido con justa causa + inhabilidad laboral en transporte</p>
+                                        <p class="text-xs text-yellow-600 italic">🚫 Fin de carrera profesional en el sector</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="selectReflection(3, 4)" class="reflection-btn w-full p-4 text-left bg-gray-50 hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Todas las Anteriores + Consecuencias Psicológicas</p>
+                                        <p class="text-sm text-gray-600">Prisión + ruina económica + fin de carrera + culpa de por vida por muertes evitables</p>
+                                        <p class="text-xs text-red-600 italic">💔 El costo real: vidas humanas que pudiste salvar con 10 minutos de inspección</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="feedback3" class="hidden mt-4"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(2)" id="nextBtn1" class="interactive-button bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Conceptualización →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Conceptualización -->
+        <section id="section2" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">⚖️</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">2. Reconstrucción Normativa y Técnica: "Del Desconocimiento a la Maestría"</h2>
+                    <p class="text-xl text-red-600 font-medium">"Cada artículo de ley que ignoras es una vida en riesgo. Cada procedimiento que omites es una tragedia esperando"</p>
+                    <div class="bg-red-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-red-700">⏱️ Duración: 25 minutos | Objetivo: Dominio integral de normativa, procedimientos y responsabilidades</p>
+                        <p class="text-xs text-red-600 mt-1">🎯 Enfoque: Corrección de deficiencias críticas identificadas en evaluación</p>
+                    </div>
+                </div>
+                
+                <!-- Marco Normativo Integral -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">⚖️ Marco Normativo Integral para Conductor Profesional C2</h3>
+                    
+                    <!-- Ley 769 de 2002 - Análisis Profundo -->
+                    <div class="law-highlight rounded-lg p-8 mb-6">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">📜</span>
+                            <div>
+                                <h4 class="text-2xl font-bold text-amber-800">Ley 769 de 2002 - Código Nacional de Tránsito</h4>
+                                <p class="text-amber-700">Análisis jurídico-técnico para conductores C2</p>
+                                <p class="text-xs text-amber-600 mt-1">Modificada por Ley 1383/2010, Ley 1696/2013, Ley 2050/2020</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <!-- Artículos Técnico-Operativos -->
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-6 border-l-4 border-red-500">
+                                    <h5 class="font-bold text-red-800 mb-4 flex items-center">
+                                        <span class="text-xl mr-2">🚫</span>
+                                        Art. 57-58: Maniobras Críticas - Análisis Técnico
+                                    </h5>
+                                    
+                                    <!-- Retroceso - Análisis Profundo -->
+                                    <div class="bg-red-50 p-4 rounded mb-4">
+                                        <h6 class="font-bold text-red-800 mb-3">🔄 RETROCESO (Art. 58) - Procedimiento Técnico:</h6>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-3 rounded border-l-2 border-red-400">
+                                                <p class="font-medium text-red-700 text-sm">1. Evaluación Previa Obligatoria:</p>
+                                                <ul class="text-xs text-gray-600 ml-4 mt-1 space-y-1">
+                                                    <li>• ¿Es técnicamente indispensable?</li>
+                                                    <li>• ¿Existe alternativa de maniobra?</li>
+                                                    <li>• ¿El espacio permite maniobra segura?</li>
+                                                    <li>• ¿Las condiciones de visibilidad son óptimas?</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-white p-3 rounded border-l-2 border-orange-400">
+                                                <p class="font-medium text-orange-700 text-sm">2. Protocolo de Seguridad:</p>
+                                                <ul class="text-xs text-gray-600 ml-4 mt-1 space-y-1">
+                                                    <li>• Acompañante obligatorio (Art. 58)</li>
+                                                    <li>• Señalización con triángulos a 30m</li>
+                                                    <li>• Comunicación por radio/celular</li>
+                                                    <li>• Velocidad máxima: 5 km/h</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-white p-3 rounded border-l-2 border-yellow-400">
+                                                <p class="font-medium text-yellow-700 text-sm">3. Responsabilidad Legal:</p>
+                                                <ul class="text-xs text-gray-600 ml-4 mt-1 space-y-1">
+                                                    <li>• Conductor: 100% responsable de daños</li>
+                                                    <li>• Empresa: Responsabilidad solidaria</li>
+                                                    <li>• Seguro: Puede negar cobertura por negligencia</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Adelantamiento - Análisis Técnico -->
+                                    <div class="bg-orange-50 p-4 rounded">
+                                        <h6 class="font-bold text-orange-800 mb-3">🏃 ADELANTAMIENTO - Cálculo Técnico de Seguridad:</h6>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div class="bg-white p-3 rounded text-xs">
+                                                <p class="font-bold text-gray-800 mb-2">📐 Distancia Mínima Requerida:</p>
+                                                <p class="text-gray-600">Vehículo C2 (12 ton) a 60 km/h:</p>
+                                                <ul class="mt-1 space-y-1">
+                                                    <li>• Distancia de adelantamiento: 400m</li>
+                                                    <li>• Tiempo de maniobra: 24 segundos</li>
+                                                    <li>• Margen de seguridad: +150m</li>
+                                                    <li>• <strong>Total requerido: 550m</strong></li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-white p-3 rounded text-xs">
+                                                <p class="font-bold text-gray-800 mb-2">⚠️ Factores Agravantes:</p>
+                                                <ul class="space-y-1">
+                                                    <li>• Pendiente ascendente: +30% distancia</li>
+                                                    <li>• Pavimento húmedo: +25% distancia</li>
+                                                    <li>• Viento lateral: +15% tiempo</li>
+                                                    <li>• Carga completa: +20% inercia</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artículos de Responsabilidad -->
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-6 border-l-4 border-blue-500">
+                                    <h5 class="font-bold text-blue-800 mb-4 flex items-center">
+                                        <span class="text-xl mr-2">⚖️</span>
+                                        Art. 109-110: Responsabilidad Civil y Penal
+                                    </h5>
+                                    
+                                    <div class="space-y-3">
+                                        <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                            <p class="font-medium text-red-800 text-sm">Homicidio Culposo (Art. 109 C.P.)</p>
+                                            <div class="text-xs text-red-700 mt-2">
+                                                <p><strong>Pena base:</strong> 32-108 meses prisión</p>
+                                                <p><strong>Agravantes para C2:</strong></p>
+                                                <ul class="ml-4 mt-1 space-y-1">
+                                                    <li>• Vehículo de servicio público: +1/3 pena</li>
+                                                    <li>• Múltiples víctimas: Pena máxima</li>
+                                                    <li>• Negligencia probada: Sin beneficios</li>
+                                                    <li>• <strong>Pena real: 4-9 años efectivos</strong></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                            <p class="font-medium text-orange-800 text-sm">Lesiones Culposas (Art. 120 C.P.)</p>
+                                            <div class="text-xs text-orange-700 mt-2">
+                                                <p><strong>Incapacidad >30 días:</strong> 16-54 meses</p>
+                                                <p><strong>Deformidad permanente:</strong> 32-108 meses</p>
+                                                <p><strong>Pérdida funcional:</strong> 48-144 meses</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                            <p class="font-medium text-yellow-800 text-sm">Responsabilidad Civil (Art. 2341 C.C.)</p>
+                                            <div class="text-xs text-yellow-700 mt-2">
+                                                <p><strong>Daño emergente:</strong> Gastos médicos, funerarios</p>
+                                                <p><strong>Lucro cesante:</strong> Ingresos perdidos (20 años)</p>
+                                                <p><strong>Daño moral:</strong> Sufrimiento familiar</p>
+                                                <p><strong>Total promedio:</strong> $800M - $2.500M por víctima</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 border-l-4 border-purple-500">
+                                    <h5 class="font-bold text-purple-800 mb-4 flex items-center">
+                                        <span class="text-xl mr-2">🛡️</span>
+                                        Art. 95: Equipamiento Técnico Obligatorio
+                                    </h5>
+                                    
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="space-y-2">
+                                            <div class="bg-green-50 p-2 rounded text-xs">
+                                                <p class="font-bold text-green-800">🧯 Extintor PQS 10 lb</p>
+                                                <p class="text-green-700">Verificación mensual, recarga anual</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-2 rounded text-xs">
+                                                <p class="font-bold text-blue-800">🔺 Triángulos Reflectivos</p>
+                                                <p class="text-blue-700">2 unidades, colocación 30m</p>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div class="bg-red-50 p-2 rounded text-xs">
+                                                <p class="font-bold text-red-800">🏥 Botiquín Tipo A</p>
+                                                <p class="text-red-700">15 elementos, vigencia 2 años</p>
+                                            </div>
+                                            <div class="bg-yellow-50 p-2 rounded text-xs">
+                                                <p class="font-bold text-yellow-800">🔧 Kit Herramientas</p>
+                                                <p class="text-yellow-700">Llanta de repuesto, gato, cruceta</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tabla de Infracciones y Sanciones -->
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-amber-800 mb-4 text-center">📊 Tabla de Infracciones Críticas para Conductores C2</h5>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs">
+                                    <thead class="bg-amber-50">
+                                        <tr>
+                                            <th class="p-2 text-left">Infracción</th>
+                                            <th class="p-2 text-left">Artículo</th>
+                                            <th class="p-2 text-left">Categoría</th>
+                                            <th class="p-2 text-left">Multa (SMMLV)</th>
+                                            <th class="p-2 text-left">Consecuencias</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="space-y-1">
+                                        <tr class="bg-red-50">
+                                            <td class="p-2">Conducir en estado de embriaguez</td>
+                                            <td class="p-2">Art. 152</td>
+                                            <td class="p-2 font-bold text-red-600">A</td>
+                                            <td class="p-2">30 SMMLV</td>
+                                            <td class="p-2">Suspensión licencia 1-3 años</td>
+                                        </tr>
+                                        <tr class="bg-orange-50">
+                                            <td class="p-2">Exceso velocidad >30 km/h</td>
+                                            <td class="p-2">Art. 131</td>
+                                            <td class="p-2 font-bold text-orange-600">B</td>
+                                            <td class="p-2">15 SMMLV</td>
+                                            <td class="p-2">Suspensión licencia 6 meses</td>
+                                        </tr>
+                                        <tr class="bg-yellow-50">
+                                            <td class="p-2">No realizar inspección preoperacional</td>
+                                            <td class="p-2">Art. 95</td>
+                                            <td class="p-2 font-bold text-yellow-600">C</td>
+                                            <td class="p-2">8 SMMLV</td>
+                                            <td class="p-2">Inmovilización vehículo</td>
+                                        </tr>
+                                        <tr class="bg-blue-50">
+                                            <td class="p-2">Adelantar en zona prohibida</td>
+                                            <td class="p-2">Art. 57</td>
+                                            <td class="p-2 font-bold text-blue-600">B</td>
+                                            <td class="p-2">15 SMMLV</td>
+                                            <td class="p-2">Curso de sensibilización</td>
+                                        </tr>
+                                        <tr class="bg-purple-50">
+                                            <td class="p-2">Retroceso indebido</td>
+                                            <td class="p-2">Art. 58</td>
+                                            <td class="p-2 font-bold text-purple-600">C</td>
+                                            <td class="p-2">8 SMMLV</td>
+                                            <td class="p-2">Comparendo pedagógico</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resolución 40595 de 2022 - PESV Avanzado -->
+                    <div class="bg-blue-50 border-l-6 border-blue-400 rounded-lg p-8 mb-6">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">🛡️</span>
+                            <div>
+                                <h4 class="text-2xl font-bold text-blue-800">Resolución 40595 de 2022 - PESV</h4>
+                                <p class="text-blue-700">Plan Estratégico de Seguridad Vial - Implementación Técnica</p>
+                                <p class="text-xs text-blue-600 mt-1">Obligatorio para empresas con >10 vehículos o >50 conductores</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white rounded-lg p-6">
+                                <h5 class="font-bold text-blue-800 mb-4">🎯 Objetivos Específicos del PESV:</h5>
+                                <div class="space-y-3">
+                                    <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                        <p class="font-medium text-blue-800 text-sm">1. Reducción de Siniestralidad</p>
+                                        <p class="text-xs text-blue-700">Meta: -20% accidentes anuales</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                        <p class="font-medium text-green-800 text-sm">2. Gestión Integral del Riesgo</p>
+                                        <p class="text-xs text-green-700">Identificación, evaluación, control</p>
+                                    </div>
+                                    <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                        <p class="font-medium text-purple-800 text-sm">3. Cultura de Seguridad</p>
+                                        <p class="text-xs text-purple-700">Cambio comportamental sostenible</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-6">
+                                <h5 class="font-bold text-blue-800 mb-4">📋 Responsabilidades del Conductor:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                                        <span>Inspección preoperacional diaria (15 min mínimo)</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                                        <span>Reporte inmediato de novedades técnicas</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                                        <span>Participación en capacitaciones (20h anuales)</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        <span>Cumplimiento de procedimientos operativos</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                        <span>Uso obligatorio de elementos de protección</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-sm">
+                                        <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                        <span>Reporte de actos y condiciones inseguras</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Matriz de Riesgos PESV -->
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-blue-800 mb-4 text-center">🎯 Matriz de Riesgos Operativos - Conductor C2</h5>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs">
+                                    <thead class="bg-blue-50">
+                                        <tr>
+                                            <th class="p-2 text-left">Factor de Riesgo</th>
+                                            <th class="p-2 text-center">Probabilidad</th>
+                                            <th class="p-2 text-center">Impacto</th>
+                                            <th class="p-2 text-center">Nivel</th>
+                                            <th class="p-2 text-left">Medidas de Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-red-50">
+                                            <td class="p-2">Falla mecánica por inspección deficiente</td>
+                                            <td class="p-2 text-center font-bold text-red-600">ALTA</td>
+                                            <td class="p-2 text-center font-bold text-red-600">CRÍTICO</td>
+                                            <td class="p-2 text-center bg-red-200 font-bold">EXTREMO</td>
+                                            <td class="p-2">Inspección sistemática diaria, capacitación técnica</td>
+                                        </tr>
+                                        <tr class="bg-orange-50">
+                                            <td class="p-2">Fatiga del conductor (>8h continuas)</td>
+                                            <td class="p-2 text-center font-bold text-orange-600">MEDIA</td>
+                                            <td class="p-2 text-center font-bold text-orange-600">ALTO</td>
+                                            <td class="p-2 text-center bg-orange-200 font-bold">ALTO</td>
+                                            <td class="p-2">Control de tiempos de conducción, descansos</td>
+                                        </tr>
+                                        <tr class="bg-yellow-50">
+                                            <td class="p-2">Condiciones climáticas adversas</td>
+                                            <td class="p-2 text-center font-bold text-yellow-600">MEDIA</td>
+                                            <td class="p-2 text-center font-bold text-yellow-600">MEDIO</td>
+                                            <td class="p-2 text-center bg-yellow-200 font-bold">MEDIO</td>
+                                            <td class="p-2">Procedimientos específicos, equipamiento</td>
+                                        </tr>
+                                        <tr class="bg-green-50">
+                                            <td class="p-2">Distracción por dispositivos móviles</td>
+                                            <td class="p-2 text-center font-bold text-green-600">BAJA</td>
+                                            <td class="p-2 text-center font-bold text-red-600">CRÍTICO</td>
+                                            <td class="p-2 text-center bg-orange-200 font-bold">ALTO</td>
+                                            <td class="p-2">Política de uso, sistemas manos libres</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Normativa Técnica Complementaria -->
+                    <div class="bg-gray-50 border-l-6 border-gray-400 rounded-lg p-8">
+                        <h4 class="text-xl font-bold text-gray-800 mb-6 text-center">📚 Normativa Técnica Complementaria</h4>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-bold text-gray-800 mb-3 flex items-center">
+                                    <span class="text-lg mr-2">🔧</span>
+                                    NTC 4788 - Inspección Técnica
+                                </h5>
+                                <div class="text-xs space-y-2">
+                                    <p><strong>Periodicidad:</strong> Anual para vehículos >10 años</p>
+                                    <p><strong>Sistemas evaluados:</strong> Frenos, dirección, suspensión, luces</p>
+                                    <p><strong>Criterios de rechazo:</strong> >30% desgaste frenos</p>
+                                    <p><strong>Vigencia:</strong> 12 meses desde expedición</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-bold text-gray-800 mb-3 flex items-center">
+                                    <span class="text-lg mr-2">🌱</span>
+                                    NTC 4983 - Emisiones
+                                </h5>
+                                <div class="text-xs space-y-2">
+                                    <p><strong>Límites CO:</strong> <4.5% para diésel</p>
+                                    <p><strong>Opacidad:</strong> <60% para motores >2005</p>
+                                    <p><strong>Medición:</strong> Motor a temperatura operación</p>
+                                    <p><strong>Sanción:</strong> Inmovilización por incumplimiento</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-bold text-gray-800 mb-3 flex items-center">
+                                    <span class="text-lg mr-2">⚖️</span>
+                                    Res. 3027/2010 - Pesos y Dimensiones
+                                </h5>
+                                <div class="text-xs space-y-2">
+                                    <p><strong>Peso bruto máximo:</strong> 28 toneladas</p>
+                                    <p><strong>Eje simple:</strong> 11 toneladas máximo</p>
+                                    <p><strong>Eje tándem:</strong> 18 toneladas máximo</p>
+                                    <p><strong>Tolerancia:</strong> 5% en báscula oficial</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Procedimiento Técnico de Inspección Avanzado -->
+                <div class="technical-content rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-blue-800 mb-6 text-center text-2xl">🔧 Protocolo Técnico de Inspección Preoperacional - Nivel Profesional</h3>
+                    
+                    <!-- Fundamentos Técnicos -->
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h4 class="font-bold text-blue-800 mb-4 text-xl">🎯 Fundamentos Técnicos de la Inspección</h4>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 p-4 rounded border-l-4 border-blue-400">
+                                    <h5 class="font-bold text-blue-800 mb-2">📐 Principios Físicos Aplicados:</h5>
+                                    <div class="text-sm space-y-2">
+                                        <p><strong>Ley de Pascal (Frenos):</strong> P = F/A</p>
+                                        <p class="text-xs text-gray-600">Presión hidráulica uniforme en todo el sistema</p>
+                                        <p><strong>Ley de Hooke (Suspensión):</strong> F = k × x</p>
+                                        <p class="text-xs text-gray-600">Deformación proporcional a la fuerza aplicada</p>
+                                        <p><strong>Ley de Ohm (Sistema Eléctrico):</strong> V = I × R</p>
+                                        <p class="text-xs text-gray-600">Relación voltaje-corriente-resistencia</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 p-4 rounded border-l-4 border-green-400">
+                                    <h5 class="font-bold text-green-800 mb-2">🔬 Métodos de Detección de Fallas:</h5>
+                                    <div class="text-sm space-y-2">
+                                        <p><strong>Visual:</strong> Grietas, desgaste, corrosión</p>
+                                        <p><strong>Táctil:</strong> Temperatura, vibración, holguras</p>
+                                        <p><strong>Auditivo:</strong> Ruidos anómalos, silbidos</p>
+                                        <p><strong>Olfativo:</strong> Fugas, sobrecalentamiento</p>
+                                        <p><strong>Instrumental:</strong> Presión, voltaje, temperatura</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-orange-50 p-4 rounded border-l-4 border-orange-400">
+                                    <h5 class="font-bold text-orange-800 mb-2">⚠️ Modos de Falla Críticos:</h5>
+                                    <div class="text-sm space-y-2">
+                                        <p><strong>Falla Súbita:</strong> Rotura instantánea (neumático)</p>
+                                        <p><strong>Falla Progresiva:</strong> Deterioro gradual (frenos)</p>
+                                        <p><strong>Falla Intermitente:</strong> Aparece/desaparece (eléctrica)</p>
+                                        <p><strong>Falla Latente:</strong> Oculta hasta activación (airbag)</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 p-4 rounded border-l-4 border-red-400">
+                                    <h5 class="font-bold text-red-800 mb-2">💀 Consecuencias de Omisión:</h5>
+                                    <div class="text-sm space-y-2">
+                                        <p><strong>Técnicas:</strong> Falla en operación, daños mayores</p>
+                                        <p><strong>Operativas:</strong> Paradas no programadas, costos</p>
+                                        <p><strong>Legales:</strong> Responsabilidad civil y penal</p>
+                                        <p><strong>Humanas:</strong> Lesiones, muertes evitables</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Protocolo Técnico Detallado -->
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h4 class="font-bold text-blue-800 mb-4 text-xl">🔍 Protocolo de Inspección por Sistemas</h4>
+                        
+                        <div class="space-y-6">
+                            <!-- Sistema de Frenos -->
+                            <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                                <h5 class="font-bold text-red-800 mb-4 flex items-center">
+                                    <span class="text-2xl mr-3">🛑</span>
+                                    SISTEMA DE FRENOS - Inspección Crítica
+                                </h5>
+                                
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-red-700 mb-3">🔧 Componentes Hidráulicos</h6>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex justify-between">
+                                                <span>Nivel líquido frenos:</span>
+                                                <span class="font-bold">MIN-MAX</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Color del líquido:</span>
+                                                <span class="font-bold">Transparente</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Fugas en mangueras:</span>
+                                                <span class="font-bold">NINGUNA</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Presión pedal:</span>
+                                                <span class="font-bold">Firme</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 p-2 bg-red-100 rounded text-xs">
+                                            <p><strong>Criterio de rechazo:</strong> Cualquier fuga visible o pedal esponjoso</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-red-700 mb-3">🔩 Componentes Mecánicos</h6>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex justify-between">
+                                                <span>Espesor pastillas:</span>
+                                                <span class="font-bold">>3mm</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Estado discos:</span>
+                                                <span class="font-bold">Sin rayas</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Tambores (si aplica):</span>
+                                                <span class="font-bold">Sin grietas</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Cables freno mano:</span>
+                                                <span class="font-bold">Tensos</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 p-2 bg-red-100 rounded text-xs">
+                                            <p><strong>Prueba funcional:</strong> Frenado progresivo sin vibraciones</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-red-700 mb-3">📊 Parámetros Técnicos</h6>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex justify-between">
+                                                <span>Distancia frenado:</span>
+                                                <span class="font-bold"><40m (60km/h)</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Eficiencia mínima:</span>
+                                                <span class="font-bold">50%</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Desequilibrio máx:</span>
+                                                <span class="font-bold">30%</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Tiempo respuesta:</span>
+                                                <span class="font-bold"><0.6 seg</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 p-2 bg-red-100 rounded text-xs">
+                                            <p><strong>Normativa:</strong> NTC 4788 - Inspección técnica vehicular</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sistema de Dirección -->
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                                <h5 class="font-bold text-blue-800 mb-4 flex items-center">
+                                    <span class="text-2xl mr-3">🎯</span>
+                                    SISTEMA DE DIRECCIÓN - Control de Trayectoria
+                                </h5>
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-blue-700 mb-3">🔧 Componentes Mecánicos</h6>
+                                        <div class="space-y-3">
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Holgura en volante:</p>
+                                                <p class="text-xs text-gray-600">Máximo 30° (1/12 de vuelta)</p>
+                                                <p class="text-xs text-blue-600"><strong>Prueba:</strong> Motor encendido, ruedas rectas</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Terminales de dirección:</p>
+                                                <p class="text-xs text-gray-600">Sin holgura vertical/horizontal</p>
+                                                <p class="text-xs text-blue-600"><strong>Prueba:</strong> Movimiento manual de ruedas</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Rótulas y brazos:</p>
+                                                <p class="text-xs text-gray-600">Articulación suave, sin ruidos</p>
+                                                <p class="text-xs text-blue-600"><strong>Prueba:</strong> Giro completo de ruedas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-blue-700 mb-3">🔄 Sistema Hidráulico</h6>
+                                        <div class="space-y-3">
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Nivel líquido dirección:</p>
+                                                <p class="text-xs text-gray-600">Entre MIN-MAX en depósito</p>
+                                                <p class="text-xs text-blue-600"><strong>Verificar:</strong> Motor apagado, ruedas centradas</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Fugas en sistema:</p>
+                                                <p class="text-xs text-gray-600">Mangueras, bomba, cremallera</p>
+                                                <p class="text-xs text-blue-600"><strong>Buscar:</strong> Manchas, goteo, humedad</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-3 rounded">
+                                                <p class="font-medium text-sm">Funcionamiento bomba:</p>
+                                                <p class="text-xs text-gray-600">Sin ruidos anómalos</p>
+                                                <p class="text-xs text-blue-600"><strong>Prueba:</strong> Giro con motor encendido</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sistema de Neumáticos -->
+                            <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-500">
+                                <h5 class="font-bold text-yellow-800 mb-4 flex items-center">
+                                    <span class="text-2xl mr-3">🛞</span>
+                                    SISTEMA DE NEUMÁTICOS - Contacto con Pavimento
+                                </h5>
+                                
+                                <div class="grid md:grid-cols-4 gap-4">
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-yellow-700 mb-3">📏 Mediciones Críticas</h6>
+                                        <div class="space-y-2 text-xs">
+                                            <div class="bg-yellow-50 p-2 rounded">
+                                                <p><strong>Presión (PSI):</strong></p>
+                                                <p>Delanteras: 90-100</p>
+                                                <p>Traseras: 120-130</p>
+                                                <p class="text-red-600"><strong>Tolerancia: ±5 PSI</strong></p>
+                                            </div>
+                                            <div class="bg-yellow-50 p-2 rounded">
+                                                <p><strong>Profundidad labrado:</strong></p>
+                                                <p>Mínimo: 1.6mm</p>
+                                                <p>Recomendado: >3mm</p>
+                                                <p class="text-red-600"><strong>Medición: 3 puntos</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-yellow-700 mb-3">🔍 Inspección Visual</h6>
+                                        <div class="space-y-2 text-xs">
+                                            <div class="bg-yellow-50 p-2 rounded">
+                                                <p><strong>Desgaste irregular:</strong></p>
+                                                <p>• Centro: Sobrepresión</p>
+                                                <p>• Bordes: Subpresión</p>
+                                                <p>• Un lado: Desalineación</p>
+                                            </div>
+                                            <div class="bg-yellow-50 p-2 rounded">
+                                                <p><strong>Daños estructurales:</strong></p>
+                                                <p>• Cortes profundos</p>
+                                                <p>• Hernias laterales</p>
+                                                <p>• Separación de capas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-yellow-700 mb-3">⚡ Efectos de Fallas</h6>
+                                        <div class="space-y-2 text-xs">
+                                            <div class="bg-red-50 p-2 rounded border-l-2 border-red-400">
+                                                <p><strong>Baja presión (-20%):</strong></p>
+                                                <p>• +15% consumo combustible</p>
+                                                <p>• -40% vida útil neumático</p>
+                                                <p>• +300% riesgo reventón</p>
+                                            </div>
+                                            <div class="bg-orange-50 p-2 rounded border-l-2 border-orange-400">
+                                                <p><strong>Desgaste irregular:</strong></p>
+                                                <p>• Pérdida adherencia</p>
+                                                <p>• Vibración en volante</p>
+                                                <p>• Distancia frenado +25%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded">
+                                        <h6 class="font-bold text-yellow-700 mb-3">🎯 Criterios Técnicos</h6>
+                                        <div class="space-y-2 text-xs">
+                                            <div class="bg-green-50 p-2 rounded border-l-2 border-green-400">
+                                                <p><strong>Aceptable:</strong></p>
+                                                <p>• Presión ±5% nominal</p>
+                                                <p>• Labrado >3mm uniforme</p>
+                                                <p>• Sin daños visibles</p>
+                                            </div>
+                                            <div class="bg-red-50 p-2 rounded border-l-2 border-red-400">
+                                                <p><strong>Rechazo inmediato:</strong></p>
+                                                <p>• Presión <80% nominal</p>
+                                                <p>• Labrado <1.6mm</p>
+                                                <p>• Hernias o cortes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold text-gray-800 mb-4">📋 Actividad Interactiva: Ordena los Pasos Correctamente</h4>
+                        <p class="text-gray-600 mb-4">Arrastra los pasos del procedimiento en el orden correcto de ejecución:</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Pasos desordenados -->
+                            <div>
+                                <h5 class="font-bold text-blue-800 mb-3">Pasos a Ordenar:</h5>
+                                <div id="stepsContainer" class="space-y-3">
+                                    <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="4">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</span>
+                                            <div>
+                                                <p class="font-medium">🚗 Prueba dinámica</p>
+                                                <p class="text-sm text-gray-600">Funcionamiento de pedales, luces, tablero</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="1">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</span>
+                                            <div>
+                                                <p class="font-medium">👁️ Revisión exterior</p>
+                                                <p class="text-sm text-gray-600">Espejos, luces, llantas, parachoques</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="5">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">5</span>
+                                            <div>
+                                                <p class="font-medium">📝 Registro de inspección</p>
+                                                <p class="text-sm text-gray-600">Firmar y reportar novedades</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="3">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</span>
+                                            <div>
+                                                <p class="font-medium">🚛 Cabina</p>
+                                                <p class="text-sm text-gray-600">Cinturón, freno de mano, extintor, documentos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="2">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</span>
+                                            <div>
+                                                <p class="font-medium">🔧 Compartimiento del motor</p>
+                                                <p class="text-sm text-gray-600">Aceite, refrigerante, frenos, dirección</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Zona de ordenamiento -->
+                            <div>
+                                <h5 class="font-bold text-green-800 mb-3">Orden Correcto:</h5>
+                                <div id="orderZone" class="space-y-3">
+                                    <div class="drop-zone rounded-lg p-4 border-2 border-dashed border-gray-300" data-position="1">
+                                        <p class="text-gray-500 text-center">Paso 1</p>
+                                    </div>
+                                    <div class="drop-zone rounded-lg p-4 border-2 border-dashed border-gray-300" data-position="2">
+                                        <p class="text-gray-500 text-center">Paso 2</p>
+                                    </div>
+                                    <div class="drop-zone rounded-lg p-4 border-2 border-dashed border-gray-300" data-position="3">
+                                        <p class="text-gray-500 text-center">Paso 3</p>
+                                    </div>
+                                    <div class="drop-zone rounded-lg p-4 border-2 border-dashed border-gray-300" data-position="4">
+                                        <p class="text-gray-500 text-center">Paso 4</p>
+                                    </div>
+                                    <div class="drop-zone rounded-lg p-4 border-2 border-dashed border-gray-300" data-position="5">
+                                        <p class="text-gray-500 text-center">Paso 5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="inspectionFeedback" class="hidden mt-6"></div>
+                        
+                        <div class="text-center mt-6">
+                            <button onclick="resetInspectionActivity()" id="resetInspectionBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg mr-4">
+                                🔄 Reiniciar Actividad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(3)" id="nextBtn2" class="interactive-button bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Apropiación Práctica →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Apropiación -->
+        <section id="section3" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🎯</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">3. Apropiación: "De la teoría a la maniobra"</h2>
+                    <p class="text-xl text-red-600 font-medium">"Aplicación práctica en casos reales"</p>
+                    <div class="bg-red-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-red-700">⏱️ Duración: 25 minutos | Objetivo: Aplicar conocimientos en situaciones críticas</p>
+                    </div>
+                </div>
+                
+                <!-- Caso 1: Análisis Técnico-Forense Avanzado -->
+                <div id="case1" class="case-study rounded-lg p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">1</span>
+                        <div>
+                            <h4 class="font-bold text-red-800 text-xl">🔄 Caso 1: Análisis Técnico-Forense - Retroceso Catastrófico</h4>
+                            <p class="text-red-600">Reconstrucción científica de maniobra con consecuencias múltiples</p>
+                            <p class="text-xs text-red-500 mt-1">Basado en peritaje técnico real - Expediente 2024-001-RHM</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Reconstrucción Técnica del Incidente -->
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-red-800 mb-4 text-center">🔬 RECONSTRUCCIÓN TÉCNICA DEL INCIDENTE</h5>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <!-- Condiciones Iniciales -->
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                                <h6 class="font-bold text-blue-800 mb-3">📊 Condiciones Iniciales</h6>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span>Vehículo:</span>
+                                        <span class="font-bold">C2 - 12 toneladas</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Longitud:</span>
+                                        <span class="font-bold">8.5 metros</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Velocidad inicial:</span>
+                                        <span class="font-bold">8 km/h</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Distancia retroceso:</span>
+                                        <span class="font-bold">47 metros</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Tiempo maniobra:</span>
+                                        <span class="font-bold">3 min 15 seg</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Visibilidad:</span>
+                                        <span class="font-bold text-orange-600">Limitada</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Análisis Cinemático -->
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+                                <h6 class="font-bold text-orange-800 mb-3">⚡ Análisis Cinemático</h6>
+                                <div class="space-y-2 text-sm">
+                                    <div class="bg-orange-50 p-2 rounded">
+                                        <p><strong>Energía cinética:</strong></p>
+                                        <p class="text-xs">E = ½mv² = 59,259 Joules</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-2 rounded">
+                                        <p><strong>Momento de inercia:</strong></p>
+                                        <p class="text-xs">I = 48,000 kg⋅m²</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-2 rounded">
+                                        <p><strong>Fuerza de impacto:</strong></p>
+                                        <p class="text-xs">F = ma = 18,750 N</p>
+                                    </div>
+                                    <div class="bg-orange-50 p-2 rounded">
+                                        <p><strong>Distancia frenado:</strong></p>
+                                        <p class="text-xs">d = v²/2μg = 1.8 metros</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Punto de Impacto -->
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-red-500">
+                                <h6 class="font-bold text-red-800 mb-3">💥 Análisis del Impacto</h6>
+                                <div class="space-y-2 text-sm">
+                                    <div class="bg-red-50 p-2 rounded">
+                                        <p><strong>Objeto impactado:</strong></p>
+                                        <p class="text-xs">Poste señalización Ø20cm</p>
+                                    </div>
+                                    <div class="bg-red-50 p-2 rounded">
+                                        <p><strong>Altura impacto:</strong></p>
+                                        <p class="text-xs">1.2m desde suelo</p>
+                                    </div>
+                                    <div class="bg-red-50 p-2 rounded">
+                                        <p><strong>Deformación vehículo:</strong></p>
+                                        <p class="text-xs">35cm penetración</p>
+                                    </div>
+                                    <div class="bg-red-50 p-2 rounded">
+                                        <p><strong>Daño estructural:</strong></p>
+                                        <p class="text-xs">Chasis: Deformación permanente</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Secuencia Temporal del Incidente -->
+                        <div class="bg-white rounded-lg p-4">
+                            <h6 class="font-bold text-gray-800 mb-3 text-center">⏰ SECUENCIA TEMPORAL CRÍTICA</h6>
+                            <div class="grid md:grid-cols-5 gap-3">
+                                <div class="text-center p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                                    <p class="font-bold text-blue-800 text-xs">T = 0:00</p>
+                                    <p class="text-xs mt-1">Inicio retroceso</p>
+                                    <p class="text-xs text-blue-600">Sin verificación</p>
+                                </div>
+                                <div class="text-center p-3 bg-yellow-50 rounded border-l-4 border-yellow-400">
+                                    <p class="font-bold text-yellow-800 text-xs">T = 1:30</p>
+                                    <p class="text-xs mt-1">Pérdida referencia</p>
+                                    <p class="text-xs text-yellow-600">Espejos insuficientes</p>
+                                </div>
+                                <div class="text-center p-3 bg-orange-50 rounded border-l-4 border-orange-400">
+                                    <p class="font-bold text-orange-800 text-xs">T = 2:45</p>
+                                    <p class="text-xs mt-1">Aproximación crítica</p>
+                                    <p class="text-xs text-orange-600">5m del obstáculo</p>
+                                </div>
+                                <div class="text-center p-3 bg-red-50 rounded border-l-4 border-red-400">
+                                    <p class="font-bold text-red-800 text-xs">T = 3:15</p>
+                                    <p class="text-xs mt-1">IMPACTO</p>
+                                    <p class="text-xs text-red-600">Falla total maniobra</p>
+                                </div>
+                                <div class="text-center p-3 bg-gray-50 rounded border-l-4 border-gray-400">
+                                    <p class="font-bold text-gray-800 text-xs">T = 3:16</p>
+                                    <p class="text-xs mt-1">Consecuencias</p>
+                                    <p class="text-xs text-gray-600">Daños múltiples</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Análisis Multidisciplinario -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <!-- Análisis Técnico -->
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-blue-500">
+                            <h5 class="font-bold text-blue-800 mb-4">🔧 Análisis Técnico-Operativo</h5>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 p-4 rounded">
+                                    <h6 class="font-bold text-blue-800 mb-2">📐 Factores Técnicos Críticos:</h6>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                                            <span><strong>Radio de giro:</strong> 12.5m (requiere 25m diámetro)</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                                            <span><strong>Ángulo muerto:</strong> 3.2m x 1.8m zona ciega trasera</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                                            <span><strong>Tiempo reacción:</strong> 1.5 seg (vs 0.8 seg estándar)</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                            <span><strong>Distancia frenado:</strong> 1.8m a 8 km/h</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 p-4 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">❌ Fallas Técnicas Identificadas:</h6>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-start space-x-2">
+                                            <span class="text-red-600 font-bold">1.</span>
+                                            <span><strong>Ausencia de acompañante:</strong> Violación Art. 58 CNT</span>
+                                        </div>
+                                        <div class="flex items-start space-x-2">
+                                            <span class="text-red-600 font-bold">2.</span>
+                                            <span><strong>Sin señalización:</strong> Triángulos no colocados</span>
+                                        </div>
+                                        <div class="flex items-start space-x-2">
+                                            <span class="text-red-600 font-bold">3.</span>
+                                            <span><strong>Evaluación deficiente:</strong> No midió espacio disponible</span>
+                                        </div>
+                                        <div class="flex items-start space-x-2">
+                                            <span class="text-red-600 font-bold">4.</span>
+                                            <span><strong>Velocidad excesiva:</strong> 8 km/h vs 5 km/h máximo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Análisis Legal y Económico -->
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-red-500">
+                            <h5 class="font-bold text-red-800 mb-4">⚖️ Análisis Legal-Económico</h5>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-red-50 p-4 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">📋 Responsabilidades Legales:</h6>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded border-l-2 border-red-400">
+                                            <p class="font-bold text-red-700 text-sm">Conductor (Rubén):</p>
+                                            <ul class="text-xs text-gray-600 ml-4 space-y-1">
+                                                <li>• Responsabilidad civil: 100%</li>
+                                                <li>• Infracción Art. 58 CNT</li>
+                                                <li>• Multa: 8 SMMLV ($10.4M)</li>
+                                                <li>• Curso sensibilización obligatorio</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-2 border-orange-400">
+                                            <p class="font-bold text-orange-700 text-sm">Empresa Transportadora:</p>
+                                            <ul class="text-xs text-gray-600 ml-4 space-y-1">
+                                                <li>• Responsabilidad solidaria</li>
+                                                <li>• Falla en capacitación</li>
+                                                <li>• Supervisión deficiente</li>
+                                                <li>• Sanción administrativa</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-yellow-50 p-4 rounded">
+                                    <h6 class="font-bold text-yellow-800 mb-2">💰 Impacto Económico Real:</h6>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between">
+                                            <span>Reparación vehículo:</span>
+                                            <span class="font-bold">$18,500,000</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Reposición poste:</span>
+                                            <span class="font-bold">$3,200,000</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Multa conductor:</span>
+                                            <span class="font-bold">$10,400,000</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Días inmovilización:</span>
+                                            <span class="font-bold">$2,800,000</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Lucro cesante (5 días):</span>
+                                            <span class="font-bold">$4,500,000</span>
+                                        </div>
+                                        <div class="border-t-2 border-yellow-400 pt-2 mt-2">
+                                            <div class="flex justify-between font-bold text-lg">
+                                                <span>TOTAL PÉRDIDAS:</span>
+                                                <span class="text-red-600">$39,400,000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-red-100 rounded text-xs">
+                                        <p class="font-bold text-red-800">💡 Costo de prevención: $0 (15 minutos de evaluación previa)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">❓ ¿Qué artículo del Código Nacional regula esta maniobra y qué procedimiento debió aplicar?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkCase(1, 1, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Art. 57 - Retroceso permitido con precaución</p>
+                                        <p class="text-sm text-gray-600">Solo necesita reducir velocidad y usar espejos</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(1, 2, true)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Art. 58 - Retroceso solo cuando sea indispensable</p>
+                                        <p class="text-sm text-gray-600">Debe contar con acompañante o señalización, sin afectar el tránsito</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(1, 3, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Art. 95 - Problema de equipamiento</p>
+                                        <p class="text-sm text-gray-600">Falta de equipo de seguridad adecuado</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(1, 4, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">No hay regulación específica</p>
+                                        <p class="text-sm text-gray-600">El retroceso es una maniobra libre</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="caseFeedback1" class="hidden"></div>
+                </div>
+                
+                <!-- Caso 2: Señal de Advertencia Ignorada -->
+                <div id="case2" class="case-study rounded-lg p-8 mb-8 opacity-50">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-yellow-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">2</span>
+                        <div>
+                            <h4 class="font-bold text-yellow-800 text-xl">🚫 Caso 2: Señal de Advertencia Ignorada</h4>
+                            <p class="text-yellow-600">Adelantamiento en zona prohibida</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">📋 Situación:</h5>
+                            <div class="space-y-3">
+                                <p class="text-sm"><strong>Ubicación:</strong> Zona urbana, avenida principal</p>
+                                <p class="text-sm"><strong>Señalización:</strong> "PROHIBIDO ADELANTAR" claramente visible</p>
+                                <p class="text-sm"><strong>Situación:</strong> Vehículo lento (40 km/h) adelante</p>
+                                <p class="text-sm"><strong>Presión:</strong> Horario de entrega comprometido</p>
+                                <p class="text-sm"><strong>Decisión:</strong> Rubén decide adelantar por el carril contrario</p>
+                                <p class="text-sm"><strong>Riesgo:</strong> Vehículo en sentido contrario se aproxima</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">⚖️ Análisis Legal y Operativo:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm font-medium text-red-800">Infracción Normativa</p>
+                                    <p class="text-xs text-red-600">Desobediencia a señal reglamentaria</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <p class="text-sm font-medium text-orange-800">Riesgo Operativo</p>
+                                    <p class="text-xs text-orange-600">Colisión frontal de alta energía</p>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <p class="text-sm font-medium text-yellow-800">Factor Humano</p>
+                                    <p class="text-xs text-yellow-600">Presión operativa vs. seguridad</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <p class="text-sm font-medium text-blue-800">Responsabilidad</p>
+                                    <p class="text-xs text-blue-600">Civil, penal y administrativa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">❓ ¿Cuál es la infracción y qué riesgo operativo implica?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkCase(2, 1, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Infracción menor - Riesgo bajo</p>
+                                        <p class="text-sm text-gray-600">La señal es solo una recomendación en caso de urgencia</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(2, 2, true)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Desobediencia a señal reglamentaria - Riesgo de colisión frontal</p>
+                                        <p class="text-sm text-gray-600">Art. 57: Adelantamiento prohibido en zonas señalizadas, riesgo de accidente grave</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(2, 3, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Problema de velocidad - Riesgo de multa</p>
+                                        <p class="text-sm text-gray-600">El problema es la velocidad del vehículo adelante</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(2, 4, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Maniobra justificada - Sin riesgo</p>
+                                        <p class="text-sm text-gray-600">La presión operativa justifica la maniobra</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="caseFeedback2" class="hidden"></div>
+                </div>
+                
+                <!-- Caso 3: Inspección Incompleta -->
+                <div id="case3" class="case-study rounded-lg p-8 mb-8 opacity-50">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">3</span>
+                        <div>
+                            <h4 class="font-bold text-blue-800 text-xl">🔍 Caso 3: Inspección Incompleta Antes de Salida</h4>
+                            <p class="text-blue-600">Falla detectada durante operación</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">📋 Situación:</h5>
+                            <div class="space-y-3">
+                                <p class="text-sm"><strong>Hora:</strong> 6:00 AM - Inicio de jornada</p>
+                                <p class="text-sm"><strong>Inspección:</strong> Revisión visual rápida (5 minutos)</p>
+                                <p class="text-sm"><strong>Omisión:</strong> No verificar niveles de fluidos</p>
+                                <p class="text-sm"><strong>Km 150:</strong> Temperatura del motor se eleva</p>
+                                <p class="text-sm"><strong>Descubrimiento:</strong> Fuga significativa de refrigerante</p>
+                                <p class="text-sm"><strong>Consecuencia:</strong> Parada forzosa, remolque necesario</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">🔧 Análisis Técnico de la Falla:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm font-medium text-red-800">Origen de la Fuga</p>
+                                    <p class="text-xs text-red-600">Manguera deteriorada, visible en inspección</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <p class="text-sm font-medium text-orange-800">Tiempo de Desarrollo</p>
+                                    <p class="text-xs text-orange-600">Falla progresiva de 2-3 días</p>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <p class="text-sm font-medium text-yellow-800">Señales Previas</p>
+                                    <p class="text-xs text-yellow-600">Manchas en piso, nivel bajo</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <p class="text-sm font-medium text-blue-800">Prevención</p>
+                                    <p class="text-xs text-blue-600">Inspección sistemática de fluidos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">❓ ¿Qué falla se cometió en la rutina de inspección y cómo se previene?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkCase(3, 1, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Falla impredecible del sistema</p>
+                                        <p class="text-sm text-gray-600">Las fugas de refrigerante no se pueden detectar previamente</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(3, 2, true)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Omisión en verificación de niveles de fluidos</p>
+                                        <p class="text-sm text-gray-600">Inspección sistemática debe incluir niveles, fugas y estado de mangueras</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(3, 3, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Problema de mantenimiento preventivo</p>
+                                        <p class="text-sm text-gray-600">Es responsabilidad exclusiva del taller mecánico</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkCase(3, 4, false)" class="case-btn w-full p-4 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Falta de tiempo para inspección completa</p>
+                                        <p class="text-sm text-gray-600">La presión operativa no permite inspecciones detalladas</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="caseFeedback3" class="hidden"></div>
+                </div>
+                
+                <!-- Resumen de Casos -->
+                <div id="caseSummary" class="hidden bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-gray-800 mb-6 text-xl text-center">📊 Resumen de Análisis de Casos</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl mb-3" id="caseScoreIcon">🎯</div>
+                            <p class="font-bold text-2xl" id="caseScoreText">0/3</p>
+                            <p class="text-gray-600">Casos Correctos</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🧠</div>
+                            <p class="font-bold text-2xl" id="caseAnalysisLevel">Básico</p>
+                            <p class="text-gray-600">Nivel de Comprensión</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🛡️</div>
+                            <p class="font-bold text-2xl" id="caseSafetyScore">0%</p>
+                            <p class="text-gray-600">Aplicación Normativa</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(4)" id="nextBtn3" class="interactive-button bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Transferencia →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Transferencia -->
+        <section id="section4" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🎯</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">4. Transferencia: "Compromiso con la Excelencia Operativa"</h2>
+                    <p class="text-xl text-red-600 font-medium">"Del conocimiento al hábito seguro"</p>
+                    <div class="bg-red-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-red-700">⏱️ Duración: 10 minutos | Objetivo: Compromiso personal con la seguridad</p>
+                    </div>
+                </div>
+                
+                <!-- Plan de Mejoramiento Personal -->
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-red-800 mb-6 text-center text-2xl">📋 Plan de Mejoramiento Personal</h3>
+                    <p class="text-center text-red-700 mb-6">Rubén Hernando Morales Bejarano - Compromisos Específicos</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-red-500">
+                            <h4 class="font-bold text-red-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">🔍</span>
+                                Compromiso 1: Inspección Preoperacional Sistemática
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-red-600" id="commitment1">
+                                    <span class="text-sm">Realizar inspección completa de 15 minutos mínimo</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-red-600" id="commitment1b">
+                                    <span class="text-sm">Verificar niveles de fluidos antes de cada jornada</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-red-600" id="commitment1c">
+                                    <span class="text-sm">Documentar y reportar todas las novedades encontradas</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">⚖️</span>
+                                Compromiso 2: Cumplimiento Normativo Estricto
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2">
+                                    <span class="text-sm">Respetar todas las señales de tránsito sin excepción</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2b">
+                                    <span class="text-sm">Ejecutar maniobras solo cuando sean seguras y permitidas</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2c">
+                                    <span class="text-sm">Priorizar seguridad sobre presión operativa</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lista de Verificación Personal -->
+                <div class="technical-content rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-blue-800 mb-6 text-xl">✅ Lista de Verificación Personal Diaria</h4>
+                    <p class="text-blue-700 mb-6">Marca los elementos que te comprometes a verificar TODOS los días:</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-bold text-green-800 mb-3">🚛 Exterior del Vehículo</h5>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Presión y estado de llantas</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Funcionamiento de luces</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Estado de espejos</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Integridad de parachoques</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Funcionamiento de bocina</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-bold text-orange-800 mb-3">🔧 Compartimiento Motor</h5>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Nivel de aceite motor</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Nivel de refrigerante</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Nivel de líquido de frenos</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Nivel de líquido dirección</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Estado de mangueras</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-bold text-purple-800 mb-3">🚗 Interior y Seguridad</h5>
+                            <div class="space-y-2">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Funcionamiento de cinturón</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Freno de mano operativo</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Extintor en su lugar</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Triángulos disponibles</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="checklist-item">
+                                    <span class="text-sm">Documentos al día</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="checklistProgress" class="mt-6 p-4 bg-blue-50 rounded-lg hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-blue-800">Progreso de Compromiso:</span>
+                            <span class="font-bold text-blue-800" id="progressText">0/15</span>
+                        </div>
+                        <div class="w-full bg-blue-200 rounded-full h-2 mt-2">
+                            <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" id="progressBar2" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reflexión Final -->
+                <div class="reflection-deep rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-orange-800 mb-6 text-xl">💭 Reflexión Final: Tu Compromiso Personal</h4>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">Escribe tu compromiso personal con la seguridad vial:</h5>
+                        <textarea 
+                            id="personalCommitment" 
+                            class="w-full p-4 border-2 border-orange-200 rounded-lg resize-none" 
+                            rows="4" 
+                            placeholder="Ejemplo: Me comprometo a realizar la inspección preoperacional completa todos los días, sin importar la presión de tiempo, porque entiendo que mi seguridad y la de otros depende de mi responsabilidad como conductor profesional..."
+                        ></textarea>
+                        <p class="text-sm text-gray-600 mt-2">Mínimo 100 caracteres para continuar</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-green-800 mb-4">✅ Lo que he aprendido:</h5>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-green-600">✓</span>
+                                    <span>La diferencia entre costumbre y criterio técnico</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-green-600">✓</span>
+                                    <span>La importancia de la inspección sistemática</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-green-600">✓</span>
+                                    <span>Las consecuencias legales de las infracciones</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-green-600">✓</span>
+                                    <span>Mi responsabilidad como conductor profesional</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-blue-800 mb-4">🎯 Lo que voy a cambiar:</h5>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-blue-600">→</span>
+                                    <span>Inspección preoperacional de 15 minutos mínimo</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-blue-600">→</span>
+                                    <span>Verificación sistemática de fluidos</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-blue-600">→</span>
+                                    <span>Respeto absoluto a señales de tránsito</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-blue-600">→</span>
+                                    <span>Priorizar seguridad sobre presión operativa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="completeCourse()" id="nextBtn4" class="interactive-button bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Finalizar Reentrenamiento ✅
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Estado del curso
+        let currentSection = 1;
+        let progress = 0;
+        let reflectionCompleted = 0;
+        let inspectionCompleted = false;
+        let casesCompleted = 0;
+        let casesCorrect = 0;
+        let commitmentsCompleted = false;
+        let checklistCompleted = false;
+        let reflectionWritten = false;
+        
+        // Timer del curso
+        let totalSeconds = 60 * 60; // 60 minutos
+        let currentSeconds = 0;
+        
+        function startTimer() {
+            setInterval(() => {
+                currentSeconds++;
+                const remaining = totalSeconds - currentSeconds;
+                const minutes = Math.floor(remaining / 60);
+                const seconds = remaining % 60;
+                
+                if (remaining > 0) {
+                    document.getElementById('timerDisplay').textContent = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                const sectionTime = Math.floor(currentSeconds / 60);
+                document.getElementById('currentTime').textContent = `${sectionTime}:${(currentSeconds % 60).toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            startTimer();
+            setupDragAndDrop();
+            setupChecklistTracking();
+            setupReflectionTracking();
+        });
+
+        function updateProgress() {
+            progress = ((currentSection - 1) / 3) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSection(section) {
+            if (currentSection > 0) {
+                document.getElementById(`section${currentSection}`).classList.remove('section-visible');
+                document.getElementById(`section${currentSection}`).classList.add('section-hidden');
+            }
+            
+            currentSection = section;
+            document.getElementById(`section${section}`).classList.remove('section-hidden');
+            document.getElementById(`section${section}`).classList.add('section-visible');
+            
+            updateProgress();
+            
+            document.getElementById('truckIcon').classList.add('truck-shake');
+            setTimeout(() => {
+                document.getElementById('truckIcon').classList.remove('truck-shake');
+            }, 500);
+            
+            setTimeout(() => {
+                document.getElementById(`section${section}`).scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 100);
+        }
+
+        // Reflexión
+        function selectReflection(questionNum, option) {
+            const buttons = document.querySelectorAll(`#question${questionNum} .reflection-btn`);
+            buttons.forEach(btn => btn.classList.remove('correct-answer', 'wrong-answer'));
+            
+            const feedback = document.getElementById(`feedback${questionNum}`);
+            let isCorrect = false;
+            let feedbackContent = '';
+            
+            if (questionNum === 1) {
+                if (option === 2) {
+                    isCorrect = true;
+                    event.target.classList.add('correct-answer');
+                    feedbackContent = `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡RECONOCIMIENTO CRÍTICO EXITOSO!</h5>
+                            <p class="text-green-700 mb-4">Has identificado el patrón correcto. El "Profesional Sistemático" es el único perfil que garantiza seguridad:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-red-50 p-4 rounded border-l-4 border-red-400">
+                                    <h6 class="font-bold text-red-800 mb-2">❌ Patrón de Rubén (Veterano Confiado):</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 8 años de experiencia mal canalizada</li>
+                                        <li>• Automatización peligrosa de rutinas</li>
+                                        <li>• "Ceguera operacional" por exceso de confianza</li>
+                                        <li>• Resultado: 73% probabilidad de accidente fatal</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded border-l-4 border-green-400">
+                                    <h6 class="font-bold text-green-800 mb-2">✅ Patrón Profesional Requerido:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Inspección sistemática de 15 minutos</li>
+                                        <li>• Verificación de parámetros técnicos</li>
+                                        <li>• Conciencia permanente del riesgo</li>
+                                        <li>• Resultado: Reducción 95% probabilidad accidente</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded mt-4">
+                                <p class="text-sm text-blue-800 font-bold">🎯 Transformación requerida: De "Veterano Confiado" a "Profesional Sistemático"</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    event.target.classList.add('wrong-answer');
+                    let errorMsg = '';
+                    if (option === 1) {
+                        errorMsg = 'Este es exactamente el patrón de Rubén que causó el casi-accidente. La automatización sin criterio técnico es letal.';
+                    } else if (option === 3) {
+                        errorMsg = 'La presión operativa NUNCA justifica omitir seguridad. Esta mentalidad ha causado miles de muertes evitables.';
+                    } else if (option === 4) {
+                        errorMsg = 'La negación del riesgo es el patrón más peligroso. Los accidentes no discriminan por experiencia.';
+                    }
+                    feedbackContent = `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ PATRÓN DE ALTO RIESGO IDENTIFICADO</h5>
+                            <p class="text-red-700 mb-4">${errorMsg}</p>
+                            <div class="bg-white p-4 rounded">
+                                <p class="text-sm text-gray-700 font-bold">Reflexiona: ¿Cuántas veces has pensado o actuado así? La honestidad contigo mismo es el primer paso hacia la seguridad.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else if (questionNum === 2) {
+                if (option === 4) {
+                    isCorrect = true;
+                    event.target.classList.add('correct-answer');
+                    feedbackContent = `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡COMPRENSIÓN INTEGRAL CORRECTA!</h5>
+                            <p class="text-green-700 mb-4">Exacto. Una inspección superficial puede omitir MÚLTIPLES fallas que se combinan para crear el "efecto cascada":</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">🔴 Caso Real de Rubén:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Presión baja: -18 PSI (34% menos)</li>
+                                        <li>• Desgaste irregular no detectado</li>
+                                        <li>• Vibración en volante ignorada</li>
+                                        <li>• Resultado: Pérdida de control en curva</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-orange-800 mb-2">⚠️ Fallas Típicas Omitidas:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Fugas de frenos (goteo = falla total)</li>
+                                        <li>• Holguras dirección (pérdida control)</li>
+                                        <li>• Luces débiles (invisibilidad nocturna)</li>
+                                        <li>• Cinturones dañados (muerte en impacto)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded mt-4">
+                                <p class="text-sm text-red-800 font-bold">💀 ESTADÍSTICA CRÍTICA: Cada falla omitida aumenta 23% la probabilidad de accidente. Tres fallas = 69% probabilidad de tragedia.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    event.target.classList.add('wrong-answer');
+                    feedbackContent = `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ VISIÓN PARCIAL DEL RIESGO</h5>
+                            <p class="text-red-700 mb-4">Estás subestimando el alcance del problema. Las fallas no ocurren aisladas - se combinan para crear situaciones de alto riesgo.</p>
+                            <div class="bg-white p-4 rounded">
+                                <p class="text-sm text-gray-700">El caso de Rubén demuestra que múltiples fallas "menores" pueden crear una situación de riesgo mortal. La respuesta correcta incluye TODAS las categorías de fallas.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else if (questionNum === 3) {
+                if (option === 4) {
+                    isCorrect = true;
+                    event.target.classList.add('correct-answer');
+                    feedbackContent = `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡CONCIENCIA LEGAL COMPLETA!</h5>
+                            <p class="text-green-700 mb-4">Correcto. Las consecuencias son INTEGRALES y devastadoras. Veamos el costo real de 10 minutos de negligencia:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-red-50 p-4 rounded border-l-4 border-red-400">
+                                    <h6 class="font-bold text-red-800 mb-2">⚖️ Consecuencias Legales:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• <strong>Penal:</strong> 32-108 meses prisión</li>
+                                        <li>• <strong>Civil:</strong> $800M - $2.000M indemnización</li>
+                                        <li>• <strong>Administrativa:</strong> Licencia cancelada</li>
+                                        <li>• <strong>Laboral:</strong> Despido + inhabilidad sector</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded border-l-4 border-gray-400">
+                                    <h6 class="font-bold text-gray-800 mb-2">💔 Consecuencias Humanas:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Vidas humanas perdidas para siempre</li>
+                                        <li>• Familias destruidas</li>
+                                        <li>• Culpa y trauma de por vida</li>
+                                        <li>• Tu familia también sufre las consecuencias</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded mt-4">
+                                <p class="text-sm text-blue-800 font-bold">🎯 REFLEXIÓN FINAL: ¿Valen 10 minutos de "ahorro" toda esta devastación? La inspección preoperacional no es opcional - es tu responsabilidad moral y legal.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    event.target.classList.add('wrong-answer');
+                    feedbackContent = `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ SUBESTIMACIÓN PELIGROSA</h5>
+                            <p class="text-red-700 mb-4">Las consecuencias son MUCHO más graves de lo que piensas. No es "solo" una responsabilidad - son TODAS simultáneamente.</p>
+                            <div class="bg-white p-4 rounded">
+                                <p class="text-sm text-gray-700 font-bold">Cuando tu negligencia mata, enfrentas prisión, ruina económica, fin de carrera Y la carga psicológica de vidas que pudiste salvar. Todo por omitir una inspección.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            feedback.innerHTML = feedbackContent;
+            feedback.classList.remove('hidden');
+            
+            if (isCorrect) {
+                reflectionCompleted++;
+                if (questionNum < 3) {
+                    setTimeout(() => {
+                        const nextQuestion = document.getElementById(`question${questionNum + 1}`);
+                        nextQuestion.classList.remove('opacity-50');
+                        nextQuestion.querySelectorAll('button').forEach(btn => btn.disabled = false);
+                    }, 1000);
+                } else {
+                    document.getElementById('nextBtn1').disabled = false;
+                }
+            } else {
+                setTimeout(() => {
+                    buttons.forEach(btn => btn.classList.remove('wrong-answer'));
+                }, 3000);
+            }
+        }
+
+        // Drag and Drop para inspección
+        function setupDragAndDrop() {
+            const steps = document.querySelectorAll('.inspection-step');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let draggedElement = null;
+
+            steps.forEach(step => {
+                step.addEventListener('dragstart', function(e) {
+                    draggedElement = this;
+                    this.style.opacity = '0.5';
+                });
+
+                step.addEventListener('dragend', function(e) {
+                    this.style.opacity = '1';
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', function(e) {
+                    this.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (draggedElement) {
+                        // Limpiar zona si ya tiene contenido
+                        const existingStep = this.querySelector('.inspection-step');
+                        if (existingStep) {
+                            document.getElementById('stepsContainer').appendChild(existingStep);
+                        }
+                        
+                        // Agregar nuevo elemento
+                        this.innerHTML = '';
+                        this.appendChild(draggedElement.cloneNode(true));
+                        draggedElement.style.display = 'none';
+                        
+                        checkInspectionOrder();
+                    }
+                });
+            });
+        }
+
+        function checkInspectionOrder() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const correctOrder = ['1', '2', '3', '4', '5'];
+            let currentOrder = [];
+            let correctCount = 0;
+
+            dropZones.forEach((zone, index) => {
+                const step = zone.querySelector('.inspection-step');
+                if (step) {
+                    const stepNumber = step.dataset.step;
+                    currentOrder.push(stepNumber);
+                    if (stepNumber === correctOrder[index]) {
+                        correctCount++;
+                        zone.style.borderColor = '#22c55e';
+                        zone.style.backgroundColor = '#f0fdf4';
+                    } else {
+                        zone.style.borderColor = '#ef4444';
+                        zone.style.backgroundColor = '#fef2f2';
+                    }
+                }
+            });
+
+            if (currentOrder.length === 5) {
+                inspectionCompleted = correctCount === 5;
+                showInspectionFeedback(correctCount);
+                if (inspectionCompleted) {
+                    document.getElementById('nextBtn2').disabled = false;
+                }
+            }
+        }
+
+        function showInspectionFeedback(correctCount) {
+            const feedback = document.getElementById('inspectionFeedback');
+            let content = '';
+
+            if (correctCount === 5) {
+                content = `
+                    <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                        <h5 class="font-bold text-green-800 mb-3">✅ ¡Excelente! Secuencia Perfecta</h5>
+                        <p class="text-green-700 mb-4">Has ordenado correctamente el procedimiento de inspección preoperacional:</p>
+                        <div class="grid md:grid-cols-5 gap-2 text-sm">
+                            <div class="text-center p-2 bg-white rounded">
+                                <p class="font-bold">1° Exterior</p>
+                                <p class="text-xs">Verificación visual general</p>
+                            </div>
+                            <div class="text-center p-2 bg-white rounded">
+                                <p class="font-bold">2° Motor</p>
+                                <p class="text-xs">Niveles de fluidos</p>
+                            </div>
+                            <div class="text-center p-2 bg-white rounded">
+                                <p class="font-bold">3° Cabina</p>
+                                <p class="text-xs">Seguridad y documentos</p>
+                            </div>
+                            <div class="text-center p-2 bg-white rounded">
+                                <p class="font-bold">4° Prueba</p>
+                                <p class="text-xs">Funcionamiento dinámico</p>
+                            </div>
+                            <div class="text-center p-2 bg-white rounded">
+                                <p class="font-bold">5° Registro</p>
+                                <p class="text-xs">Documentación</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded">
+                        <h5 class="font-bold text-orange-800 mb-3">⚠️ Revisa el Orden</h5>
+                        <p class="text-orange-700 mb-4">Tienes ${correctCount} de 5 pasos en posición correcta. El orden lógico es:</p>
+                        <p class="text-sm">1° Exterior → 2° Motor → 3° Cabina → 4° Prueba → 5° Registro</p>
+                    </div>
+                `;
+            }
+
+            feedback.innerHTML = content;
+            feedback.classList.remove('hidden');
+        }
+
+        function resetInspectionActivity() {
+            // Limpiar zonas de drop
+            const dropZones = document.querySelectorAll('.drop-zone');
+            dropZones.forEach(zone => {
+                zone.innerHTML = `<p class="text-gray-500 text-center">Paso ${zone.dataset.position}</p>`;
+                zone.style.borderColor = '#d1d5db';
+                zone.style.backgroundColor = '';
+            });
+
+            // Restaurar pasos originales
+            const stepsContainer = document.getElementById('stepsContainer');
+            stepsContainer.innerHTML = `
+                <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="4">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</span>
+                        <div>
+                            <p class="font-medium">🚗 Prueba dinámica</p>
+                            <p class="text-sm text-gray-600">Funcionamiento de pedales, luces, tablero</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="1">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</span>
+                        <div>
+                            <p class="font-medium">👁️ Revisión exterior</p>
+                            <p class="text-sm text-gray-600">Espejos, luces, llantas, parachoques</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="5">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">5</span>
+                        <div>
+                            <p class="font-medium">📝 Registro de inspección</p>
+                            <p class="text-sm text-gray-600">Firmar y reportar novedades</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="3">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</span>
+                        <div>
+                            <p class="font-medium">🚛 Cabina</p>
+                            <p class="text-sm text-gray-600">Cinturón, freno de mano, extintor, documentos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inspection-step p-4 rounded-lg" draggable="true" data-step="2">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</span>
+                        <div>
+                            <p class="font-medium">🔧 Compartimiento del motor</p>
+                            <p class="text-sm text-gray-600">Aceite, refrigerante, frenos, dirección</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Ocultar feedback
+            document.getElementById('inspectionFeedback').classList.add('hidden');
+
+            // Resetear estado
+            inspectionCompleted = false;
+            document.getElementById('nextBtn2').disabled = true;
+
+            // Reconfigurar drag and drop
+            setupDragAndDrop();
+        }
+
+        // Casos prácticos
+        function checkCase(caseNum, option, isCorrect) {
+            const buttons = document.querySelectorAll(`#case${caseNum} .case-btn`);
+            buttons.forEach(btn => btn.disabled = true);
+            
+            const feedback = document.getElementById(`caseFeedback${caseNum}`);
+            
+            if (isCorrect) {
+                event.target.classList.add('correct-answer');
+                casesCorrect++;
+                
+                let explanations = {
+                    1: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Correcto! Análisis Legal Preciso</h5>
+                            <p class="text-green-700 mb-4">Has identificado correctamente el Artículo 58 y el procedimiento requerido:</p>
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-2">📜 Artículo 58 - Retroceso:</h6>
+                                <p class="text-sm text-gray-700 italic">"Solo se permite el retroceso cuando sea indispensable para la circulación y no se afecte el normal desarrollo del tránsito."</p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-red-50 p-3 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">❌ Lo que hizo Rubén:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Retroceso sin acompañante</li>
+                                        <li>• Sin señalización adecuada</li>
+                                        <li>• Afectó el tránsito normal</li>
+                                        <li>• No evaluó riesgos</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded">
+                                    <h6 class="font-bold text-green-800 mb-2">✅ Procedimiento Correcto:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Evaluar si es indispensable</li>
+                                        <li>• Contar con acompañante</li>
+                                        <li>• Señalización con triángulos</li>
+                                        <li>• No afectar el tránsito</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Excelente! Comprensión Normativa Completa</h5>
+                            <p class="text-green-700 mb-4">Has identificado correctamente la infracción y sus riesgos:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">⚖️ Aspecto Legal:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• <strong>Infracción:</strong> Desobediencia a señal reglamentaria</li>
+                                        <li>• <strong>Artículo:</strong> 57 - Adelantamiento prohibido</li>
+                                        <li>• <strong>Sanción:</strong> Multa categoría B</li>
+                                        <li>• <strong>Agravante:</strong> Vehículo de carga</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-orange-800 mb-2">⚠️ Riesgo Operativo:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• <strong>Colisión frontal:</strong> Alta probabilidad</li>
+                                        <li>• <strong>Energía del impacto:</strong> Muy alta por masa</li>
+                                        <li>• <strong>Consecuencias:</strong> Muertes múltiples</li>
+                                        <li>• <strong>Responsabilidad:</strong> Penal del conductor</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded mt-4">
+                                <p class="text-sm text-blue-800"><strong>Principio clave:</strong> Ninguna presión operativa justifica poner en riesgo vidas humanas.</p>
+                            </div>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Perfecto! Análisis Técnico Correcto</h5>
+                            <p class="text-green-700 mb-4">Has identificado la falla en el procedimiento y la prevención:</p>
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-red-800 mb-2">❌ Falla en la Inspección:</h6>
+                                <p class="text-sm text-gray-700">La verificación de niveles de fluidos debe incluir no solo la cantidad, sino también:</p>
+                                <ul class="text-sm space-y-1 mt-2">
+                                    <li>• <strong>Nivel:</strong> Entre mínimo y máximo</li>
+                                    <li>• <strong>Color:</strong> Sin contaminación</li>
+                                    <li>• <strong>Fugas:</strong> Manchas en el piso</li>
+                                    <li>• <strong>Mangueras:</strong> Estado y conexiones</li>
+                                </ul>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-yellow-50 p-3 rounded">
+                                    <h6 class="font-bold text-yellow-800 mb-2">🔍 Señales que se Omitieron:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Manchas de refrigerante en piso</li>
+                                        <li>• Nivel bajo en depósito</li>
+                                        <li>• Manguera con grietas visibles</li>
+                                        <li>• Conexiones húmedas</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded">
+                                    <h6 class="font-bold text-green-800 mb-2">✅ Prevención:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Inspección sistemática diaria</li>
+                                        <li>• Verificación con motor frío</li>
+                                        <li>• Revisión visual de mangueras</li>
+                                        <li>• Reporte inmediato de anomalías</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = explanations[caseNum];
+                
+            } else {
+                event.target.classList.add('wrong-answer');
+                
+                let corrections = {
+                    1: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Error en Identificación Normativa</h5>
+                            <p class="text-red-700 mb-4">El Artículo 58 regula específicamente el retroceso y establece condiciones estrictas.</p>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Subestimación del Riesgo</h5>
+                            <p class="text-red-700 mb-4">Desobedecer señales reglamentarias puede resultar en accidentes fatales.</p>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Error en Análisis Técnico</h5>
+                            <p class="text-red-700 mb-4">La inspección sistemática habría detectado esta falla antes de la operación.</p>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = corrections[caseNum];
+                
+                setTimeout(() => {
+                    buttons.forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('wrong-answer');
+                    });
+                }, 3000);
+            }
+            
+            feedback.classList.remove('hidden');
+            casesCompleted++;
+            
+            if (caseNum < 3) {
+                setTimeout(() => {
+                    const nextCase = document.getElementById(`case${caseNum + 1}`);
+                    nextCase.classList.remove('opacity-50');
+                    nextCase.querySelectorAll('button').forEach(btn => btn.disabled = false);
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    showCaseSummary();
+                }, 1000);
+            }
+        }
+
+        function showCaseSummary() {
+            const summary = document.getElementById('caseSummary');
+            const scoreText = document.getElementById('caseScoreText');
+            const scoreIcon = document.getElementById('caseScoreIcon');
+            const analysisLevel = document.getElementById('caseAnalysisLevel');
+            const safetyScore = document.getElementById('caseSafetyScore');
+            
+            scoreText.textContent = `${casesCorrect}/3`;
+            
+            if (casesCorrect === 3) {
+                scoreIcon.textContent = '🏆';
+                analysisLevel.textContent = 'Avanzado';
+                safetyScore.textContent = '90%';
+            } else if (casesCorrect === 2) {
+                scoreIcon.textContent = '🎯';
+                analysisLevel.textContent = 'Intermedio';
+                safetyScore.textContent = '70%';
+            } else {
+                scoreIcon.textContent = '📚';
+                analysisLevel.textContent = 'Básico';
+                safetyScore.textContent = '50%';
+            }
+            
+            summary.classList.remove('hidden');
+            document.getElementById('nextBtn3').disabled = false;
+        }
+
+        // Tracking de compromisos y checklist
+        function setupChecklistTracking() {
+            const checklistItems = document.querySelectorAll('.checklist-item');
+            const commitmentChecks = document.querySelectorAll('.commitment-check');
+            
+            checklistItems.forEach(item => {
+                item.addEventListener('change', updateChecklistProgress);
+            });
+            
+            commitmentChecks.forEach(check => {
+                check.addEventListener('change', updateCommitments);
+            });
+        }
+
+        function updateChecklistProgress() {
+            const checkedItems = document.querySelectorAll('.checklist-item:checked').length;
+            const totalItems = document.querySelectorAll('.checklist-item').length;
+            const percentage = (checkedItems / totalItems) * 100;
+            
+            const progressDiv = document.getElementById('checklistProgress');
+            const progressText = document.getElementById('progressText');
+            const progressBar = document.getElementById('progressBar2');
+            
+            progressText.textContent = `${checkedItems}/${totalItems}`;
+            progressBar.style.width = percentage + '%';
+            progressDiv.classList.remove('hidden');
+            
+            checklistCompleted = checkedItems >= 12; // Mínimo 12 de 15
+            checkFinalCompletion();
+        }
+
+        function updateCommitments() {
+            const checkedCommitments = document.querySelectorAll('.commitment-check:checked').length;
+            commitmentsCompleted = checkedCommitments >= 4; // Mínimo 4 de 6
+            checkFinalCompletion();
+        }
+
+        function setupReflectionTracking() {
+            const textarea = document.getElementById('personalCommitment');
+            textarea.addEventListener('input', function() {
+                reflectionWritten = this.value.length >= 100;
+                checkFinalCompletion();
+            });
+        }
+
+        function checkFinalCompletion() {
+            if (commitmentsCompleted && checklistCompleted && reflectionWritten) {
+                document.getElementById('nextBtn4').disabled = false;
+            }
+        }
+
+        function completeCourse() {
+            const finalScore = reflectionCompleted + (inspectionCompleted ? 1 : 0) + casesCorrect;
+            
+            let level, message;
+            if (finalScore >= 5) {
+                level = 'Satisfactorio';
+                message = '¡Excelente! Has completado exitosamente el reentrenamiento.';
+            } else if (finalScore >= 3) {
+                level = 'Aceptable';
+                message = 'Buen trabajo. Continúa aplicando lo aprendido.';
+            } else {
+                level = 'Requiere Refuerzo';
+                message = 'Necesitas capacitación adicional. Programa una sesión de refuerzo.';
+            }
+            
+            progress = 100;
+            document.getElementById('progressBar').style.width = '100%';
+            
+            const section4 = document.getElementById('section4');
+            section4.innerHTML = `
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="text-6xl mb-6">🎉</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Reentrenamiento Completado!</h2>
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Rubén Hernando Morales Bejarano</h3>
+                        <p class="text-lg text-red-600 mb-4">${message}</p>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">🎯</div>
+                                <p class="font-bold">${finalScore}/6</p>
+                                <p class="text-sm text-gray-600">Puntuación</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">🏆</div>
+                                <p class="font-bold">${level}</p>
+                                <p class="text-sm text-gray-600">Nivel</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">✅</div>
+                                <p class="font-bold">Completado</p>
+                                <p class="text-sm text-gray-600">Estado</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <h4 class="font-bold text-blue-800 mb-3">Competencias Reforzadas:</h4>
+                        <div class="text-left space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Diferenciación entre costumbre y criterio técnico</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Procedimiento sistemático de inspección preoperacional</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Aplicación correcta de normativa de tránsito</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Compromiso personal con la seguridad operativa</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-gray-600">¡Gracias por tu compromiso con la excelencia operativa!</p>
+                        <p class="text-sm text-gray-500 mt-2">Reentrenamiento C2 - ${new Date().toLocaleDateString('es-CO')}</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99580f0c83e2b6f2',t:'MTc2MTYyOTYxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
