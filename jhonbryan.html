@@ -1,1 +1,2886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Microcurso C3 - Actualización Normativa | Jhon Harry Bryan Argumedo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        .section-hidden {
+            display: none;
+        }
+        .section-visible {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .progress-bar {
+            transition: width 0.8s ease;
+        }
+        .truck-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .correct-answer {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            animation: correctPulse 0.6s ease;
+        }
+        .wrong-answer {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            animation: wrongShake 0.6s ease;
+        }
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .scenario-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-left: 6px solid #3b82f6;
+        }
+        .law-highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+        }
+        .interactive-button {
+            transition: all 0.3s ease;
+        }
+        .interactive-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .celebration {
+            animation: celebrate 1s ease-in-out;
+        }
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+        }
+        .deep-content {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+        }
+        .case-study {
+            background: linear-gradient(135deg, #fef7cd 0%, #fef3c7 100%);
+            border-left: 6px solid #f59e0b;
+        }
+        .timer-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .knowledge-check {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+        }
+        .advanced-scenario {
+            background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+            border-left: 6px solid #a855f7;
+        }
+        .reflection-deep {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border: 2px solid #ea580c;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-full">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <div class="text-5xl" id="truckIcon">🚛</div>
+                    <div>
+                        <h1 class="text-3xl font-bold">🎓 MICROCURSO PERSONALIZADO C3</h1>
+                        <p class="text-blue-100 text-lg font-medium">Actualización Normativa y Cultura Vial</p>
+                        <p class="text-blue-200 text-sm">Dirigido a: <strong>Jhon Harry Bryan Argumedo</strong></p>
+                        <p class="text-blue-200 text-xs">Transporte de Carga Pesada (C3) - Modalidad: Virtual Interactiva</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="timer-display text-white" id="timerDisplay">30:00</div>
+                        <p class="text-sm">Duración Total</p>
+                        <div class="text-xs mt-1 text-blue-200">
+                            Sección actual: <span id="currentTime">0:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="bg-white bg-opacity-20 rounded-full h-4 mb-4">
+                <div class="progress-bar bg-white h-4 rounded-full" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-blue-100">
+                <span>Reflexión (5min)</span>
+                <span>Conceptualización (10min)</span>
+                <span>Apropiación (10min)</span>
+                <span>Transferencia (5min)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        
+
+
+        <!-- Section 1: Reflexión Profunda -->
+        <section id="section1" class="section-visible mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">🤔</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">1. Momento de Reflexión Profunda</h2>
+                    <p class="text-xl text-blue-600 font-medium">"La costumbre no siempre tiene la razón"</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-blue-700">⏱️ Duración: 5 minutos | Objetivo: Autoanálisis conductual</p>
+                    </div>
+                </div>
+                
+                <!-- Escenario Detallado -->
+                <div class="scenario-card rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-gray-800 mb-6 flex items-center text-xl">
+                        <span class="text-3xl mr-3">🌙</span>
+                        Escenario Real: Ruta Nacional Nocturna
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h4 class="font-bold text-gray-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">📍</span>
+                                Contexto Específico
+                            </h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>Conductor:</strong> Jhon, 20 años de experiencia</li>
+                                <li><strong>Vehículo:</strong> Camión C3, carga refrigerada</li>
+                                <li><strong>Ruta:</strong> Vía nacional, doble calzada</li>
+                                <li><strong>Hora:</strong> 2:30 AM, visibilidad reducida</li>
+                                <li><strong>Condiciones:</strong> Tráfico ligero, fatiga acumulada</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h4 class="font-bold text-gray-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">⚠️</span>
+                                Situación Crítica
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="bg-yellow-100 p-3 rounded border-l-4 border-yellow-500">
+                                    <p class="text-sm"><strong>Intersección:</strong> Sin semáforo, señalización vertical limitada</p>
+                                </div>
+                                <div class="bg-orange-100 p-3 rounded border-l-4 border-orange-500">
+                                    <p class="text-sm"><strong>Decisión:</strong> Avanzar confiando en la experiencia</p>
+                                </div>
+                                <div class="bg-red-100 p-3 rounded border-l-4 border-red-500">
+                                    <p class="text-sm"><strong>Factor no percibido:</strong> Motocicleta con prelación</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 border-l-4 border-red-400 rounded-lg p-6">
+                        <h4 class="font-bold text-red-800 mb-3 flex items-center">
+                            <span class="text-2xl mr-2">💥</span>
+                            Consecuencias del Incidente
+                        </h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">🚨</div>
+                                <p class="font-medium text-red-700">Frenada de Emergencia</p>
+                                <p class="text-sm text-red-600">Riesgo de volcamiento por carga</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">😰</div>
+                                <p class="font-medium text-red-700">Estrés Psicológico</p>
+                                <p class="text-sm text-red-600">Impacto en decisiones futuras</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">📋</div>
+                                <p class="font-medium text-red-700">Posibles Sanciones</p>
+                                <p class="text-sm text-red-600">Multas, suspensión de licencia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Análisis Profundo -->
+                <div class="deep-content rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-blue-800 mb-6 text-xl">🧠 Análisis Psicológico del Comportamiento</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-blue-700 mb-4">Factores Cognitivos Involucrados:</h4>
+                            <div class="space-y-3">
+                                <div class="bg-white p-4 rounded border-l-4 border-blue-400">
+                                    <p class="font-medium">Sesgo de Confirmación</p>
+                                    <p class="text-sm text-gray-600">20 años sin incidentes refuerzan la confianza excesiva</p>
+                                </div>
+                                <div class="bg-white p-4 rounded border-l-4 border-blue-400">
+                                    <p class="font-medium">Automatización de Respuestas</p>
+                                    <p class="text-sm text-gray-600">Decisiones basadas en patrones, no en análisis</p>
+                                </div>
+                                <div class="bg-white p-4 rounded border-l-4 border-blue-400">
+                                    <p class="font-medium">Fatiga Cognitiva</p>
+                                    <p class="text-sm text-gray-600">Reducción de la capacidad de procesamiento nocturno</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-blue-700 mb-4">Impacto de la Experiencia:</h4>
+                            <div class="space-y-3">
+                                <div class="bg-green-100 p-4 rounded border-l-4 border-green-400">
+                                    <p class="font-medium text-green-800">✅ Aspectos Positivos</p>
+                                    <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                        <li>• Conocimiento de rutas y condiciones</li>
+                                        <li>• Habilidades técnicas desarrolladas</li>
+                                        <li>• Capacidad de reacción entrenada</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-100 p-4 rounded border-l-4 border-red-400">
+                                    <p class="font-medium text-red-800">❌ Riesgos Asociados</p>
+                                    <ul class="text-sm text-red-700 mt-2 space-y-1">
+                                        <li>• Exceso de confianza (overconfidence)</li>
+                                        <li>• Resistencia a cambios normativos</li>
+                                        <li>• Subestimación de riesgos nuevos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pregunta de Reflexión Profunda -->
+                <div class="reflection-deep rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-orange-800 mb-6 text-xl">🎯 Pregunta de Reflexión Crítica:</h4>
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <p class="text-lg italic text-orange-700 mb-4 text-center">
+                            "En tu experiencia como conductor profesional, ¿cuántas veces has tomado decisiones basándote más en la costumbre que en el análisis consciente de la situación y la normativa vigente?"
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button onclick="selectReflection(1)" class="reflection-btn w-full p-6 text-left bg-white hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                            <div class="flex items-start space-x-4">
+                                <span class="font-bold text-lg">A)</span>
+                                <div>
+                                    <p class="font-medium mb-2">La experiencia es mi mejor guía</p>
+                                    <p class="text-sm text-gray-600">20 años de conducción me han enseñado más que cualquier manual. Confío en mi instinto y conocimiento práctico.</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button onclick="selectReflection(2)" class="reflection-btn w-full p-6 text-left bg-white hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                            <div class="flex items-start space-x-4">
+                                <span class="font-bold text-lg">B)</span>
+                                <div>
+                                    <p class="font-medium mb-2">Las normas son lo único que importa</p>
+                                    <p class="text-sm text-gray-600">Debo seguir estrictamente las reglas sin considerar mi experiencia. La normativa siempre tiene la razón.</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button onclick="selectReflection(3)" class="reflection-btn w-full p-6 text-left bg-white hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                            <div class="flex items-start space-x-4">
+                                <span class="font-bold text-lg">C)</span>
+                                <div>
+                                    <p class="font-medium mb-2">Necesito equilibrar experiencia con análisis normativo</p>
+                                    <p class="text-sm text-gray-600">Mi experiencia es valiosa, pero debo complementarla con análisis consciente de cada situación y aplicación correcta de la normativa.</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button onclick="selectReflection(4)" class="reflection-btn w-full p-6 text-left bg-white hover:bg-orange-50 rounded-lg border-2 border-orange-200 transition-all">
+                            <div class="flex items-start space-x-4">
+                                <span class="font-bold text-lg">D)</span>
+                                <div>
+                                    <p class="font-medium mb-2">Reconozco que necesito actualización constante</p>
+                                    <p class="text-sm text-gray-600">Acepto que las condiciones viales, normativas y tecnologías cambian. Debo mantenerme actualizado y cuestionar mis hábitos.</p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="reflectionFeedback" class="hidden mb-8"></div>
+                
+                <!-- Auto-evaluación Inicial -->
+                <div id="selfAssessment" class="hidden knowledge-check rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-green-800 mb-6 text-xl">📊 Auto-evaluación: Tu Perfil de Riesgo Actual</h4>
+                    <p class="text-green-700 mb-6">Basándote en tu reflexión, evalúa honestamente tu comportamiento actual:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-green-700">Frecuencia de Comportamientos:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="high">
+                                        <span class="text-sm">Adelanto en zonas prohibidas cuando "veo que es seguro"</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="medium">
+                                        <span class="text-sm">Reduzco distancia de seguridad en tráfico pesado</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="high">
+                                        <span class="text-sm">Uso el teléfono mientras conduzco en rectas largas</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="medium">
+                                        <span class="text-sm">Excedo límites de velocidad en 10-15 km/h</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h5 class="font-bold text-green-700">Actitudes hacia la Normativa:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="low">
+                                        <span class="text-sm">Consulto actualizaciones normativas regularmente</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="medium">
+                                        <span class="text-sm">Considero que algunas normas son "exageradas"</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="high">
+                                        <span class="text-sm">Creo que mi experiencia me exime de ciertas reglas</span>
+                                    </label>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <label class="flex items-center space-x-3">
+                                        <input type="checkbox" class="self-check" data-risk="low">
+                                        <span class="text-sm">Busco capacitación continua en seguridad vial</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="riskProfile" class="hidden mt-6 p-6 rounded-lg"></div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(2)" id="nextBtn1" class="interactive-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Conceptualización Profunda →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Conceptualización Profunda -->
+        <section id="section2" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">📘</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">2. Conceptualización Profunda</h2>
+                    <p class="text-xl text-blue-600 font-medium">"Recordar para prevenir - Marco Legal Integral"</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-blue-700">⏱️ Duración: 10 minutos | Objetivo: Dominio normativo especializado</p>
+                    </div>
+                </div>
+                
+                <!-- Marco Normativo Detallado -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">⚖️ Marco Normativo Integral para Conductores C3</h3>
+                    
+                    <!-- Ley 769 de 2002 - Análisis Profundo -->
+                    <div class="law-highlight rounded-lg p-8 mb-6">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">📜</span>
+                            <div>
+                                <h4 class="text-2xl font-bold text-amber-800">Ley 769 de 2002 - Código Nacional de Tránsito</h4>
+                                <p class="text-amber-700">Fundamento legal de la seguridad vial en Colombia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-6">
+                                    <h5 class="font-bold text-amber-800 mb-4 flex items-center">
+                                        <span class="text-xl mr-2">🚦</span>
+                                        Artículos 105-107: Jerarquía de Señales
+                                    </h5>
+                                    <div class="space-y-3">
+                                        <div class="border-l-4 border-red-500 pl-4">
+                                            <p class="font-medium text-red-700">1° Agente de Tránsito</p>
+                                            <p class="text-sm text-gray-600">Autoridad máxima, prevalece sobre cualquier señal</p>
+                                        </div>
+                                        <div class="border-l-4 border-yellow-500 pl-4">
+                                            <p class="font-medium text-yellow-700">2° Semáforos</p>
+                                            <p class="text-sm text-gray-600">Regulación automática del tráfico</p>
+                                        </div>
+                                        <div class="border-l-4 border-blue-500 pl-4">
+                                            <p class="font-medium text-blue-700">3° Señales Verticales</p>
+                                            <p class="text-sm text-gray-600">Reglamentarias, preventivas, informativas</p>
+                                        </div>
+                                        <div class="border-l-4 border-green-500 pl-4">
+                                            <p class="font-medium text-green-700">4° Señales Horizontales</p>
+                                            <p class="text-sm text-gray-600">Demarcación vial y líneas de carril</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-6">
+                                    <h5 class="font-bold text-amber-800 mb-4 flex items-center">
+                                        <span class="text-xl mr-2">📏</span>
+                                        Artículo 91: Distancia de Seguridad
+                                    </h5>
+                                    <div class="space-y-3">
+                                        <div class="bg-blue-50 p-4 rounded">
+                                            <p class="font-medium text-blue-800">Regla de los 2 Segundos (Básica)</p>
+                                            <p class="text-sm text-blue-700">Para vehículos livianos en condiciones normales</p>
+                                        </div>
+                                        <div class="bg-orange-50 p-4 rounded">
+                                            <p class="font-medium text-orange-800">Regla de los 3-4 Segundos (C3)</p>
+                                            <p class="text-sm text-orange-700">Para vehículos pesados y carga refrigerada</p>
+                                        </div>
+                                        <div class="bg-red-50 p-4 rounded">
+                                            <p class="font-medium text-red-800">Condiciones Adversas</p>
+                                            <p class="text-sm text-red-700">Lluvia, niebla, noche: duplicar distancia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-amber-800 mb-4 flex items-center">
+                                <span class="text-xl mr-2">🚨</span>
+                                Artículos Críticos para Conductores C3
+                            </h5>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="text-center p-4 bg-red-50 rounded">
+                                    <p class="font-bold text-red-800">Art. 57-58</p>
+                                    <p class="text-sm text-red-700">Maniobras peligrosas y retroceso</p>
+                                    <p class="text-xs text-gray-600 mt-2">Especial cuidado en vehículos largos</p>
+                                </div>
+                                <div class="text-center p-4 bg-blue-50 rounded">
+                                    <p class="font-bold text-blue-800">Art. 63</p>
+                                    <p class="text-sm text-blue-700">Prelación vehículos emergencia</p>
+                                    <p class="text-xs text-gray-600 mt-2">Detención completa obligatoria</p>
+                                </div>
+                                <div class="text-center p-4 bg-green-50 rounded">
+                                    <p class="font-bold text-green-800">Art. 106</p>
+                                    <p class="text-sm text-green-700">Señales preventivas</p>
+                                    <p class="text-xs text-gray-600 mt-2">Anticipación de riesgos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ley 1503 de 2011 - Análisis Profundo -->
+                    <div class="bg-green-50 border-l-6 border-green-400 rounded-lg p-8 mb-6">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">🛡️</span>
+                            <div>
+                                <h4 class="text-2xl font-bold text-green-800">Ley 1503 de 2011 - Promoción de la Seguridad Vial</h4>
+                                <p class="text-green-700">Cultura vial y corresponsabilidad social</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg p-6">
+                                <h5 class="font-bold text-green-800 mb-4">Principios Fundamentales:</h5>
+                                <div class="space-y-3">
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-green-600 text-xl">🎯</span>
+                                        <div>
+                                            <p class="font-medium">Corresponsabilidad</p>
+                                            <p class="text-sm text-gray-600">Todos los actores viales comparten responsabilidad</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-green-600 text-xl">📚</span>
+                                        <div>
+                                            <p class="font-medium">Formación Continua</p>
+                                            <p class="text-sm text-gray-600">Actualización permanente de conocimientos</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-green-600 text-xl">🤝</span>
+                                        <div>
+                                            <p class="font-medium">Respeto Mutuo</p>
+                                            <p class="text-sm text-gray-600">Consideración hacia todos los usuarios</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-6">
+                                <h5 class="font-bold text-green-800 mb-4">Aplicación para Conductores C3:</h5>
+                                <div class="space-y-3">
+                                    <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                        <p class="font-medium text-green-800">Liderazgo Vial</p>
+                                        <p class="text-sm text-green-700">Como conductor profesional, eres ejemplo para otros</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                        <p class="font-medium text-blue-800">Protección Vulnerable</p>
+                                        <p class="text-sm text-blue-700">Especial cuidado con peatones, ciclistas, motociclistas</p>
+                                    </div>
+                                    <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                        <p class="font-medium text-purple-800">Capacitación Empresarial</p>
+                                        <p class="text-sm text-purple-700">Participación activa en programas de seguridad</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resolución 40595 de 2022 - Análisis Especializado -->
+                    <div class="bg-purple-50 border-l-6 border-purple-400 rounded-lg p-8 mb-6">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">🚛</span>
+                            <div>
+                                <h4 class="text-2xl font-bold text-purple-800">Resolución 40595 de 2022 - PESV Transporte</h4>
+                                <p class="text-purple-700">Plan Estratégico de Seguridad Vial para empresas de transporte</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-purple-800 mb-4">Componentes del PESV Relevantes para Conductores:</h5>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-purple-500 pl-4">
+                                        <h6 class="font-bold text-purple-700">1. Gestión del Riesgo</h6>
+                                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                            <li>• Identificación proactiva de riesgos</li>
+                                            <li>• Reporte de incidentes y casi-accidentes</li>
+                                            <li>• Participación en análisis de causas</li>
+                                            <li>• Implementación de medidas correctivas</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h6 class="font-bold text-blue-700">2. Conducta Preventiva</h6>
+                                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                            <li>• Inspección pre-operacional obligatoria</li>
+                                            <li>• Mantenimiento preventivo del vehículo</li>
+                                            <li>• Uso correcto de EPP</li>
+                                            <li>• Aplicación de técnicas defensivas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-green-500 pl-4">
+                                        <h6 class="font-bold text-green-700">3. Formación y Capacitación</h6>
+                                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                            <li>• Capacitación inicial y de refuerzo</li>
+                                            <li>• Actualización normativa periódica</li>
+                                            <li>• Entrenamiento en simuladores</li>
+                                            <li>• Evaluación de competencias</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="border-l-4 border-orange-500 pl-4">
+                                        <h6 class="font-bold text-orange-700">4. Monitoreo y Control</h6>
+                                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                            <li>• Seguimiento GPS y telemetría</li>
+                                            <li>• Análisis de comportamiento de conducción</li>
+                                            <li>• Retroalimentación constructiva</li>
+                                            <li>• Planes de mejoramiento individual</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Caso Práctico Detallado -->
+                <div class="case-study rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-yellow-800 mb-6 text-xl flex items-center">
+                        <span class="text-3xl mr-3">💡</span>
+                        Caso Práctico: Aplicación Normativa Integral
+                    </h3>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h4 class="font-bold text-gray-800 mb-4">Situación: Transporte Nocturno con Múltiples Variables</h4>
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="text-center p-4 bg-blue-50 rounded">
+                                <div class="text-2xl mb-2">🚛</div>
+                                <p class="font-medium">Vehículo C3</p>
+                                <p class="text-sm text-gray-600">Carga refrigerada 18 toneladas</p>
+                            </div>
+                            <div class="text-center p-4 bg-purple-50 rounded">
+                                <div class="text-2xl mb-2">🌙</div>
+                                <p class="font-medium">Condiciones</p>
+                                <p class="text-sm text-gray-600">Noche, lluvia ligera, 65 km/h</p>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded">
+                                <div class="text-2xl mb-2">📍</div>
+                                <p class="font-medium">Ubicación</p>
+                                <p class="text-sm text-gray-600">Vía nacional, doble calzada</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded border-l-4 border-yellow-500">
+                            <p class="text-yellow-800">
+                                <strong>Escenario:</strong> Te aproximas a una intersección donde observas un vehículo de emergencia 
+                                (ambulancia) que se acerca por la vía transversal con sirena encendida. Simultáneamente, 
+                                hay un semáforo en verde para tu dirección y una motocicleta que viene detrás tuyo 
+                                a alta velocidad.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">❌ Decisión Incorrecta (Basada en Costumbre)</h5>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Pensamiento:</strong> "El semáforo está en verde, tengo prelación"</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Acción:</strong> Continuar sin reducir velocidad</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Riesgo:</strong> Colisión con ambulancia, accidente múltiple</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Consecuencias:</strong> Sanciones graves, responsabilidad civil y penal</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">✅ Decisión Correcta (Basada en Normativa)</h5>
+                            <div class="space-y-3">
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <p class="text-sm"><strong>Análisis:</strong> Art. 107 - Agente > Semáforo, Art. 63 - Prelación emergencia</p>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <p class="text-sm"><strong>Acción:</strong> Reducir velocidad, ceder paso, señalizar</p>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <p class="text-sm"><strong>Consideración:</strong> Distancia de frenado aumentada por lluvia</p>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <p class="text-sm"><strong>Resultado:</strong> Tránsito seguro, cumplimiento normativo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Verificación de Conocimiento Profunda -->
+                <div class="knowledge-check rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-green-800 mb-6 text-xl">🧠 Verificación de Conocimiento Especializado</h4>
+                    
+                    <div id="knowledgeQuestions" class="space-y-6">
+                        <!-- Pregunta 1 -->
+                        <div class="bg-white rounded-lg p-6 border-2 border-green-200">
+                            <h5 class="font-bold text-gray-800 mb-4">1. Análisis de Distancia de Seguridad para Vehículos C3</h5>
+                            <p class="text-gray-700 mb-4">
+                                Un camión C3 de 18 toneladas circula a 80 km/h en condiciones de lluvia ligera. 
+                                ¿Cuál es la distancia mínima de seguridad que debe mantener?
+                            </p>
+                            <div class="space-y-2">
+                                <button onclick="checkKnowledge(1, 1, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all">
+                                    <strong>A)</strong> 44 metros (regla básica de 2 segundos)
+                                </button>
+                                <button onclick="checkKnowledge(1, 2, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all">
+                                    <strong>B)</strong> 66 metros (regla de 3 segundos)
+                                </button>
+                                <button onclick="checkKnowledge(1, 3, true)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all">
+                                    <strong>C)</strong> 88-110 metros (4-5 segundos por condiciones adversas)
+                                </button>
+                                <button onclick="checkKnowledge(1, 4, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all">
+                                    <strong>D)</strong> 132 metros (6 segundos)
+                                </button>
+                            </div>
+                            <div id="feedback1" class="hidden mt-4"></div>
+                        </div>
+                        
+                        <!-- Pregunta 2 -->
+                        <div class="bg-white rounded-lg p-6 border-2 border-green-200 opacity-50" id="question2">
+                            <h5 class="font-bold text-gray-800 mb-4">2. Jerarquía de Prelación en Situación Compleja</h5>
+                            <p class="text-gray-700 mb-4">
+                                En una intersección encuentras simultáneamente: un agente de tránsito indicando "pare", 
+                                un semáforo en verde, una señal vertical de "ceda el paso" y demarcación horizontal de "PARE". 
+                                ¿Qué debes obedecer?
+                            </p>
+                            <div class="space-y-2">
+                                <button onclick="checkKnowledge(2, 1, true)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>A)</strong> La indicación del agente de tránsito (Art. 107)
+                                </button>
+                                <button onclick="checkKnowledge(2, 2, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>B)</strong> El semáforo en verde
+                                </button>
+                                <button onclick="checkKnowledge(2, 3, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>C)</strong> La señal vertical de "ceda el paso"
+                                </button>
+                                <button onclick="checkKnowledge(2, 4, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>D)</strong> La demarcación horizontal "PARE"
+                                </button>
+                            </div>
+                            <div id="feedback2" class="hidden mt-4"></div>
+                        </div>
+                        
+                        <!-- Pregunta 3 -->
+                        <div class="bg-white rounded-lg p-6 border-2 border-green-200 opacity-50" id="question3">
+                            <h5 class="font-bold text-gray-800 mb-4">3. Aplicación del PESV en Situación Real</h5>
+                            <p class="text-gray-700 mb-4">
+                                Durante tu jornada laboral identificas que el sistema de frenos presenta una respuesta 
+                                ligeramente retardada. Según la Resolución 40595/2022, ¿cuál es tu responsabilidad?
+                            </p>
+                            <div class="space-y-2">
+                                <button onclick="checkKnowledge(3, 1, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>A)</strong> Continuar el viaje con mayor precaución
+                                </button>
+                                <button onclick="checkKnowledge(3, 2, true)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>B)</strong> Reportar inmediatamente y suspender operación
+                                </button>
+                                <button onclick="checkKnowledge(3, 3, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>C)</strong> Completar el viaje y reportar al final
+                                </button>
+                                <button onclick="checkKnowledge(3, 4, false)" class="knowledge-btn w-full p-3 text-left bg-gray-50 hover:bg-green-50 rounded border transition-all" disabled>
+                                    <strong>D)</strong> Ajustar la técnica de conducción
+                                </button>
+                            </div>
+                            <div id="feedback3" class="hidden mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(3)" id="nextBtn2" class="interactive-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Apropiación Práctica →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Apropiación Práctica -->
+        <section id="section3" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🚚</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">3. Apropiación Práctica Avanzada</h2>
+                    <p class="text-xl text-blue-600 font-medium">"Del conocimiento a la acción especializada"</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-blue-700">⏱️ Duración: 10 minutos | Objetivo: Aplicación práctica en escenarios complejos</p>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-800 mb-6 text-center text-2xl">🎯 Simulación de Situaciones Críticas Reales</h3>
+                    <p class="text-center text-gray-600 mb-8">
+                        Analiza cada situación considerando todos los factores normativos, técnicos y de seguridad. 
+                        Cada decisión será evaluada integralmente.
+                    </p>
+                </div>
+                
+                <!-- Situación 1: Vehículo de Emergencia Compleja -->
+                <div id="situation1" class="advanced-scenario rounded-lg p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">1</span>
+                        <div>
+                            <h4 class="font-bold text-red-800 text-xl">🚨 Emergencia en Vía de Alta Velocidad</h4>
+                            <p class="text-red-600">Situación crítica con múltiples variables</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">📋 Contexto Detallado:</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li><strong>Vehículo:</strong> Camión C3, 20 toneladas, carga refrigerada</li>
+                                <li><strong>Velocidad:</strong> 90 km/h en autopista (límite 100 km/h)</li>
+                                <li><strong>Condiciones:</strong> Día soleado, tráfico moderado</li>
+                                <li><strong>Ubicación:</strong> Carril derecho, autopista 3 carriles</li>
+                                <li><strong>Situación:</strong> Ambulancia se aproxima por detrás con sirena</li>
+                                <li><strong>Complicación:</strong> Vehículo averiado en berma derecha</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">⚠️ Factores Críticos:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <p class="text-sm"><strong>Distancia de frenado:</strong> ~180 metros a 90 km/h</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <p class="text-sm"><strong>Carril central:</strong> Tráfico pesado de vehículos</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Tiempo de reacción:</strong> Limitado por velocidad</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                    <p class="text-sm"><strong>Carga refrigerada:</strong> Riesgo de desestabilización</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">🤔 ¿Cuál es la secuencia correcta de acciones?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkAdvancedSituation(1, 1, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Maniobra rápida al carril central</p>
+                                        <p class="text-sm text-gray-600">Cambiar inmediatamente de carril para dar paso, sin reducir velocidad significativamente</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(1, 2, true)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Protocolo de emergencia integral</p>
+                                        <p class="text-sm text-gray-600">1) Reducir velocidad gradualmente, 2) Señalizar cambio de carril, 3) Verificar espacio seguro, 4) Cambiar al carril central, 5) Mantener velocidad reducida hasta que pase la ambulancia</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(1, 3, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Detención en berma izquierda</p>
+                                        <p class="text-sm text-gray-600">Dirigirse hacia la berma izquierda y detenerse completamente hasta que pase la emergencia</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(1, 4, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-red-50 rounded-lg border-2 border-red-200 transition-all">
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Mantener posición y reducir velocidad</p>
+                                        <p class="text-sm text-gray-600">Permanecer en el carril derecho, reducir a 60 km/h y permitir que la ambulancia adelante por el carril central</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="advancedFeedback1" class="hidden"></div>
+                </div>
+                
+                <!-- Situación 2: Intersección Compleja -->
+                <div id="situation2" class="advanced-scenario rounded-lg p-8 mb-8 opacity-50">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-yellow-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">2</span>
+                        <div>
+                            <h4 class="font-bold text-yellow-800 text-xl">🛣️ Intersección con Múltiples Conflictos</h4>
+                            <p class="text-yellow-600">Análisis de prelación y toma de decisiones</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">📋 Escenario Complejo:</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li><strong>Ubicación:</strong> Intersección urbana, 4 vías</li>
+                                <li><strong>Señalización:</strong> Semáforo intermitente (amarillo)</li>
+                                <li><strong>Hora:</strong> 6:00 PM, hora pico</li>
+                                <li><strong>Tu situación:</strong> Aproximación desde vía secundaria</li>
+                                <li><strong>Otros vehículos:</strong> Bus articulado desde vía principal</li>
+                                <li><strong>Peatones:</strong> Cruzando en paso cebra</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">⚖️ Consideraciones Legales:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <p class="text-sm"><strong>Semáforo intermitente:</strong> Equivale a señal de "PARE"</p>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <p class="text-sm"><strong>Vía principal:</strong> Tiene prelación sobre secundaria</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                    <p class="text-sm"><strong>Peatones:</strong> Prelación absoluta en paso cebra</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <p class="text-sm"><strong>Vehículo pesado:</strong> Mayor responsabilidad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">🎯 ¿Cuál es el orden correcto de prelación?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkAdvancedSituation(2, 1, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Bus articulado → Tu vehículo → Peatones</p>
+                                        <p class="text-sm text-gray-600">Priorizar el transporte público por su función social</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(2, 2, true)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Peatones → Bus articulado → Tu vehículo</p>
+                                        <p class="text-sm text-gray-600">Peatones tienen prelación absoluta, luego vía principal sobre secundaria</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(2, 3, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Tu vehículo → Peatones → Bus articulado</p>
+                                        <p class="text-sm text-gray-600">Como llegaste primero, tienes prelación</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(2, 4, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-yellow-50 rounded-lg border-2 border-yellow-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Negociación visual entre conductores</p>
+                                        <p class="text-sm text-gray-600">Establecer contacto visual y acordar el orden de paso</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="advancedFeedback2" class="hidden"></div>
+                </div>
+                
+                <!-- Situación 3: Condiciones Adversas -->
+                <div id="situation3" class="advanced-scenario rounded-lg p-8 mb-8 opacity-50">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 text-lg">3</span>
+                        <div>
+                            <h4 class="font-bold text-blue-800 text-xl">🌧️ Conducción en Condiciones Extremas</h4>
+                            <p class="text-blue-600">Gestión integral del riesgo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">🌦️ Condiciones Meteorológicas:</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li><strong>Clima:</strong> Lluvia intensa, viento lateral 40 km/h</li>
+                                <li><strong>Visibilidad:</strong> Reducida a 50 metros</li>
+                                <li><strong>Pavimento:</strong> Encharcamientos, riesgo de aquaplaning</li>
+                                <li><strong>Hora:</strong> 4:00 AM, oscuridad total</li>
+                                <li><strong>Ruta:</strong> Montañosa, curvas pronunciadas</li>
+                                <li><strong>Carga:</strong> 22 toneladas, centro de gravedad alto</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-gray-800 mb-4">⚠️ Riesgos Identificados:</h5>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <p class="text-sm"><strong>Volcamiento:</strong> Viento lateral + curvas + carga alta</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <p class="text-sm"><strong>Aquaplaning:</strong> Pérdida de tracción en charcos</p>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <p class="text-sm"><strong>Colisión:</strong> Visibilidad limitada, tiempo de reacción</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                    <p class="text-sm"><strong>Fatiga:</strong> Estrés por condiciones adversas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">🛡️ ¿Cuál es el protocolo de seguridad más apropiado?</h5>
+                        <div class="space-y-4">
+                            <button onclick="checkAdvancedSituation(3, 1, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">A)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Continuar con extrema precaución</p>
+                                        <p class="text-sm text-gray-600">Reducir velocidad a 40 km/h, aumentar distancia de seguridad y continuar el viaje</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(3, 2, true)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">B)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Evaluación integral y posible suspensión</p>
+                                        <p class="text-sm text-gray-600">Evaluar condiciones vs. capacidades del vehículo, contactar supervisión, considerar parada segura hasta mejorar condiciones</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(3, 3, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">C)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Buscar ruta alternativa</p>
+                                        <p class="text-sm text-gray-600">Desviarse por vías secundarias para evitar la zona montañosa</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button onclick="checkAdvancedSituation(3, 4, false)" class="situation-btn w-full p-6 text-left bg-gray-50 hover:bg-blue-50 rounded-lg border-2 border-blue-200 transition-all" disabled>
+                                <div class="flex items-start space-x-4">
+                                    <span class="font-bold text-lg">D)</span>
+                                    <div>
+                                        <p class="font-medium mb-2">Acelerar para salir rápido de la zona</p>
+                                        <p class="text-sm text-gray-600">Aumentar velocidad para minimizar el tiempo de exposición a las condiciones adversas</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="advancedFeedback3" class="hidden"></div>
+                </div>
+                
+                <!-- Resumen de Desempeño -->
+                <div id="performanceSummary" class="hidden bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-gray-800 mb-6 text-xl text-center">📊 Resumen de Desempeño en Situaciones Críticas</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl mb-3" id="scoreIcon">🎯</div>
+                            <p class="font-bold text-2xl" id="scoreText">0/3</p>
+                            <p class="text-gray-600">Situaciones Correctas</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🧠</div>
+                            <p class="font-bold text-2xl" id="analysisLevel">Básico</p>
+                            <p class="text-gray-600">Nivel de Análisis</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🛡️</div>
+                            <p class="font-bold text-2xl" id="safetyScore">0%</p>
+                            <p class="text-gray-600">Índice de Seguridad</p>
+                        </div>
+                    </div>
+                    <div id="recommendations" class="mt-6 p-6 bg-white rounded-lg">
+                        <h5 class="font-bold text-gray-800 mb-4">💡 Recomendaciones Personalizadas:</h5>
+                        <div id="recommendationsList"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="nextSection(4)" id="nextBtn3" class="interactive-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Continuar a Transferencia y Compromiso →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Transferencia y Compromiso -->
+        <section id="section4" class="section-hidden mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🧭</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">4. Transferencia y Compromiso Personal</h2>
+                    <p class="text-xl text-blue-600 font-medium">"De la teoría a la transformación conductual"</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mt-4">
+                        <p class="text-sm text-blue-700">⏱️ Duración: 5 minutos | Objetivo: Compromiso conductual específico</p>
+                    </div>
+                </div>
+                
+                <!-- Plan de Acción Personal -->
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-8 mb-8">
+                    <h3 class="font-bold text-green-800 mb-6 text-center text-2xl">✅ Plan de Acción Personal para Jhon Harry Bryan Argumedo</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-green-500">
+                            <h4 class="font-bold text-green-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">🎯</span>
+                                Compromiso 1: Prelación Normativa
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-green-600" id="commitment1">
+                                    <span class="text-sm">Aplicar siempre la jerarquía de señales (Art. 107) sin excepción</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-green-600" id="commitment1b">
+                                    <span class="text-sm">Ceder paso inmediato a vehículos de emergencia (Art. 63)</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-green-600" id="commitment1c">
+                                    <span class="text-sm">Respetar señales verticales independiente de condiciones aparentes</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">📏</span>
+                                Compromiso 2: Distancia Segura Especializada
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2">
+                                    <span class="text-sm">Mantener mínimo 3-4 segundos en condiciones normales</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2b">
+                                    <span class="text-sm">Duplicar distancia en lluvia, niebla o condiciones nocturnas</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-blue-600" id="commitment2c">
+                                    <span class="text-sm">Ajustar según peso de carga y características del vehículo</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 mb-4 flex items-center">
+                                <span class="text-2xl mr-2">🔍</span>
+                                Compromiso 3: Gestión Proactiva del Riesgo
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-purple-600" id="commitment3">
+                                    <span class="text-sm">Inspección pre-operacional completa antes de cada jornada</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-purple-600" id="commitment3b">
+                                    <span class="text-sm">Reporte inmediato de condiciones inseguras o fallas</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" class="commitment-check w-5 h-5 text-purple-600" id="commitment3c">
+                                    <span class="text-sm">Evaluación continua de condiciones meteorológicas y viales</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actividades Interactivas de Transferencia -->
+                <div class="reflection-deep rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-orange-800 mb-6 text-xl">🎯 Actividades de Transferencia Práctica</h4>
+                    
+                    <!-- Actividad 1: Emparejar Situaciones con Acciones -->
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">1. 🔗 Empareja cada situación con la acción correcta:</h5>
+                        <p class="text-sm text-gray-600 mb-4">Arrastra las acciones correctas hacia cada situación de tu trabajo diario</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Situaciones -->
+                            <div class="space-y-3">
+                                <h6 class="font-bold text-blue-800 mb-3">Situaciones en tu Ruta:</h6>
+                                <div class="situation-box bg-blue-50 p-4 rounded-lg border-2 border-dashed border-blue-300 min-h-[80px]" data-situation="1">
+                                    <p class="font-medium text-blue-800">🌧️ Lluvia intensa en autopista</p>
+                                    <p class="text-sm text-blue-600">Visibilidad reducida, 90 km/h</p>
+                                    <div class="drop-zone mt-2 min-h-[40px] bg-white rounded border-2 border-dashed border-gray-300" data-target="1"></div>
+                                </div>
+                                
+                                <div class="situation-box bg-yellow-50 p-4 rounded-lg border-2 border-dashed border-yellow-300 min-h-[80px]" data-situation="2">
+                                    <p class="font-medium text-yellow-800">🚨 Ambulancia aproximándose</p>
+                                    <p class="text-sm text-yellow-600">Carril derecho, tráfico pesado</p>
+                                    <div class="drop-zone mt-2 min-h-[40px] bg-white rounded border-2 border-dashed border-gray-300" data-target="2"></div>
+                                </div>
+                                
+                                <div class="situation-box bg-red-50 p-4 rounded-lg border-2 border-dashed border-red-300 min-h-[80px]" data-situation="3">
+                                    <p class="font-medium text-red-800">⚠️ Frenos con respuesta lenta</p>
+                                    <p class="text-sm text-red-600">Inicio de jornada, carga completa</p>
+                                    <div class="drop-zone mt-2 min-h-[40px] bg-white rounded border-2 border-dashed border-gray-300" data-target="3"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Acciones -->
+                            <div class="space-y-3">
+                                <h6 class="font-bold text-green-800 mb-3">Acciones Correctas:</h6>
+                                <div class="action-item bg-green-100 p-3 rounded-lg cursor-move border-2 border-green-300 hover:bg-green-200 transition-all" draggable="true" data-action="A">
+                                    <p class="font-medium text-green-800">A) Duplicar distancia de seguridad</p>
+                                    <p class="text-sm text-green-600">Aplicar regla de 6-8 segundos</p>
+                                </div>
+                                
+                                <div class="action-item bg-green-100 p-3 rounded-lg cursor-move border-2 border-green-300 hover:bg-green-200 transition-all" draggable="true" data-action="B">
+                                    <p class="font-medium text-green-800">B) Protocolo de emergencia integral</p>
+                                    <p class="text-sm text-green-600">Reducir, señalizar, cambiar carril</p>
+                                </div>
+                                
+                                <div class="action-item bg-green-100 p-3 rounded-lg cursor-move border-2 border-green-300 hover:bg-green-200 transition-all" draggable="true" data-action="C">
+                                    <p class="font-medium text-green-800">C) Suspender operación inmediatamente</p>
+                                    <p class="text-sm text-green-600">Reportar y no continuar</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="matchingFeedback" class="hidden mt-4"></div>
+                    </div>
+                    
+                    <!-- Actividad 2: Ordenar Prioridades -->
+                    <div class="bg-white rounded-lg p-6 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-4">2. 📋 Ordena las prioridades en tu conducción diaria:</h5>
+                        <p class="text-sm text-gray-600 mb-4">Arrastra para ordenar del 1 (más importante) al 6 (menos importante)</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h6 class="font-bold text-purple-800 mb-3">Elementos a Ordenar:</h6>
+                                <div id="priorityList" class="space-y-2">
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="safety">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">🛡️ Seguridad de vidas humanas</p>
+                                                <p class="text-sm text-purple-600">Tuya y de otros usuarios viales</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="compliance">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">⚖️ Cumplimiento normativo</p>
+                                                <p class="text-sm text-purple-600">Respeto a leyes y reglamentos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="cargo">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">📦 Protección de la carga</p>
+                                                <p class="text-sm text-purple-600">Integridad del producto transportado</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="time">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">⏰ Cumplimiento de horarios</p>
+                                                <p class="text-sm text-purple-600">Puntualidad en entregas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="vehicle">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">🚛 Cuidado del vehículo</p>
+                                                <p class="text-sm text-purple-600">Mantenimiento y operación</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="priority-item bg-purple-100 p-3 rounded-lg cursor-move border-2 border-purple-300 hover:bg-purple-200 transition-all" draggable="true" data-priority="comfort">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="priority-number bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">?</span>
+                                            <div>
+                                                <p class="font-medium">😌 Comodidad personal</p>
+                                                <p class="text-sm text-purple-600">Bienestar durante el viaje</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h6 class="font-bold text-blue-800 mb-3">Orden Correcto:</h6>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                                        <span>Seguridad de vidas humanas</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                                        <span>Cumplimiento normativo</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                                        <span>Cuidado del vehículo</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
+                                        <span>Protección de la carga</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">5</span>
+                                        <span>Cumplimiento de horarios</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">6</span>
+                                        <span>Comodidad personal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="priorityFeedback" class="hidden mt-4"></div>
+                    </div>
+                    
+                    <!-- Actividad 3: Seleccionar Estrategias -->
+                    <div class="bg-white rounded-lg p-6">
+                        <h5 class="font-bold text-gray-800 mb-4">3. ✅ Selecciona las estrategias que usarás para recordar estos comportamientos:</h5>
+                        <p class="text-sm text-gray-600 mb-4">Marca todas las estrategias que implementarás en situaciones de estrés o fatiga</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <h6 class="font-bold text-green-800">Estrategias Mentales:</h6>
+                                <label class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="mental" value="mantra">
+                                    <div>
+                                        <p class="font-medium text-green-800">🧠 Mantra de seguridad</p>
+                                        <p class="text-sm text-green-600">"Primero la vida, luego todo lo demás"</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="mental" value="visualization">
+                                    <div>
+                                        <p class="font-medium text-green-800">👁️ Visualización de consecuencias</p>
+                                        <p class="text-sm text-green-600">Imaginar el impacto de decisiones incorrectas</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="mental" value="pause">
+                                    <div>
+                                        <p class="font-medium text-green-800">⏸️ Pausa reflexiva</p>
+                                        <p class="text-sm text-green-600">Contar hasta 3 antes de decisiones críticas</p>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <h6 class="font-bold text-blue-800">Estrategias Físicas:</h6>
+                                <label class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="physical" value="checklist">
+                                    <div>
+                                        <p class="font-medium text-blue-800">📋 Lista de verificación mental</p>
+                                        <p class="text-sm text-blue-600">Revisar mentalmente los 3 compromisos clave</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="physical" value="reminder">
+                                    <div>
+                                        <p class="font-medium text-blue-800">🔔 Recordatorio visual</p>
+                                        <p class="text-sm text-blue-600">Nota en el tablero con puntos clave</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 cursor-pointer">
+                                    <input type="checkbox" class="strategy-check mt-1" data-category="physical" value="break">
+                                    <div>
+                                        <p class="font-medium text-blue-800">🛑 Paradas de refresco</p>
+                                        <p class="text-sm text-blue-600">Descanso cada 2 horas para mantener alerta</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="strategyFeedback" class="hidden mt-4"></div>
+                    </div>
+                </div>
+                
+                <!-- Autoevaluación Final -->
+                <div class="knowledge-check rounded-lg p-8 mb-8">
+                    <h4 class="font-bold text-green-800 mb-6 text-xl">📊 Autoevaluación Final: Tu Transformación</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-green-700 mb-4">Antes del Microcurso:</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Confianza en la experiencia:</span>
+                                    <div class="flex space-x-1">
+                                        <span class="w-4 h-4 bg-red-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-red-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-red-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-red-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-red-400 rounded"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Conocimiento normativo:</span>
+                                    <div class="flex space-x-1">
+                                        <span class="w-4 h-4 bg-yellow-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-yellow-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-yellow-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Análisis de situaciones:</span>
+                                    <div class="flex space-x-1">
+                                        <span class="w-4 h-4 bg-yellow-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-yellow-400 rounded"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6">
+                            <h5 class="font-bold text-green-700 mb-4">Después del Microcurso:</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Equilibrio experiencia-norma:</span>
+                                    <div class="flex space-x-1" id="balanceRating">
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="1"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="2"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="3"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="4"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="5"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Dominio normativo:</span>
+                                    <div class="flex space-x-1" id="knowledgeRating">
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="1"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="2"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="3"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="4"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="5"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">Capacidad de análisis:</span>
+                                    <div class="flex space-x-1" id="analysisRating">
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="1"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="2"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="3"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="4"></span>
+                                        <span class="w-4 h-4 bg-gray-300 rounded rating-star" data-rating="5"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-3">Haz clic en las estrellas para calificar tu nivel actual</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="completeCourse()" id="nextBtn4" class="interactive-button bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed text-lg" disabled>
+                        Finalizar Microcurso ✅
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script>
+        // Estado del microcurso
+        let currentSection = 1;
+        let progress = 0;
+        let reflectionCompleted = false;
+        let knowledgeQuestionsCompleted = 0;
+        let advancedSituationsCompleted = 0;
+        let advancedSituationsCorrect = 0;
+        let commitmentsMade = false;
+        let reflectionWritten = false;
+        let selfRatingsCompleted = 0;
+        
+        // Datos para el certificado
+        let courseData = {
+            startTime: new Date(),
+            reflectionScore: 0,
+            knowledgeScore: 0,
+            practicalScore: 0,
+            commitments: [],
+            reflections: [],
+            personalData: {}
+        };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            startTimer();
+        });
+
+        // Timer del curso
+        let totalSeconds = 30 * 60; // 30 minutos
+        let currentSeconds = 0;
+        
+        function startTimer() {
+            setInterval(() => {
+                currentSeconds++;
+                const remaining = totalSeconds - currentSeconds;
+                const minutes = Math.floor(remaining / 60);
+                const seconds = remaining % 60;
+                
+                if (remaining > 0) {
+                    document.getElementById('timerDisplay').textContent = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                // Actualizar tiempo de sección actual
+                const sectionTime = Math.floor(currentSeconds / 60);
+                document.getElementById('currentTime').textContent = `${sectionTime}:${(currentSeconds % 60).toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Función para actualizar progreso
+        function updateProgress() {
+            progress = ((currentSection - 1) / 3) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+
+
+        // Función para cambiar sección
+        function nextSection(section) {
+            if (currentSection > 0) {
+                document.getElementById(`section${currentSection}`).classList.remove('section-visible');
+                document.getElementById(`section${currentSection}`).classList.add('section-hidden');
+            }
+            
+            currentSection = section;
+            document.getElementById(`section${section}`).classList.remove('section-hidden');
+            document.getElementById(`section${section}`).classList.add('section-visible');
+            
+            updateProgress();
+            
+            // Animar camión
+            document.getElementById('truckIcon').classList.add('truck-shake');
+            setTimeout(() => {
+                document.getElementById('truckIcon').classList.remove('truck-shake');
+            }, 500);
+            
+            // Scroll suave al inicio de la nueva sección
+            setTimeout(() => {
+                document.getElementById(`section${section}`).scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 100);
+        }
+
+        // Reflexión profunda
+        function selectReflection(option) {
+            const buttons = document.querySelectorAll('.reflection-btn');
+            buttons.forEach(btn => btn.classList.remove('correct-answer', 'wrong-answer'));
+            
+            const feedback = document.getElementById('reflectionFeedback');
+            
+            let feedbackContent = '';
+            let isCorrect = false;
+            
+            switch(option) {
+                case 1:
+                    event.target.classList.add('wrong-answer');
+                    feedbackContent = `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Reflexión Incompleta</h5>
+                            <p class="text-red-700 mb-4">Si bien la experiencia es valiosa, confiar únicamente en ella puede llevarte a situaciones como la del escenario inicial. Las normativas están diseñadas para proteger a todos los actores viales, incluso en situaciones que tu experiencia no ha contemplado.</p>
+                            <div class="bg-white p-4 rounded mt-4">
+                                <p class="text-sm text-gray-700"><strong>Reflexiona:</strong> ¿Cuántas situaciones nuevas aparecen cada año en las vías que tu experiencia de hace 10 años no contemplaba?</p>
+                            </div>
+                        </div>
+                    `;
+                    courseData.reflectionScore = 1;
+                    break;
+                    
+                case 2:
+                    event.target.classList.add('wrong-answer');
+                    feedbackContent = `
+                        <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded">
+                            <h5 class="font-bold text-orange-800 mb-3">⚠️ Enfoque Rígido</h5>
+                            <p class="text-orange-700 mb-4">Las normas son fundamentales, pero aplicarlas sin considerar tu experiencia puede llevarte a decisiones mecánicas que no se adapten a situaciones específicas. La clave está en el equilibrio inteligente.</p>
+                            <div class="bg-white p-4 rounded mt-4">
+                                <p class="text-sm text-gray-700"><strong>Considera:</strong> Tu experiencia te ayuda a aplicar las normas de manera más efectiva, no a ignorarlas.</p>
+                            </div>
+                        </div>
+                    `;
+                    courseData.reflectionScore = 2;
+                    break;
+                    
+                case 3:
+                    event.target.classList.add('correct-answer');
+                    feedbackContent = `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ Excelente Reflexión</h5>
+                            <p class="text-green-700 mb-4">Has identificado correctamente la necesidad de equilibrar tu valiosa experiencia con el análisis consciente de cada situación y la aplicación correcta de la normativa. Este es el fundamento de la conducción profesional responsable.</p>
+                            <div class="bg-white p-4 rounded mt-4">
+                                <p class="text-sm text-gray-700"><strong>Clave del éxito:</strong> Tu experiencia te da las herramientas, la normativa te da el marco, y el análisis consciente te permite aplicar ambos de manera óptima.</p>
+                            </div>
+                        </div>
+                    `;
+                    courseData.reflectionScore = 4;
+                    isCorrect = true;
+                    break;
+                    
+                case 4:
+                    event.target.classList.add('correct-answer');
+                    feedbackContent = `
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded">
+                            <h5 class="font-bold text-blue-800 mb-3">🌟 Reflexión Excepcional</h5>
+                            <p class="text-blue-700 mb-4">Has demostrado una mentalidad de crecimiento excepcional. Reconocer la necesidad de actualización constante y cuestionar los propios hábitos es la marca de un conductor profesional de élite. Esta actitud te mantendrá seguro y actualizado durante toda tu carrera.</p>
+                            <div class="bg-white p-4 rounded mt-4">
+                                <p class="text-sm text-gray-700"><strong>Felicitaciones:</strong> Esta mentalidad de mejora continua es exactamente lo que necesita el transporte profesional en Colombia.</p>
+                            </div>
+                        </div>
+                    `;
+                    courseData.reflectionScore = 5;
+                    isCorrect = true;
+                    break;
+            }
+            
+            feedback.innerHTML = feedbackContent;
+            feedback.classList.remove('hidden');
+            
+            if (isCorrect) {
+                reflectionCompleted = true;
+                // Mostrar autoevaluación
+                document.getElementById('selfAssessment').classList.remove('hidden');
+                setupSelfAssessment();
+            } else {
+                setTimeout(() => {
+                    buttons.forEach(btn => btn.classList.remove('wrong-answer'));
+                }, 3000);
+            }
+        }
+
+        // Configurar autoevaluación
+        function setupSelfAssessment() {
+            const checkboxes = document.querySelectorAll('.self-check');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateRiskProfile);
+            });
+        }
+
+        // Actualizar perfil de riesgo
+        function updateRiskProfile() {
+            const checkboxes = document.querySelectorAll('.self-check:checked');
+            let riskScore = 0;
+            let riskFactors = [];
+            
+            checkboxes.forEach(checkbox => {
+                const risk = checkbox.dataset.risk;
+                if (risk === 'high') {
+                    riskScore += 3;
+                    riskFactors.push('alto');
+                } else if (risk === 'medium') {
+                    riskScore += 2;
+                    riskFactors.push('medio');
+                } else {
+                    riskScore -= 1;
+                    riskFactors.push('bajo');
+                }
+            });
+            
+            const riskProfile = document.getElementById('riskProfile');
+            let profileContent = '';
+            let profileClass = '';
+            
+            if (riskScore >= 8) {
+                profileClass = 'bg-red-50 border-l-4 border-red-400';
+                profileContent = `
+                    <div class="text-red-800">
+                        <h6 class="font-bold mb-2">⚠️ Perfil de Alto Riesgo</h6>
+                        <p class="text-sm mb-3">Tu autoevaluación indica comportamientos que requieren atención inmediata. Este microcurso es especialmente importante para ti.</p>
+                        <div class="bg-white p-3 rounded">
+                            <p class="text-xs text-red-700"><strong>Recomendación:</strong> Presta especial atención a las secciones de normativa y casos prácticos.</p>
+                        </div>
+                    </div>
+                `;
+            } else if (riskScore >= 4) {
+                profileClass = 'bg-yellow-50 border-l-4 border-yellow-400';
+                profileContent = `
+                    <div class="text-yellow-800">
+                        <h6 class="font-bold mb-2">⚡ Perfil de Riesgo Moderado</h6>
+                        <p class="text-sm mb-3">Tienes algunos comportamientos que pueden mejorarse. Estás en el camino correcto para optimizar tu seguridad vial.</p>
+                        <div class="bg-white p-3 rounded">
+                            <p class="text-xs text-yellow-700"><strong>Oportunidad:</strong> Enfócate en convertir los hábitos de riesgo medio en comportamientos seguros.</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                profileClass = 'bg-green-50 border-l-4 border-green-400';
+                profileContent = `
+                    <div class="text-green-800">
+                        <h6 class="font-bold mb-2">✅ Perfil de Bajo Riesgo</h6>
+                        <p class="text-sm mb-3">¡Excelente! Demuestras comportamientos seguros y actitudes positivas hacia la seguridad vial. Eres un ejemplo para otros conductores.</p>
+                        <div class="bg-white p-3 rounded">
+                            <p class="text-xs text-green-700"><strong>Mantén:</strong> Continúa con estos comportamientos y ayuda a otros conductores a mejorar.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            riskProfile.className = `p-6 rounded-lg ${profileClass}`;
+            riskProfile.innerHTML = profileContent;
+            riskProfile.classList.remove('hidden');
+            
+            // Habilitar botón de siguiente sección
+            if (checkboxes.length >= 3) {
+                document.getElementById('nextBtn1').disabled = false;
+            }
+        }
+
+        // Verificación de conocimiento
+        function checkKnowledge(questionNum, option, isCorrect) {
+            const buttons = document.querySelectorAll(`#knowledgeQuestions .knowledge-btn`);
+            const questionButtons = Array.from(buttons).slice((questionNum-1)*4, questionNum*4);
+            
+            questionButtons.forEach(btn => btn.disabled = true);
+            
+            const feedback = document.getElementById(`feedback${questionNum}`);
+            
+            if (isCorrect) {
+                event.target.classList.add('correct-answer');
+                knowledgeQuestionsCompleted++;
+                courseData.knowledgeScore++;
+                
+                let explanations = {
+                    1: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-4">✅ ¡Excelente! Análisis Técnico Correcto</h5>
+                            <p class="text-green-700 mb-4">Has aplicado correctamente los principios de distancia de seguridad para vehículos pesados en condiciones adversas.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-blue-800 mb-2">📐 Cálculo Técnico:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Velocidad: 80 km/h = 22.2 m/s</li>
+                                        <li>• Regla básica: 2 segundos = 44 metros</li>
+                                        <li>• Vehículo C3: +50% = 66 metros</li>
+                                        <li>• Lluvia: +50% adicional = 99 metros</li>
+                                        <li>• <strong>Total recomendado: 88-110 metros</strong></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded">
+                                    <h6 class="font-bold text-red-800 mb-2">⚠️ Factores Críticos:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Peso: 18 toneladas vs 1.5 ton auto</li>
+                                        <li>• Inercia: 12 veces mayor</li>
+                                        <li>• Frenos: Sistema neumático con retardo</li>
+                                        <li>• Lluvia: Coeficiente de fricción reducido</li>
+                                        <li>• Carga refrigerada: Centro de gravedad alto</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-blue-800 mb-2">🧠 ¿Por qué es tan importante?</h6>
+                                <p class="text-sm text-blue-700 mb-2">La distancia de frenado no es lineal con el peso. Un vehículo de 18 toneladas necesita:</p>
+                                <div class="grid md:grid-cols-3 gap-2 text-xs">
+                                    <div class="bg-white p-2 rounded text-center">
+                                        <p class="font-bold">Tiempo de reacción</p>
+                                        <p>1.5 segundos = 33 metros</p>
+                                    </div>
+                                    <div class="bg-white p-2 rounded text-center">
+                                        <p class="font-bold">Distancia de frenado</p>
+                                        <p>Seco: 45m | Lluvia: 65m</p>
+                                    </div>
+                                    <div class="bg-white p-2 rounded text-center">
+                                        <p class="font-bold">Margen de seguridad</p>
+                                        <p>Mínimo 20 metros adicionales</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-4 rounded">
+                                <h6 class="font-bold text-yellow-800 mb-2">💡 Aplicación Práctica:</h6>
+                                <p class="text-sm text-yellow-700">En tu trabajo diario, cuenta mentalmente: "mil uno, mil dos, mil tres, mil cuatro" entre tu vehículo y el de adelante. Si no alcanzas a contar hasta cuatro, estás muy cerca. En lluvia, cuenta hasta cinco.</p>
+                            </div>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-4">✅ ¡Perfecto! Dominio Total de la Jerarquía Normativa</h5>
+                            <p class="text-green-700 mb-4">Has demostrado comprensión completa del Artículo 107 de la Ley 769 de 2002, fundamental para todo conductor profesional.</p>
+                            
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-3">📜 Artículo 107 - Jerarquía de las Señales:</h6>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3 p-3 bg-red-50 rounded border-l-4 border-red-500">
+                                        <span class="text-2xl">👮‍♂️</span>
+                                        <div>
+                                            <p class="font-bold text-red-800">1° AGENTE DE TRÁNSITO</p>
+                                            <p class="text-sm text-red-700">Autoridad máxima, prevalece sobre CUALQUIER otra señal</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded border-l-4 border-yellow-500">
+                                        <span class="text-2xl">🚦</span>
+                                        <div>
+                                            <p class="font-bold text-yellow-800">2° SEMÁFOROS</p>
+                                            <p class="text-sm text-yellow-700">Regulación automática del flujo vehicular</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded border-l-4 border-blue-500">
+                                        <span class="text-2xl">🛑</span>
+                                        <div>
+                                            <p class="font-bold text-blue-800">3° SEÑALES VERTICALES</p>
+                                            <p class="text-sm text-blue-700">Reglamentarias, preventivas e informativas</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-green-50 rounded border-l-4 border-green-500">
+                                        <span class="text-2xl">➡️</span>
+                                        <div>
+                                            <p class="font-bold text-green-800">4° SEÑALES HORIZONTALES</p>
+                                            <p class="text-sm text-green-700">Demarcación vial y líneas de carril</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-orange-50 p-4 rounded">
+                                    <h6 class="font-bold text-orange-800 mb-2">🚨 Caso Real de Aplicación:</h6>
+                                    <p class="text-sm text-orange-700 mb-2">Imagina esta situación que puede pasarte:</p>
+                                    <ul class="text-xs space-y-1">
+                                        <li>• Semáforo en VERDE para ti</li>
+                                        <li>• Agente te indica PARE con la mano</li>
+                                        <li>• Otros conductores avanzan</li>
+                                        <li>• <strong>TÚ DEBES PARAR</strong> (Art. 107)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded">
+                                    <h6 class="font-bold text-purple-800 mb-2">⚖️ Consecuencias Legales:</h6>
+                                    <p class="text-sm text-purple-700 mb-2">No respetar la jerarquía puede resultar en:</p>
+                                    <ul class="text-xs space-y-1">
+                                        <li>• Multa Categoría A: $438,900</li>
+                                        <li>• Inmovilización del vehículo</li>
+                                        <li>• Responsabilidad civil en accidente</li>
+                                        <li>• Suspensión de licencia</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded">
+                                <h6 class="font-bold text-blue-800 mb-2">🎯 Para Recordar Siempre:</h6>
+                                <p class="text-sm text-blue-700">"Cuando hay conflicto entre señales, SIEMPRE prevalece la autoridad humana sobre la automática, y la específica sobre la general. El agente de tránsito puede modificar cualquier señal según las condiciones del momento."</p>
+                            </div>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-4">✅ ¡Excelente! Comprensión Total del PESV</h5>
+                            <p class="text-green-700 mb-4">Has demostrado entendimiento completo de la Resolución 40595 de 2022 y la responsabilidad del conductor en la gestión de riesgos.</p>
+                            
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-3">📋 Resolución 40595/2022 - Artículo Clave:</h6>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-500 mb-3">
+                                    <p class="text-sm text-red-800 italic">"Todo conductor debe reportar inmediatamente cualquier condición que pueda comprometer la seguridad de la operación, y suspender la actividad hasta que se corrija la situación."</p>
+                                </div>
+                                <p class="text-sm text-gray-700">Esto significa que TÚ, como conductor profesional, tienes la autoridad y la OBLIGACIÓN de detener la operación si identificas riesgos.</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-yellow-50 p-4 rounded">
+                                    <h6 class="font-bold text-yellow-800 mb-2">🔧 Fallas que DEBES Reportar:</h6>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• <strong>Frenos:</strong> Respuesta retardada, ruidos</li>
+                                        <li>• <strong>Dirección:</strong> Juego excesivo, vibración</li>
+                                        <li>• <strong>Luces:</strong> Cualquier bombilla fundida</li>
+                                        <li>• <strong>Llantas:</strong> Desgaste irregular, presión</li>
+                                        <li>• <strong>Suspensión:</strong> Fugas, ruidos anormales</li>
+                                        <li>• <strong>Motor:</strong> Sobrecalentamiento, humos</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded">
+                                    <h6 class="font-bold text-blue-800 mb-2">📞 Protocolo de Reporte:</h6>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">1</span>
+                                            <span>Detener vehículo en lugar seguro</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">2</span>
+                                            <span>Contactar inmediatamente a supervisión</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                                            <span>Documentar la falla detalladamente</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">4</span>
+                                            <span>NO continuar hasta autorización</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-red-800 mb-2">⚠️ ¿Por qué es TAN Importante?</h6>
+                                <div class="grid md:grid-cols-3 gap-3 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">👥</div>
+                                        <p class="font-bold">Vidas Humanas</p>
+                                        <p class="text-xs">Tu seguridad y la de otros</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">💰</div>
+                                        <p class="font-bold">Responsabilidad Civil</p>
+                                        <p class="text-xs">Millones en indemnizaciones</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">⚖️</div>
+                                        <p class="font-bold">Responsabilidad Penal</p>
+                                        <p class="text-xs">Hasta 6 años de prisión</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-100 p-4 rounded">
+                                <h6 class="font-bold text-green-800 mb-2">🏆 Tu Actitud Profesional:</h6>
+                                <p class="text-sm text-green-700">Al elegir esta respuesta, demuestras que entiendes que ser conductor profesional significa poner la seguridad por encima de la presión operativa. Esta mentalidad te convierte en un líder de seguridad vial.</p>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = `<div class="bg-green-50 border-l-4 border-green-400 p-4 rounded"><p class="text-green-700">${explanations[questionNum]}</p></div>`;
+                
+                // Habilitar siguiente pregunta
+                if (questionNum < 3) {
+                    document.getElementById(`question${questionNum + 1}`).classList.remove('opacity-50');
+                    document.getElementById(`question${questionNum + 1}`).querySelectorAll('button').forEach(btn => btn.disabled = false);
+                } else {
+                    document.getElementById('nextBtn2').disabled = false;
+                }
+                
+            } else {
+                event.target.classList.add('wrong-answer');
+                
+                let corrections = {
+                    1: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-4">❌ Análisis Incompleto - Revisemos Juntos</h5>
+                            <p class="text-red-700 mb-4">Tu respuesta no considera todos los factores críticos para vehículos C3 en condiciones adversas. Vamos a analizarlo paso a paso:</p>
+                            
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-3">🧮 ¿Por qué tu respuesta es insuficiente?</h6>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-2">
+                                        <p class="text-sm font-bold text-red-700">Si aplicaras solo 2 segundos (44m):</p>
+                                        <ul class="text-xs space-y-1 text-red-600">
+                                            <li>• Tiempo de reacción: 1.5s = 33m</li>
+                                            <li>• Distancia disponible para frenar: 11m</li>
+                                            <li>• Distancia real necesaria: 65m en lluvia</li>
+                                            <li>• <strong>DÉFICIT: 54 metros = COLISIÓN SEGURA</strong></li>
+                                        </ul>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <p class="text-sm font-bold text-green-700">Con 4-5 segundos (88-110m):</p>
+                                        <ul class="text-xs space-y-1 text-green-600">
+                                            <li>• Tiempo de reacción: 1.5s = 33m</li>
+                                            <li>• Distancia para frenar: 55-77m</li>
+                                            <li>• Distancia necesaria: 65m en lluvia</li>
+                                            <li>• <strong>MARGEN SEGURO: 12 metros</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-yellow-800 mb-2">⚠️ Factores que NO consideraste:</h6>
+                                <div class="grid md:grid-cols-3 gap-3 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">⚖️</div>
+                                        <p class="font-bold">Peso del Vehículo</p>
+                                        <p class="text-xs">18 toneladas vs 1.5 ton auto = 12x más inercia</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">🌧️</div>
+                                        <p class="font-bold">Condición de Lluvia</p>
+                                        <p class="text-xs">Coeficiente de fricción reducido 40-50%</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl mb-1">🚛</div>
+                                        <p class="font-bold">Sistema de Frenos</p>
+                                        <p class="text-xs">Neumático con retardo de respuesta</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded">
+                                <h6 class="font-bold text-blue-800 mb-2">💡 Para que lo recuerdes:</h6>
+                                <p class="text-sm text-blue-700">La regla de 2 segundos es para autos livianos en condiciones ideales. Como conductor profesional de C3, tu responsabilidad es MAYOR. La fórmula correcta es: <strong>Regla básica + Factor de peso + Factor climático = Distancia segura real</strong></p>
+                            </div>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-4">❌ Error Grave en Jerarquía - Esto Puede Costarte Caro</h5>
+                            <p class="text-red-700 mb-4">Has confundido el orden de prelación establecido en el Artículo 107. Este error en la vida real puede resultar en accidentes graves y sanciones severas.</p>
+                            
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-3">📜 Artículo 107 - La Jerarquía CORRECTA:</h6>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3 p-3 bg-red-100 rounded border-l-4 border-red-600">
+                                        <span class="text-3xl">👮‍♂️</span>
+                                        <div>
+                                            <p class="font-bold text-red-800 text-lg">1° AGENTE DE TRÁNSITO</p>
+                                            <p class="text-sm text-red-700">SIEMPRE tiene la autoridad máxima, sin excepción</p>
+                                        </div>
+                                        <span class="text-red-600 font-bold text-2xl">←</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-yellow-100 rounded border-l-4 border-yellow-500">
+                                        <span class="text-2xl">🚦</span>
+                                        <div>
+                                            <p class="font-bold text-yellow-800">2° Semáforos</p>
+                                            <p class="text-sm text-yellow-700">Solo cuando no hay agente presente</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-blue-100 rounded border-l-4 border-blue-500">
+                                        <span class="text-2xl">🛑</span>
+                                        <div>
+                                            <p class="font-bold text-blue-800">3° Señales Verticales</p>
+                                            <p class="text-sm text-blue-700">Cuando no hay agente ni semáforo</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-green-100 rounded border-l-4 border-green-500">
+                                        <span class="text-2xl">➡️</span>
+                                        <div>
+                                            <p class="font-bold text-green-800">4° Señales Horizontales</p>
+                                            <p class="text-sm text-green-700">Última prioridad en la jerarquía</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-orange-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-orange-800 mb-2">🚨 Caso Real que Debes Entender:</h6>
+                                <div class="space-y-2 text-sm">
+                                    <p class="text-orange-700">Estás en una intersección:</p>
+                                    <ul class="space-y-1 text-orange-600 ml-4">
+                                        <li>• El semáforo está en VERDE para ti</li>
+                                        <li>• Un agente de tránsito te hace señal de PARE</li>
+                                        <li>• Otros conductores están avanzando</li>
+                                    </ul>
+                                    <div class="bg-red-100 p-3 rounded mt-2">
+                                        <p class="font-bold text-red-800">TÚ DEBES PARAR, sin importar el semáforo verde</p>
+                                        <p class="text-xs text-red-700">El agente puede estar viendo algo que tú no: ambulancia, accidente, peligro inminente</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-purple-800 mb-2">💰 Consecuencias de tu Error:</h6>
+                                <div class="grid md:grid-cols-2 gap-3 text-sm">
+                                    <div>
+                                        <p class="font-bold text-purple-700">Sanciones Económicas:</p>
+                                        <ul class="text-xs space-y-1 text-purple-600">
+                                            <li>• Multa Categoría A: $438,900</li>
+                                            <li>• Inmovilización del vehículo</li>
+                                            <li>• Costos de grúa y parqueadero</li>
+                                            <li>• Pérdida de tiempo y dinero</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-purple-700">Consecuencias Graves:</p>
+                                        <ul class="text-xs space-y-1 text-purple-600">
+                                            <li>• Suspensión de licencia</li>
+                                            <li>• Responsabilidad civil en accidente</li>
+                                            <li>• Posible responsabilidad penal</li>
+                                            <li>• Pérdida del empleo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded">
+                                <h6 class="font-bold text-blue-800 mb-2">🎯 Memoriza Esto:</h6>
+                                <p class="text-sm text-blue-700 font-bold">"AGENTE SIEMPRE PRIMERO - Su autoridad está por encima de cualquier señal automática porque puede evaluar situaciones que las máquinas no pueden detectar."</p>
+                            </div>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-4">❌ Error Crítico en Gestión de Riesgos</h5>
+                            <p class="text-red-700 mb-4">Tu respuesta demuestra una mentalidad peligrosa que puede llevarte a accidentes graves. La Resolución 40595/2022 es clara: la seguridad NO se negocia.</p>
+                            
+                            <div class="bg-white p-4 rounded mb-4">
+                                <h6 class="font-bold text-gray-800 mb-3">📋 Lo que dice la LEY (Resolución 40595/2022):</h6>
+                                <div class="bg-red-100 p-4 rounded border-l-4 border-red-600 mb-3">
+                                    <p class="text-sm text-red-800 font-bold italic">"Todo conductor debe reportar inmediatamente cualquier condición que pueda comprometer la seguridad de la operación, y suspender la actividad hasta que se corrija la situación."</p>
+                                </div>
+                                <p class="text-sm text-gray-700">Esto NO es una sugerencia, es una OBLIGACIÓN LEGAL. Ignorarla te convierte en responsable de cualquier accidente.</p>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-yellow-800 mb-2">⚠️ ¿Por qué tu respuesta es PELIGROSA?</h6>
+                                <div class="space-y-3 text-sm">
+                                    <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                                        <p class="font-bold text-red-700">Si continúas con frenos defectuosos:</p>
+                                        <ul class="text-xs space-y-1 text-red-600 mt-1">
+                                            <li>• Distancia de frenado puede duplicarse o triplicarse</li>
+                                            <li>• En una emergencia, NO podrás detenerte</li>
+                                            <li>• 18 toneladas sin frenos = arma letal</li>
+                                            <li>• Puedes matar a familias enteras</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border-l-4 border-orange-500">
+                                        <p class="font-bold text-orange-700">Presión vs. Responsabilidad:</p>
+                                        <ul class="text-xs space-y-1 text-orange-600 mt-1">
+                                            <li>• "Llegar a tiempo" NO vale una vida humana</li>
+                                            <li>• La empresa DEBE entender y apoyar tu decisión</li>
+                                            <li>• Si no lo hace, NO es una empresa responsable</li>
+                                            <li>• Tu licencia y libertad están en juego</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-100 p-4 rounded mb-4">
+                                <h6 class="font-bold text-red-800 mb-2">💀 Consecuencias REALES de tu Error:</h6>
+                                <div class="grid md:grid-cols-3 gap-3 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-3xl mb-1">⚰️</div>
+                                        <p class="font-bold text-red-700">Muertes</p>
+                                        <p class="text-xs text-red-600">Tuya y de inocentes</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-3xl mb-1">🏛️</div>
+                                        <p class="font-bold text-red-700">Prisión</p>
+                                        <p class="text-xs text-red-600">3-6 años por homicidio culposo</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-3xl mb-1">💸</div>
+                                        <p class="font-bold text-red-700">Ruina Económica</p>
+                                        <p class="text-xs text-red-600">Millones en indemnizaciones</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded mb-4">
+                                <h6 class="font-bold text-green-800 mb-2">✅ Lo que DEBES hacer (Protocolo Correcto):</h6>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                                        <span class="text-green-700">DETENER inmediatamente en lugar seguro</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                                        <span class="text-green-700">LLAMAR a supervisión: "Tengo falla en frenos, suspendo operación"</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                                        <span class="text-green-700">DOCUMENTAR la falla con fotos y descripción detallada</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
+                                        <span class="text-green-700">NO MOVER el vehículo hasta reparación completa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded">
+                                <h6 class="font-bold text-blue-800 mb-2">🏆 Mentalidad del Conductor Profesional:</h6>
+                                <p class="text-sm text-blue-700">"Prefiero llegar tarde a casa que no llegar nunca. Mi responsabilidad es proteger vidas, empezando por la mía y la de mi familia. Un conductor profesional NUNCA compromete la seguridad por presión operativa."</p>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = `<div class="bg-red-50 border-l-4 border-red-400 p-4 rounded"><p class="text-red-700">${corrections[questionNum]}</p></div>`;
+                
+                setTimeout(() => {
+                    questionButtons.forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('wrong-answer');
+                    });
+                }, 3000);
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        // Verificación de situaciones avanzadas
+        function checkAdvancedSituation(situationNum, option, isCorrect) {
+            const buttons = document.querySelectorAll(`#situation${situationNum} .situation-btn`);
+            buttons.forEach(btn => btn.disabled = true);
+            
+            const feedback = document.getElementById(`advancedFeedback${situationNum}`);
+            
+            if (isCorrect) {
+                event.target.classList.add('correct-answer');
+                advancedSituationsCompleted++;
+                advancedSituationsCorrect++;
+                
+                let explanations = {
+                    1: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Excelente Análisis Integral!</h5>
+                            <p class="text-green-700 mb-4">Has demostrado un pensamiento profesional excepcional al considerar todos los factores críticos:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Seguridad Prioritaria</p>
+                                    <p class="text-sm text-green-700">Reducir velocidad antes de maniobrar</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Comunicación Vial</p>
+                                    <p class="text-sm text-green-700">Señalizar intenciones claramente</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Verificación Activa</p>
+                                    <p class="text-sm text-green-700">Confirmar espacio seguro antes de cambiar</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Consideración de Carga</p>
+                                    <p class="text-sm text-green-700">Maniobra suave para evitar desestabilización</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-green-100 rounded">
+                                <p class="text-sm text-green-800"><strong>Resultado:</strong> Cumplimiento del Art. 63, seguridad para todos los actores viales y profesionalismo ejemplar.</p>
+                            </div>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Dominio Perfecto de la Prelación!</h5>
+                            <p class="text-green-700 mb-4">Has aplicado correctamente la jerarquía de prelación considerando todos los actores:</p>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                                    <p class="font-medium text-purple-800">1° Peatones</p>
+                                    <p class="text-sm text-purple-700">Prelación absoluta en paso cebra, independiente de otras señales</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                                    <p class="font-medium text-blue-800">2° Bus Articulado</p>
+                                    <p class="text-sm text-blue-700">Vía principal tiene prelación sobre vía secundaria</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                    <p class="font-medium text-green-800">3° Tu Vehículo</p>
+                                    <p class="text-sm text-green-700">Desde vía secundaria, debes ceder el paso</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-green-100 rounded">
+                                <p class="text-sm text-green-800"><strong>Normativa aplicada:</strong> Art. 107 (jerarquía), protección al peatón, y prelación de vía principal.</p>
+                            </div>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                            <h5 class="font-bold text-green-800 mb-3">✅ ¡Gestión Profesional del Riesgo!</h5>
+                            <p class="text-green-700 mb-4">Has demostrado una mentalidad de seguridad excepcional al priorizar la evaluación integral:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Evaluación Técnica</p>
+                                    <p class="text-sm text-green-700">Capacidades del vehículo vs. condiciones</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Comunicación Empresarial</p>
+                                    <p class="text-sm text-green-700">Contacto con supervisión para decisión conjunta</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Alternativas Seguras</p>
+                                    <p class="text-sm text-green-700">Considerar parada hasta mejorar condiciones</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="font-medium text-green-800">Responsabilidad Integral</p>
+                                    <p class="text-sm text-green-700">Protección de carga, vehículo y vidas humanas</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-green-100 rounded">
+                                <p class="text-sm text-green-800"><strong>PESV aplicado:</strong> Gestión proactiva del riesgo, toma de decisiones basada en seguridad, no en presión operativa.</p>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = explanations[situationNum];
+                
+            } else {
+                event.target.classList.add('wrong-answer');
+                advancedSituationsCompleted++;
+                
+                let corrections = {
+                    1: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Análisis Incompleto</h5>
+                            <p class="text-red-700 mb-4">Tu respuesta no considera todos los factores críticos de seguridad:</p>
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Riesgo ignorado:</strong> Maniobra brusca con 20 toneladas puede causar volcamiento</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Protocolo correcto:</strong> Reducir velocidad → Señalizar → Verificar → Maniobrar suavemente</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Art. 63:</strong> Ceder paso no significa crear nuevos riesgos</p>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    2: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Error en Jerarquía de Prelación</h5>
+                            <p class="text-red-700 mb-4">No has aplicado correctamente el orden de prelación establecido:</p>
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Orden correcto:</strong> Peatones → Vía principal → Vía secundaria</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Peatones:</strong> Siempre tienen prelación absoluta en paso cebra</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Semáforo intermitente:</strong> Equivale a PARE, no a negociación</p>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    3: `
+                        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded">
+                            <h5 class="font-bold text-red-800 mb-3">❌ Gestión Inadecuada del Riesgo</h5>
+                            <p class="text-red-700 mb-4">Tu respuesta no refleja una gestión profesional del riesgo:</p>
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>PESV requiere:</strong> Evaluación integral antes de continuar</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Condiciones extremas:</strong> Pueden superar las capacidades del vehículo</p>
+                                </div>
+                                <div class="bg-white p-3 rounded">
+                                    <p class="text-sm"><strong>Decisión correcta:</strong> Seguridad sobre presión operativa</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                };
+                
+                feedback.innerHTML = corrections[situationNum];
+                
+                setTimeout(() => {
+                    buttons.forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('wrong-answer');
+                    });
+                }, 4000);
+            }
+            
+            feedback.classList.remove('hidden');
+            
+            // Habilitar siguiente situación o mostrar resumen
+            if (situationNum < 3) {
+                setTimeout(() => {
+                    const nextSituation = document.getElementById(`situation${situationNum + 1}`);
+                    nextSituation.classList.remove('opacity-50');
+                    nextSituation.querySelectorAll('button').forEach(btn => btn.disabled = false);
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    showPerformanceSummary();
+                }, 1000);
+            }
+        }
+
+        // Mostrar resumen de desempeño
+        function showPerformanceSummary() {
+            const summary = document.getElementById('performanceSummary');
+            const scoreText = document.getElementById('scoreText');
+            const scoreIcon = document.getElementById('scoreIcon');
+            const analysisLevel = document.getElementById('analysisLevel');
+            const safetyScore = document.getElementById('safetyScore');
+            const recommendationsList = document.getElementById('recommendationsList');
+            
+            scoreText.textContent = `${advancedSituationsCorrect}/3`;
+            
+            let performance = {
+                score: advancedSituationsCorrect,
+                level: '',
+                safety: 0,
+                icon: '',
+                recommendations: []
+            };
+            
+            if (advancedSituationsCorrect === 3) {
+                performance.level = 'Experto';
+                performance.safety = 95;
+                performance.icon = '🏆';
+                performance.recommendations = [
+                    '✅ Excelente dominio de situaciones críticas',
+                    '🎯 Mantén este nivel de análisis en tu trabajo diario',
+                    '👨‍🏫 Considera compartir tu conocimiento con otros conductores',
+                    '📚 Continúa actualizándote en nuevas normativas'
+                ];
+            } else if (advancedSituationsCorrect === 2) {
+                performance.level = 'Avanzado';
+                performance.safety = 80;
+                performance.icon = '🎯';
+                performance.recommendations = [
+                    '👍 Buen nivel de análisis, con oportunidades de mejora',
+                    '🔍 Revisa los casos donde tuviste dificultades',
+                    '📖 Profundiza en el estudio de la normativa específica',
+                    '🤝 Practica análisis de situaciones con otros conductores'
+                ];
+            } else if (advancedSituationsCorrect === 1) {
+                performance.level = 'Intermedio';
+                performance.safety = 65;
+                performance.icon = '📚';
+                performance.recommendations = [
+                    '⚠️ Necesitas reforzar el análisis de situaciones críticas',
+                    '📘 Estudia más profundamente la jerarquía de prelación',
+                    '🎓 Considera capacitación adicional en gestión de riesgos',
+                    '👥 Busca mentoría de conductores más experimentados'
+                ];
+            } else {
+                performance.level = 'Básico';
+                performance.safety = 45;
+                performance.icon = '📖';
+                performance.recommendations = [
+                    '🚨 Requieres capacitación urgente en situaciones críticas',
+                    '📚 Estudia intensivamente la normativa de tránsito',
+                    '🎯 Practica análisis de casos con supervisión',
+                    '⏰ Programa capacitación adicional inmediatamente'
+                ];
+            }
+            
+            scoreIcon.textContent = performance.icon;
+            analysisLevel.textContent = performance.level;
+            safetyScore.textContent = performance.safety + '%';
+            
+            recommendationsList.innerHTML = performance.recommendations
+                .map(rec => `<div class="flex items-start space-x-2 mb-2"><span class="text-sm">${rec}</span></div>`)
+                .join('');
+            
+            summary.classList.remove('hidden');
+            courseData.practicalScore = advancedSituationsCorrect;
+            
+            document.getElementById('nextBtn3').disabled = false;
+        }
+
+        // Variables para actividades interactivas
+        let matchingCompleted = false;
+        let priorityCompleted = false;
+        let strategiesCompleted = false;
+        let currentDraggedElement = null;
+        let priorityOrder = [];
+
+        // Verificar compromisos
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('commitment-check')) {
+                const allChecked = document.querySelectorAll('.commitment-check:checked').length;
+                commitmentsMade = allChecked >= 6; // Mínimo 6 de 9 compromisos
+                checkTransferenceCompletion();
+            }
+            
+            // Verificar estrategias seleccionadas
+            if (e.target.classList.contains('strategy-check')) {
+                const selectedStrategies = document.querySelectorAll('.strategy-check:checked').length;
+                strategiesCompleted = selectedStrategies >= 3; // Mínimo 3 estrategias
+                
+                if (strategiesCompleted) {
+                    showStrategyFeedback();
+                }
+                checkTransferenceCompletion();
+            }
+        });
+
+        // Configurar drag and drop para emparejar
+        document.addEventListener('DOMContentLoaded', function() {
+            setupDragAndDrop();
+            setupPriorityDragAndDrop();
+        });
+
+        function setupDragAndDrop() {
+            const actionItems = document.querySelectorAll('.action-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            actionItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    currentDraggedElement = this;
+                    this.style.opacity = '0.5';
+                });
+
+                item.addEventListener('dragend', function(e) {
+                    this.style.opacity = '1';
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = '#f0f9ff';
+                });
+
+                zone.addEventListener('dragleave', function(e) {
+                    this.style.backgroundColor = 'white';
+                });
+
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = 'white';
+                    
+                    if (currentDraggedElement) {
+                        // Limpiar zona anterior si existe
+                        const existingItem = this.querySelector('.action-item');
+                        if (existingItem) {
+                            document.querySelector('.space-y-3:last-child').appendChild(existingItem);
+                        }
+                        
+                        // Agregar nuevo elemento
+                        this.appendChild(currentDraggedElement.cloneNode(true));
+                        currentDraggedElement.style.display = 'none';
+                        
+                        checkMatching();
+                    }
+                });
+            });
+        }
+
+        function checkMatching() {
+            const matches = {
+                '1': 'A', // Lluvia -> Duplicar distancia
+                '2': 'B', // Ambulancia -> Protocolo emergencia
+                '3': 'C'  // Frenos -> Suspender operación
+            };
+
+            let correctMatches = 0;
+            let totalMatches = 0;
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                const target = zone.dataset.target;
+                const actionItem = zone.querySelector('.action-item');
+                
+                if (actionItem) {
+                    totalMatches++;
+                    const action = actionItem.dataset.action;
+                    if (matches[target] === action) {
+                        correctMatches++;
+                        zone.style.backgroundColor = '#dcfce7';
+                        zone.style.borderColor = '#22c55e';
+                    } else {
+                        zone.style.backgroundColor = '#fef2f2';
+                        zone.style.borderColor = '#ef4444';
+                    }
+                }
+            });
+
+            if (totalMatches === 3) {
+                matchingCompleted = correctMatches === 3;
+                showMatchingFeedback(correctMatches);
+                checkTransferenceCompletion();
+            }
+        }
+
+        function showMatchingFeedback(correctMatches) {
+            const feedback = document.getElementById('matchingFeedback');
+            let content = '';
+
+            if (correctMatches === 3) {
+                content = `
+                    <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                        <h6 class="font-bold text-green-800 mb-3">✅ ¡Excelente! Emparejamiento Perfecto</h6>
+                        <p class="text-green-700 mb-4">Has demostrado comprensión completa de cómo aplicar los conocimientos en situaciones reales:</p>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white p-3 rounded">
+                                <p class="font-medium text-blue-800">🌧️ Lluvia intensa</p>
+                                <p class="text-sm text-blue-600">Duplicar distancia de seguridad es correcto porque las condiciones adversas requieren mayor margen de reacción.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded">
+                                <p class="font-medium text-yellow-800">🚨 Ambulancia</p>
+                                <p class="text-sm text-yellow-600">El protocolo integral asegura maniobra segura sin crear nuevos riesgos.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded">
+                                <p class="font-medium text-red-800">⚠️ Frenos defectuosos</p>
+                                <p class="text-sm text-red-600">Suspender operación es obligatorio según PESV - la seguridad no se negocia.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded">
+                        <h6 class="font-bold text-orange-800 mb-3">⚠️ Revisa tus Emparejamientos</h6>
+                        <p class="text-orange-700 mb-4">Tienes ${correctMatches} de 3 correctos. Considera:</p>
+                        <div class="space-y-2 text-sm">
+                            <p>• <strong>Lluvia intensa:</strong> Requiere aumentar significativamente la distancia de seguridad</p>
+                            <p>• <strong>Ambulancia:</strong> Necesita maniobra planificada, no improvisada</p>
+                            <p>• <strong>Frenos defectuosos:</strong> Es una falla crítica que requiere suspensión inmediata</p>
+                        </div>
+                        <p class="text-orange-600 mt-3 font-medium">Intenta nuevamente arrastrando las acciones correctas.</p>
+                    </div>
+                `;
+            }
+
+            feedback.innerHTML = content;
+            feedback.classList.remove('hidden');
+        }
+
+        function setupPriorityDragAndDrop() {
+            const priorityItems = document.querySelectorAll('.priority-item');
+            const priorityList = document.getElementById('priorityList');
+
+            priorityItems.forEach((item, index) => {
+                item.addEventListener('dragstart', function(e) {
+                    currentDraggedElement = this;
+                    this.style.opacity = '0.5';
+                });
+
+                item.addEventListener('dragend', function(e) {
+                    this.style.opacity = '1';
+                });
+
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    
+                    if (currentDraggedElement && currentDraggedElement !== this) {
+                        const allItems = Array.from(priorityList.children);
+                        const draggedIndex = allItems.indexOf(currentDraggedElement);
+                        const targetIndex = allItems.indexOf(this);
+
+                        if (draggedIndex < targetIndex) {
+                            this.parentNode.insertBefore(currentDraggedElement, this.nextSibling);
+                        } else {
+                            this.parentNode.insertBefore(currentDraggedElement, this);
+                        }
+
+                        updatePriorityNumbers();
+                        checkPriorityOrder();
+                    }
+                });
+            });
+        }
+
+        function updatePriorityNumbers() {
+            const items = document.querySelectorAll('.priority-item');
+            items.forEach((item, index) => {
+                const numberSpan = item.querySelector('.priority-number');
+                numberSpan.textContent = index + 1;
+            });
+        }
+
+        function checkPriorityOrder() {
+            const correctOrder = ['safety', 'compliance', 'vehicle', 'cargo', 'time', 'comfort'];
+            const currentOrder = Array.from(document.querySelectorAll('.priority-item')).map(item => item.dataset.priority);
+            
+            const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
+            priorityCompleted = isCorrect;
+            
+            showPriorityFeedback(currentOrder, correctOrder);
+            checkTransferenceCompletion();
+        }
+
+        function showPriorityFeedback(currentOrder, correctOrder) {
+            const feedback = document.getElementById('priorityFeedback');
+            let content = '';
+
+            const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
+
+            if (isCorrect) {
+                content = `
+                    <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                        <h6 class="font-bold text-green-800 mb-3">✅ ¡Perfecto! Orden de Prioridades Correcto</h6>
+                        <p class="text-green-700 mb-4">Has demostrado una mentalidad profesional excepcional al priorizar:</p>
+                        <div class="space-y-2 text-sm">
+                            <p><strong>1° Seguridad de vidas:</strong> La prioridad absoluta de todo conductor profesional</p>
+                            <p><strong>2° Cumplimiento normativo:</strong> Base legal que protege a todos</p>
+                            <p><strong>3° Cuidado del vehículo:</strong> Herramienta de trabajo que debe mantenerse segura</p>
+                            <p><strong>4° Protección de carga:</strong> Responsabilidad comercial importante</p>
+                            <p><strong>5° Cumplimiento de horarios:</strong> Importante pero nunca sobre la seguridad</p>
+                            <p><strong>6° Comodidad personal:</strong> Deseable pero no prioritaria</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                let correctCount = 0;
+                currentOrder.forEach((item, index) => {
+                    if (item === correctOrder[index]) correctCount++;
+                });
+
+                content = `
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded">
+                        <h6 class="font-bold text-orange-800 mb-3">⚠️ Revisa el Orden de Prioridades</h6>
+                        <p class="text-orange-700 mb-4">Tienes ${correctCount} de 6 en posición correcta. Recuerda:</p>
+                        <div class="bg-white p-4 rounded mb-3">
+                            <p class="text-sm text-gray-700 mb-2"><strong>Principio fundamental:</strong> La seguridad de vidas humanas SIEMPRE debe ser la prioridad #1.</p>
+                            <p class="text-sm text-gray-700">Todo lo demás (horarios, comodidad, incluso la carga) es secundario a preservar vidas.</p>
+                        </div>
+                        <p class="text-orange-600 font-medium">Arrastra los elementos para reordenar según la importancia real.</p>
+                    </div>
+                `;
+            }
+
+            feedback.innerHTML = content;
+            feedback.classList.remove('hidden');
+        }
+
+        function showStrategyFeedback() {
+            const feedback = document.getElementById('strategyFeedback');
+            const selectedStrategies = document.querySelectorAll('.strategy-check:checked');
+            const mentalStrategies = document.querySelectorAll('.strategy-check[data-category="mental"]:checked').length;
+            const physicalStrategies = document.querySelectorAll('.strategy-check[data-category="physical"]:checked').length;
+
+            let content = `
+                <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+                    <h6 class="font-bold text-green-800 mb-3">✅ Estrategias Seleccionadas: ${selectedStrategies.length}</h6>
+                    <p class="text-green-700 mb-4">Excelente selección de herramientas para mantener comportamientos seguros:</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3 rounded">
+                            <p class="font-medium text-green-800">🧠 Estrategias Mentales: ${mentalStrategies}</p>
+                            <p class="text-sm text-green-600">Herramientas cognitivas para toma de decisiones</p>
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <p class="font-medium text-blue-800">🔧 Estrategias Físicas: ${physicalStrategies}</p>
+                            <p class="text-sm text-blue-600">Acciones concretas y recordatorios tangibles</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 rounded">
+                        <p class="text-sm text-blue-800"><strong>Recomendación:</strong> Practica estas estrategias durante las próximas semanas hasta que se vuelvan automáticas. La combinación de herramientas mentales y físicas es la más efectiva.</p>
+                    </div>
+                </div>
+            `;
+
+            feedback.innerHTML = content;
+            feedback.classList.remove('hidden');
+        }
+
+        // Sistema de calificación por estrellas
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('rating-star')) {
+                const rating = parseInt(e.target.dataset.rating);
+                const container = e.target.parentElement;
+                const stars = container.querySelectorAll('.rating-star');
+                
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.remove('bg-gray-300');
+                        star.classList.add('bg-yellow-400');
+                    } else {
+                        star.classList.remove('bg-yellow-400');
+                        star.classList.add('bg-gray-300');
+                    }
+                });
+                
+                selfRatingsCompleted++;
+                checkTransferenceCompletion();
+            }
+        });
+
+        // Verificar completitud de transferencia
+        function checkTransferenceCompletion() {
+            if (commitmentsMade && matchingCompleted && priorityCompleted && strategiesCompleted && selfRatingsCompleted >= 3) {
+                document.getElementById('nextBtn4').disabled = false;
+            }
+        }
+
+        // Completar curso
+        function completeCourse() {
+            // Calcular puntuación final
+            const finalScore = courseData.reflectionScore + courseData.knowledgeScore + courseData.practicalScore;
+            
+            // Determinar nivel alcanzado
+            let level, message;
+            if (finalScore >= 9) {
+                level = 'Experto';
+                message = '¡Excelente! Has demostrado un dominio excepcional de la seguridad vial.';
+            } else if (finalScore >= 7) {
+                level = 'Avanzado';
+                message = '¡Muy bien! Tienes un buen nivel con oportunidades de mejora.';
+            } else if (finalScore >= 5) {
+                level = 'Intermedio';
+                message = 'Buen trabajo. Continúa reforzando tus conocimientos.';
+            } else {
+                level = 'Básico';
+                message = 'Has completado el curso. Te recomendamos capacitación adicional.';
+            }
+            
+            // Actualizar progreso al 100%
+            progress = 100;
+            document.getElementById('progressBar').style.width = '100%';
+            
+            // Mostrar mensaje de finalización
+            const section4 = document.getElementById('section4');
+            section4.innerHTML = `
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="text-6xl mb-6">🎉</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Microcurso Completado!</h2>
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Jhon Harry Bryan Argumedo</h3>
+                        <p class="text-lg text-blue-600 mb-4">${message}</p>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">🎯</div>
+                                <p class="font-bold">${finalScore}/11</p>
+                                <p class="text-sm text-gray-600">Puntuación</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">🏆</div>
+                                <p class="font-bold">${level}</p>
+                                <p class="text-sm text-gray-600">Nivel</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl mb-2">✅</div>
+                                <p class="font-bold">Completado</p>
+                                <p class="text-sm text-gray-600">Estado</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <h4 class="font-bold text-blue-800 mb-3">Resumen de Aprendizajes:</h4>
+                        <div class="text-left space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Reflexión profunda sobre comportamiento vial</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Dominio del marco normativo especializado</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Aplicación práctica en situaciones críticas</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-green-600">✅</span>
+                                <span class="text-sm">Compromiso personal con la seguridad vial</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-gray-600">¡Gracias por tu compromiso con la seguridad vial!</p>
+                        <p class="text-sm text-gray-500 mt-2">Transporte Refrigerado Líquido (TRL) - ${new Date().toLocaleDateString('es-CO')}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9957c6ce0132b6f2',t:'MTc2MTYyNjY1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
 
